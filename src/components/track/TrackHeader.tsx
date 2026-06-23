@@ -14,6 +14,9 @@ import { audioEngine } from '@/engine/audio-engine';
 import { cn } from '@/utils/cn';
 import { TRACK_COLORS } from '@/types';
 import type { Track } from '@/types';
+import { PluginManager } from '@/components/plugins/PluginManager';
+import type { VSTPlugin } from '@/types/electron';
+import { useElectron } from '@/hooks/useElectron';
 
 interface TrackHeaderProps {
   track: Track;
@@ -48,14 +51,14 @@ export function TrackHeader({ track, isSelected }: TrackHeaderProps) {
   const addClip = useDAWStore((s) => s.addClip);
 
   const color = TRACK_COLORS[track.color];
+  const electron = useElectron();
 
-  const handleImportAudio = useCallback(
+  const handleImportAudioFile = useCallback(
     async (file: File) => {
       const buffer = await audioEngine.decodeAudioFile(file);
       const bpm = useDAWStore.getState().project.bpm;
       const durationBeats = (buffer.duration / 60) * bpm;
-      const existingClips = track.clips;
-      const lastEnd = existingClips.reduce(
+      const lastEnd = track.clips.reduce(
         (max, c) => Math.max(max, c.startBeat + c.durationBeats),
         0
       );
@@ -73,8 +76,47 @@ export function TrackHeader({ track, isSelected }: TrackHeaderProps) {
     [track, color, addClip]
   );
 
+  const handleImportAudioElectron = useCallback(async () => {
+    if (!electron) return;
+    const filePath = await electron.openAudioFile({ title: 'Import Audio' });
+    if (!filePath) return;
+    const buffer = await audioEngine.decodeAudioPath(filePath);
+    const bpm = useDAWStore.getState().project.bpm;
+    const durationBeats = (buffer.duration / 60) * bpm;
+    const lastEnd = track.clips.reduce(
+      (max, c) => Math.max(max, c.startBeat + c.durationBeats),
+      0
+    );
+    const name = filePath.split(/[\\/]/).pop()?.replace(/\.[^.]+$/, '') ?? 'Audio';
+    addClip(track.id, {
+      startBeat: lastEnd,
+      durationBeats,
+      name,
+      color,
+      audioBuffer: buffer,
+      gain: 1.0,
+      fadeIn: 0,
+      fadeOut: 0,
+    });
+  }, [electron, track, color, addClip]);
+
+  const setTrackInstrument = useDAWStore((s) => s.setTrackInstrument);
   const [editingName, setEditingName] = useState(false);
   const [nameValue, setNameValue] = useState(track.name);
+  const [showPluginPicker, setShowPluginPicker] = useState(false);
+
+  const handlePluginSelect = useCallback(
+    (plugin: VSTPlugin) => {
+      setTrackInstrument(track.id, plugin.path);
+      updateTrack(track.id, { name: plugin.name });
+      setNameValue(plugin.name);
+    },
+    [track.id, setTrackInstrument, updateTrack]
+  );
+
+  const pluginName = track.instrument
+    ? track.instrument.split(/[\\/]/).pop()?.replace(/\.(vst3|vst|dll|component)$/i, '') ?? 'Plugin'
+    : null;
 
   return (
     <div
@@ -188,15 +230,24 @@ export function TrackHeader({ track, isSelected }: TrackHeaderProps) {
               {TYPE_LABEL[track.type]}
             </span>
             <button
-              className="flex items-center gap-0.5 text-[10px] text-[#a0a0c0] bg-[#1e1e2c] hover:bg-[#2a2a3a] border border-[#2a2a3a] rounded px-1.5 py-0.5 truncate max-w-[110px] transition-colors"
+              className="flex items-center gap-0.5 text-[10px] text-[#a0a0c0] bg-[#1e1e2c] hover:bg-[#2a2a3a] border border-[#2a2a3a] rounded px-1.5 py-0.5 truncate max-w-[120px] transition-colors"
               onClick={(e) => {
                 e.stopPropagation();
-                openEffects(track.id);
+                setShowPluginPicker(true);
               }}
-              title="Open effects"
+              title={pluginName ? `Plugin: ${pluginName}` : 'Select VST plugin'}
             >
-              <Plus size={8} className="shrink-0 opacity-70" />
-              <span className="truncate">Add VST</span>
+              {pluginName ? (
+                <>
+                  <span className="truncate">{pluginName}</span>
+                  <ChevronDown size={8} className="shrink-0 opacity-60 ml-0.5" />
+                </>
+              ) : (
+                <>
+                  <Plus size={8} className="shrink-0 opacity-70" />
+                  <span className="truncate">Add VST</span>
+                </>
+              )}
             </button>
 
             {/* Right side icons */}
@@ -221,7 +272,11 @@ export function TrackHeader({ track, isSelected }: TrackHeaderProps) {
                 className="w-4 h-4 flex items-center justify-center text-[#55557a] hover:text-[#e8e8f0] transition-colors"
                 onClick={(e) => {
                   e.stopPropagation();
-                  fileInputRef.current?.click();
+                  if (electron) {
+                    handleImportAudioElectron();
+                  } else {
+                    fileInputRef.current?.click();
+                  }
                 }}
               >
                 <Upload size={9} />
@@ -288,10 +343,18 @@ export function TrackHeader({ track, isSelected }: TrackHeaderProps) {
         className="hidden"
         onChange={(e) => {
           const file = e.target.files?.[0];
-          if (file) handleImportAudio(file);
+          if (file) handleImportAudioFile(file);
           e.target.value = '';
         }}
       />
+
+      {showPluginPicker && (
+        <PluginManager
+          selected={track.instrument}
+          onSelect={handlePluginSelect}
+          onClose={() => setShowPluginPicker(false)}
+        />
+      )}
     </div>
   );
 }

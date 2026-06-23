@@ -98,6 +98,9 @@ interface DAWState {
   // Effects actions
   updateEffects: (trackId: string, effects: Partial<TrackEffects>) => void;
 
+  // Instrument / VST assignment
+  setTrackInstrument: (trackId: string, instrument: string | undefined) => void;
+
   // UI actions
   selectTrack: (id: string | null) => void;
   selectClip: (id: string | null) => void;
@@ -279,6 +282,12 @@ export const useDAWStore = create<DAWState>()(
       set((s) => {
         const t = s.tracks.find((t) => t.id === trackId);
         if (t) Object.assign(t.effects, effects);
+      }),
+
+    setTrackInstrument: (trackId, instrument) =>
+      set((s) => {
+        const t = s.tracks.find((t) => t.id === trackId);
+        if (t) t.instrument = instrument;
       }),
 
     selectTrack: (id) =>

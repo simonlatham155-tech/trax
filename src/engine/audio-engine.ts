@@ -237,6 +237,20 @@ class AudioEngine {
     return this.ctx!.decodeAudioData(arrayBuffer);
   }
 
+  /** Load and decode an audio file from a filesystem path (Electron only) */
+  async decodeAudioPath(filePath: string): Promise<AudioBuffer> {
+    await this.init();
+    await this.resume();
+    const api = window.electronAPI;
+    if (!api) throw new Error('decodeAudioPath requires Electron');
+    const bytes = await api.readFile(filePath);
+    const arrayBuffer = bytes.buffer.slice(
+      bytes.byteOffset,
+      bytes.byteOffset + bytes.byteLength
+    ) as ArrayBuffer;
+    return this.ctx!.decodeAudioData(arrayBuffer);
+  }
+
   getAnalyserNode(): AnalyserNode | null {
     if (!this.ctx || !this.masterGain) return null;
     const analyser = this.ctx.createAnalyser();
