@@ -21,7 +21,10 @@ export interface Clip {
   gain: number;
   fadeIn: number;
   fadeOut: number;
-  notes?: MidiNote[];  // MIDI clips carry notes
+  notes?: MidiNote[];       // MIDI clips carry notes
+  originalBpm?: number;     // BPM the audio was recorded/imported at (Ableton warp)
+  trimStart?: number;       // beats to skip from clip start
+  trimEnd?: number;         // beats to skip from clip end
 }
 
 export interface EQBand {
@@ -91,6 +94,7 @@ export interface ProjectSettings {
 }
 
 export type TransportState = 'stopped' | 'playing' | 'recording' | 'paused';
+export type EditTool = 'pointer' | 'draw' | 'split' | 'erase';
 
 export interface Marker {
   id: string;

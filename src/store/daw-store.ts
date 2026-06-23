@@ -8,6 +8,8 @@ import type {
   ProjectSettings,
   Marker,
   TrackEffects,
+  EditTool,
+  MidiNote,
 } from '@/types';
 import { generateId } from '@/utils/id';
 import { DEFAULT_EFFECTS, TRACK_COLORS } from '@/types';
@@ -39,8 +41,10 @@ interface UIState {
   selectedTrackId: string | null;
   selectedClipId: string | null;
   openEffectsTrackId: string | null;
+  pianoRollClipId: string | null;    // which clip is open in piano roll
   showMixer: boolean;
   showPianoRoll: boolean;
+  tool: EditTool;
   zoom: number;
   scrollX: number;
   scrollY: number;
@@ -101,6 +105,18 @@ interface DAWState {
   // Instrument / VST assignment
   setTrackInstrument: (trackId: string, instrument: string | undefined) => void;
 
+  // MIDI note actions
+  addMidiNote: (trackId: string, clipId: string, note: Omit<MidiNote, 'id'>) => string;
+  updateMidiNote: (trackId: string, clipId: string, noteId: string, patch: Partial<MidiNote>) => void;
+  removeMidiNote: (trackId: string, clipId: string, noteId: string) => void;
+  setMidiNotes: (trackId: string, clipId: string, notes: MidiNote[]) => void;
+
+  // Tool
+  setTool: (tool: EditTool) => void;
+
+  // Piano roll
+  openPianoRoll: (clipId: string | null) => void;
+
   // UI actions
   selectTrack: (id: string | null) => void;
   selectClip: (id: string | null) => void;
@@ -140,8 +156,10 @@ export const useDAWStore = create<DAWState>()(
       selectedTrackId: null,
       selectedClipId: null,
       openEffectsTrackId: null,
+      pianoRollClipId: null,
       showMixer: false,
       showPianoRoll: false,
+      tool: 'pointer',
       zoom: 60,
       scrollX: 0,
       scrollY: 0,
@@ -290,6 +308,47 @@ export const useDAWStore = create<DAWState>()(
         if (t) t.instrument = instrument;
       }),
 
+    addMidiNote: (trackId, clipId, noteData) => {
+      const id = generateId();
+      set((s) => {
+        const t = s.tracks.find((t) => t.id === trackId);
+        const c = t?.clips.find((c) => c.id === clipId);
+        if (c) {
+          if (!c.notes) c.notes = [];
+          c.notes.push({ ...noteData, id });
+        }
+      });
+      return id;
+    },
+    updateMidiNote: (trackId, clipId, noteId, patch) =>
+      set((s) => {
+        const t = s.tracks.find((t) => t.id === trackId);
+        const c = t?.clips.find((c) => c.id === clipId);
+        const n = c?.notes?.find((n) => n.id === noteId);
+        if (n) Object.assign(n, patch);
+      }),
+    removeMidiNote: (trackId, clipId, noteId) =>
+      set((s) => {
+        const t = s.tracks.find((t) => t.id === trackId);
+        const c = t?.clips.find((c) => c.id === clipId);
+        if (c?.notes) c.notes = c.notes.filter((n) => n.id !== noteId);
+      }),
+    setMidiNotes: (trackId, clipId, notes) =>
+      set((s) => {
+        const t = s.tracks.find((t) => t.id === trackId);
+        const c = t?.clips.find((c) => c.id === clipId);
+        if (c) c.notes = notes;
+      }),
+
+    setTool: (tool) =>
+      set((s) => { s.ui.tool = tool; }),
+
+    openPianoRoll: (clipId) =>
+      set((s) => {
+        s.ui.pianoRollClipId = clipId;
+        s.ui.showPianoRoll = clipId !== null;
+      }),
+
     selectTrack: (id) =>
       set((s) => {
         s.ui.selectedTrackId = id;
@@ -323,6 +382,7 @@ export const useDAWStore = create<DAWState>()(
       set((s) => {
         s.ui.snapGrid = grid;
       }),
+
     setMasterVolume: (v) =>
       set((s) => {
         s.masterVolume = Math.max(0, Math.min(1.5, v));
