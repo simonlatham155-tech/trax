@@ -15,6 +15,7 @@ import { useDAWStore } from '@/store/daw-store';
 import { audioEngine } from '@/engine/audio-engine';
 import { formatTime, formatBeatPosition, beatsToSeconds } from '@/utils/beats';
 import { cn } from '@/utils/cn';
+import { ProjectBar } from '@/components/project/ProjectBar';
 
 function BpmInput() {
   const bpm = useDAWStore((s) => s.project.bpm);
@@ -184,12 +185,17 @@ export function Transport() {
   return (
     <div className="flex items-center gap-4 px-4 py-2 bg-[#111118] border-b border-[#2a2a38] h-14 shrink-0">
       {/* Logo */}
-      <div className="flex items-center gap-2 mr-2">
+      <div className="flex items-center gap-2 mr-1 shrink-0">
         <div className="w-7 h-7 rounded bg-[#6c63ff] flex items-center justify-center">
           <Music size={14} className="text-white" />
         </div>
         <span className="font-bold text-sm text-[#e8e8f0] tracking-widest uppercase">TRAX</span>
       </div>
+
+      <div className="w-px h-8 bg-[#2a2a38]" />
+
+      {/* Project controls */}
+      <ProjectBar />
 
       <div className="w-px h-8 bg-[#2a2a38]" />
 

@@ -4,6 +4,20 @@ A professional-grade Digital Audio Workstation that runs entirely in the browser
 
 ## Features
 
+### Project persistence
+- **Save to browser** — stores the full project (tracks, clips, effects, BPM, loop settings) in IndexedDB, survives browser restarts
+- **Audio files stored locally** — audio clips are encoded to WAV and persisted alongside the project metadata; no re-import needed on reload
+- **Open project** — browser-native project browser lists all saved sessions with timestamps
+- **Auto-save** — debounced 30-second auto-save after any change (once the project has been saved at least once)
+- **Unsaved-changes indicator** — amber dot next to the project name signals pending saves
+- **Export .trax file** — bundles the entire project (JSON + base64-embedded audio) into a portable `.trax` file you can back up or share
+- **Import .trax file** — drag-and-drop or file-picker to restore any `.trax` bundle
+- **New project** — confirms unsaved changes before clearing the session
+- **Rename project** — double-click the project name in the transport bar
+- **Keyboard shortcut** — `Ctrl+S` / `Cmd+S` saves immediately
+
+### Audio / DAW
+
 - **Multi-track arrangement** — unlimited audio tracks with drag-to-place clips
 - **Transport** — play, pause, stop, record-arm; keyboard shortcut (`Space`)
 - **BPM & time signature** — click BPM display to edit; full beat/bar position readout
@@ -20,6 +34,14 @@ A professional-grade Digital Audio Workstation that runs entirely in the browser
 - **Drag & drop audio** — drop `.wav`, `.mp3`, `.ogg`, `.flac` etc. onto the window to create tracks
 - **Import audio** — per-track import button for loading audio files
 - **Dark theme** — fully dark VST-inspired UI
+
+## Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| `Space` | Play / Pause |
+| `Home` | Stop + Return to start |
+| `Ctrl+S` / `Cmd+S` | Save project |
 
 ## Stack
 
@@ -78,13 +100,6 @@ src/
     ├── id.ts                 # ID generation
     └── cn.ts                 # Tailwind class merge utility
 ```
-
-## Keyboard Shortcuts
-
-| Key | Action |
-|-----|--------|
-| `Space` | Play / Pause |
-| `Home` | Stop + Return to start |
 
 ## Roadmap
 
