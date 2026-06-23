@@ -3,19 +3,13 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "main": "out/main/index.js",
   "scripts": {
-    "dev": "electron-vite dev",
-    "build": "electron-vite build",
-    "preview": "electron-vite preview",
-    "build:web": "tsc -b && vite build",
-    "dev:web": "vite",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
     "lint": "oxlint src",
+    "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "package": "npm run build && electron-builder",
-    "package:mac": "npm run build && electron-builder --mac",
-    "package:win": "npm run build && electron-builder --win",
-    "package:linux": "npm run build && electron-builder --linux"
+    "bridge": "python3 bridge/server.py"
   },
   "dependencies": {
     "@radix-ui/react-context-menu": "^2.3.1",
@@ -41,34 +35,8 @@
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.2",
-    "electron": "^37.1.0",
-    "electron-builder": "^26.0.12",
-    "electron-vite": "^5.0.0",
     "oxlint": "^1.69.0",
     "typescript": "~6.0.2",
     "vite": "^8.1.0"
-  },
-  "build": {
-    "appId": "com.trax.daw",
-    "productName": "TRAX",
-    "copyright": "© LathamAudio",
-    "directories": {
-      "buildResources": "resources",
-      "output": "dist-release"
-    },
-    "files": [
-      "out/**/*"
-    ],
-    "mac": {
-      "target": ["dmg", "zip"],
-      "category": "public.app-category.music"
-    },
-    "win": {
-      "target": ["nsis"]
-    },
-    "linux": {
-      "target": ["AppImage", "deb"],
-      "category": "Audio"
-    }
   }
 }

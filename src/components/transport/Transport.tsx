@@ -16,6 +16,7 @@ import { audioEngine } from '@/engine/audio-engine';
 import { formatTime, formatBeatPosition, beatsToSeconds } from '@/utils/beats';
 import { cn } from '@/utils/cn';
 import { ProjectBar } from '@/components/project/ProjectBar';
+import { BridgeStatusIndicator } from '@/components/plugins/BridgeStatus';
 
 function BpmInput() {
   const bpm = useDAWStore((s) => s.project.bpm);
@@ -114,7 +115,7 @@ export function Transport() {
       audioEngine.stopPlayback();
     } else {
       play();
-      audioEngine.startPlayback(position);
+      await audioEngine.startPlayback(position);
     }
   }, [isPlaying, pause, play, position]);
 
@@ -131,7 +132,7 @@ export function Transport() {
       audioEngine.stopPlayback();
     } else {
       record();
-      audioEngine.startPlayback(position);
+      await audioEngine.startPlayback(position);
     }
   }, [isRecording, stop, record, position]);
 
@@ -278,6 +279,11 @@ export function Transport() {
       <TransportBtn onClick={toggleMixer} active={showMixer} title="Toggle mixer">
         <Sliders size={14} />
       </TransportBtn>
+
+      <div className="w-px h-8 bg-[#2a2a38]" />
+
+      {/* VST Bridge status */}
+      <BridgeStatusIndicator />
     </div>
   );
 }

@@ -1,8 +1,4 @@
-import type { ElectronAPI } from '@/types/electron'
-
-/** Returns the Electron API if running inside Electron, otherwise null */
-export function useElectron(): ElectronAPI | null {
-  return window.electronAPI ?? null
-}
-
-export const isElectron = (): boolean => !!window.electronAPI
+// Electron is no longer used — VST access goes through the bridge server.
+// This file is kept so imports in TrackHeader don't break during cleanup.
+export const useElectron = () => null
+export const isElectron = () => false

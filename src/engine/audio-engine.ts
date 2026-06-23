@@ -1,5 +1,6 @@
 import { useDAWStore } from '@/store/daw-store';
 import { beatsToSeconds } from '@/utils/beats';
+import { vstBridge } from '@/services/vstBridge';
 
 class AudioEngine {
   private ctx: AudioContext | null = null;
@@ -68,12 +69,15 @@ class AudioEngine {
     return useDAWStore.getState().project.timeSignature;
   }
 
-  startPlayback(fromBeat: number): void {
+  async startPlayback(fromBeat: number): Promise<void> {
     if (!this.ctx || !this.masterGain) return;
     this.stopPlayback();
 
     this.startBeat = fromBeat;
     this.startTime = this.ctx.currentTime;
+
+    // Pre-render MIDI clips through the bridge before scheduling
+    await this._preRenderMidiClips();
 
     this.scheduleAllClips(fromBeat);
     this.startPositionTracking();
@@ -81,6 +85,36 @@ class AudioEngine {
     const state = useDAWStore.getState();
     if (state.transport.metronomeEnabled) {
       this.startMetronome(fromBeat);
+    }
+  }
+
+  private async _preRenderMidiClips(): Promise<void> {
+    if (vstBridge.currentStatus !== 'connected') return;
+
+    const { tracks, project } = useDAWStore.getState();
+    const bpm = project.bpm;
+
+    for (const track of tracks) {
+      if (!track.instrument) continue;
+
+      for (const clip of track.clips) {
+        if (clip.audioBuffer) continue; // already has audio
+        if (!clip.notes || clip.notes.length === 0) continue;
+
+        try {
+          const audioBuffer = await vstBridge.renderMidi(
+            track.id,
+            clip.notes,
+            bpm,
+            clip.durationBeats,
+            track.volume,
+          );
+          // Store the rendered audio back into the clip
+          useDAWStore.getState().updateClip(track.id, clip.id, { audioBuffer });
+        } catch (err) {
+          console.warn(`Bridge render failed for clip ${clip.id}:`, err);
+        }
+      }
     }
   }
 
@@ -237,19 +271,6 @@ class AudioEngine {
     return this.ctx!.decodeAudioData(arrayBuffer);
   }
 
-  /** Load and decode an audio file from a filesystem path (Electron only) */
-  async decodeAudioPath(filePath: string): Promise<AudioBuffer> {
-    await this.init();
-    await this.resume();
-    const api = window.electronAPI;
-    if (!api) throw new Error('decodeAudioPath requires Electron');
-    const bytes = await api.readFile(filePath);
-    const arrayBuffer = bytes.buffer.slice(
-      bytes.byteOffset,
-      bytes.byteOffset + bytes.byteLength
-    ) as ArrayBuffer;
-    return this.ctx!.decodeAudioData(arrayBuffer);
-  }
 
   getAnalyserNode(): AnalyserNode | null {
     if (!this.ctx || !this.masterGain) return null;

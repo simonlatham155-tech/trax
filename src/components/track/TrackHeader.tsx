@@ -15,8 +15,8 @@ import { cn } from '@/utils/cn';
 import { TRACK_COLORS } from '@/types';
 import type { Track } from '@/types';
 import { PluginManager } from '@/components/plugins/PluginManager';
-import type { VSTPlugin } from '@/types/electron';
-import { useElectron } from '@/hooks/useElectron';
+import type { BridgePlugin } from '@/services/vstBridge';
+import { vstBridge } from '@/services/vstBridge';
 
 interface TrackHeaderProps {
   track: Track;
@@ -51,7 +51,6 @@ export function TrackHeader({ track, isSelected }: TrackHeaderProps) {
   const addClip = useDAWStore((s) => s.addClip);
 
   const color = TRACK_COLORS[track.color];
-  const electron = useElectron();
 
   const handleImportAudioFile = useCallback(
     async (file: File) => {
@@ -76,29 +75,6 @@ export function TrackHeader({ track, isSelected }: TrackHeaderProps) {
     [track, color, addClip]
   );
 
-  const handleImportAudioElectron = useCallback(async () => {
-    if (!electron) return;
-    const filePath = await electron.openAudioFile({ title: 'Import Audio' });
-    if (!filePath) return;
-    const buffer = await audioEngine.decodeAudioPath(filePath);
-    const bpm = useDAWStore.getState().project.bpm;
-    const durationBeats = (buffer.duration / 60) * bpm;
-    const lastEnd = track.clips.reduce(
-      (max, c) => Math.max(max, c.startBeat + c.durationBeats),
-      0
-    );
-    const name = filePath.split(/[\\/]/).pop()?.replace(/\.[^.]+$/, '') ?? 'Audio';
-    addClip(track.id, {
-      startBeat: lastEnd,
-      durationBeats,
-      name,
-      color,
-      audioBuffer: buffer,
-      gain: 1.0,
-      fadeIn: 0,
-      fadeOut: 0,
-    });
-  }, [electron, track, color, addClip]);
 
   const setTrackInstrument = useDAWStore((s) => s.setTrackInstrument);
   const [editingName, setEditingName] = useState(false);
@@ -106,10 +82,14 @@ export function TrackHeader({ track, isSelected }: TrackHeaderProps) {
   const [showPluginPicker, setShowPluginPicker] = useState(false);
 
   const handlePluginSelect = useCallback(
-    (plugin: VSTPlugin) => {
+    async (plugin: BridgePlugin) => {
       setTrackInstrument(track.id, plugin.path);
       updateTrack(track.id, { name: plugin.name });
       setNameValue(plugin.name);
+      // Pre-load the plugin in the bridge for faster first render
+      if (vstBridge.currentStatus === 'connected') {
+        await vstBridge.loadPlugin(track.id, plugin.path);
+      }
     },
     [track.id, setTrackInstrument, updateTrack]
   );
@@ -272,11 +252,7 @@ export function TrackHeader({ track, isSelected }: TrackHeaderProps) {
                 className="w-4 h-4 flex items-center justify-center text-[#55557a] hover:text-[#e8e8f0] transition-colors"
                 onClick={(e) => {
                   e.stopPropagation();
-                  if (electron) {
-                    handleImportAudioElectron();
-                  } else {
-                    fileInputRef.current?.click();
-                  }
+                  fileInputRef.current?.click();
                 }}
               >
                 <Upload size={9} />
