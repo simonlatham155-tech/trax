@@ -1,15 +1,13 @@
 import { useState, useRef, useCallback } from 'react';
 import {
   Mic,
-  Mic2,
-  Volume2,
   ChevronDown,
   ChevronRight,
   Trash2,
   Copy,
   Sliders,
   Upload,
-  GripVertical,
+  Plus,
 } from 'lucide-react';
 import { useDAWStore } from '@/store/daw-store';
 import { audioEngine } from '@/engine/audio-engine';
@@ -22,6 +20,18 @@ interface TrackHeaderProps {
   isSelected: boolean;
 }
 
+const TYPE_LABEL: Record<Track['type'], string> = {
+  audio: 'AUDIO',
+  midi: 'MIDI',
+  bus: 'BUS',
+};
+
+const TYPE_COLOR: Record<Track['type'], string> = {
+  audio: '#1e4a6e',
+  midi: '#1e3a5f',
+  bus: '#1e3e2a',
+};
+
 export function TrackHeader({ track, isSelected }: TrackHeaderProps) {
   const [collapsed, setCollapsed] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -33,35 +43,35 @@ export function TrackHeader({ track, isSelected }: TrackHeaderProps) {
   const toggleSolo = useDAWStore((s) => s.toggleSolo);
   const toggleArm = useDAWStore((s) => s.toggleArm);
   const setTrackVolume = useDAWStore((s) => s.setTrackVolume);
-  const setTrackPan = useDAWStore((s) => s.setTrackPan);
   const updateTrack = useDAWStore((s) => s.updateTrack);
   const openEffects = useDAWStore((s) => s.openEffects);
   const addClip = useDAWStore((s) => s.addClip);
 
   const color = TRACK_COLORS[track.color];
 
-  const handleImportAudio = useCallback(async (file: File) => {
-    const buffer = await audioEngine.decodeAudioFile(file);
-    const bpm = useDAWStore.getState().project.bpm;
-    const durationBeats = (buffer.duration / 60) * bpm;
-
-    const existingClips = track.clips;
-    const lastEnd = existingClips.reduce(
-      (max, c) => Math.max(max, c.startBeat + c.durationBeats),
-      0
-    );
-
-    addClip(track.id, {
-      startBeat: lastEnd,
-      durationBeats,
-      name: file.name.replace(/\.[^.]+$/, ''),
-      color,
-      audioBuffer: buffer,
-      gain: 1.0,
-      fadeIn: 0,
-      fadeOut: 0,
-    });
-  }, [track, color, addClip]);
+  const handleImportAudio = useCallback(
+    async (file: File) => {
+      const buffer = await audioEngine.decodeAudioFile(file);
+      const bpm = useDAWStore.getState().project.bpm;
+      const durationBeats = (buffer.duration / 60) * bpm;
+      const existingClips = track.clips;
+      const lastEnd = existingClips.reduce(
+        (max, c) => Math.max(max, c.startBeat + c.durationBeats),
+        0
+      );
+      addClip(track.id, {
+        startBeat: lastEnd,
+        durationBeats,
+        name: file.name.replace(/\.[^.]+$/, ''),
+        color,
+        audioBuffer: buffer,
+        gain: 1.0,
+        fadeIn: 0,
+        fadeOut: 0,
+      });
+    },
+    [track, color, addClip]
+  );
 
   const [editingName, setEditingName] = useState(false);
   const [nameValue, setNameValue] = useState(track.name);
@@ -69,179 +79,206 @@ export function TrackHeader({ track, isSelected }: TrackHeaderProps) {
   return (
     <div
       className={cn(
-        'flex flex-col w-full border-b border-[#1e1e2a] bg-[#111118] select-none',
-        isSelected && 'bg-[#1a1a24]'
+        'flex flex-col w-full border-b border-[#1e1e2a] select-none transition-colors',
+        isSelected ? 'bg-[#1c1c28]' : 'bg-[#131318]'
       )}
       style={{ height: track.height }}
       onClick={() => selectTrack(track.id)}
     >
-      {/* Top row */}
-      <div className="flex items-center gap-1.5 px-2 pt-1.5">
-        {/* Color indicator */}
+      {/* ── Row 1: dot + name + M/S/arm + collapse ── */}
+      <div className="flex items-center gap-1.5 px-2 pt-2 pb-0.5">
+        {/* Colored circle */}
         <div
-          className="w-1.5 h-8 rounded-full shrink-0"
+          className="w-2.5 h-2.5 rounded-full shrink-0 ring-1 ring-black/30"
           style={{ backgroundColor: color }}
         />
 
+        {/* Track name */}
+        <div className="flex-1 min-w-0">
+          {editingName ? (
+            <input
+              autoFocus
+              className="w-full bg-[#22222e] text-[#e8e8f0] text-xs rounded px-1 outline-none border border-[#6c63ff]"
+              value={nameValue}
+              onChange={(e) => setNameValue(e.target.value)}
+              onBlur={() => {
+                updateTrack(track.id, { name: nameValue });
+                setEditingName(false);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  updateTrack(track.id, { name: nameValue });
+                  setEditingName(false);
+                }
+                if (e.key === 'Escape') {
+                  setNameValue(track.name);
+                  setEditingName(false);
+                }
+                e.stopPropagation();
+              }}
+              onClick={(e) => e.stopPropagation()}
+            />
+          ) : (
+            <span
+              className="text-xs font-semibold text-[#e8e8f0] truncate block cursor-text leading-tight"
+              onDoubleClick={(e) => {
+                e.stopPropagation();
+                setEditingName(true);
+              }}
+            >
+              {track.name}
+            </span>
+          )}
+        </div>
+
+        {/* M button */}
+        <button
+          title="Mute"
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleMute(track.id);
+          }}
+          className={cn(
+            'w-5 h-5 rounded text-[10px] font-bold transition-colors flex items-center justify-center shrink-0',
+            track.muted
+              ? 'bg-[#f59e0b] text-black'
+              : 'bg-[#2a2a38] text-[#8888aa] hover:text-[#e8e8f0]'
+          )}
+        >
+          M
+        </button>
+
+        {/* S button */}
+        <button
+          title="Solo"
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleSolo(track.id);
+          }}
+          className={cn(
+            'w-5 h-5 rounded text-[10px] font-bold transition-colors flex items-center justify-center shrink-0',
+            track.soloed
+              ? 'bg-[#22c55e] text-black'
+              : 'bg-[#2a2a38] text-[#8888aa] hover:text-[#e8e8f0]'
+          )}
+        >
+          S
+        </button>
+
         {/* Collapse toggle */}
         <button
-          className="text-[#55557a] hover:text-[#e8e8f0] transition-colors"
+          className="text-[#55557a] hover:text-[#e8e8f0] transition-colors shrink-0"
           onClick={(e) => {
             e.stopPropagation();
             setCollapsed((c) => !c);
           }}
         >
-          {collapsed ? <ChevronRight size={12} /> : <ChevronDown size={12} />}
+          {collapsed ? <ChevronRight size={11} /> : <ChevronDown size={11} />}
         </button>
-
-        {/* Name */}
-        {editingName ? (
-          <input
-            autoFocus
-            className="flex-1 bg-[#22222e] text-[#e8e8f0] text-xs rounded px-1 outline-none border border-[#6c63ff]"
-            value={nameValue}
-            onChange={(e) => setNameValue(e.target.value)}
-            onBlur={() => {
-              updateTrack(track.id, { name: nameValue });
-              setEditingName(false);
-            }}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                updateTrack(track.id, { name: nameValue });
-                setEditingName(false);
-              }
-              if (e.key === 'Escape') {
-                setNameValue(track.name);
-                setEditingName(false);
-              }
-              e.stopPropagation();
-            }}
-            onClick={(e) => e.stopPropagation()}
-          />
-        ) : (
-          <span
-            className="flex-1 text-xs font-medium text-[#e8e8f0] truncate cursor-text"
-            onDoubleClick={(e) => {
-              e.stopPropagation();
-              setEditingName(true);
-            }}
-          >
-            {track.name}
-          </span>
-        )}
-
-        {/* Action buttons */}
-        <div className="flex items-center gap-0.5 ml-auto">
-          <TrackBtn
-            onClick={(e) => {
-              e.stopPropagation();
-              toggleMute(track.id);
-            }}
-            active={track.muted}
-            activeColor="#f59e0b"
-            title="Mute"
-          >
-            <Volume2 size={11} />
-          </TrackBtn>
-          <TrackBtn
-            onClick={(e) => {
-              e.stopPropagation();
-              toggleSolo(track.id);
-            }}
-            active={track.soloed}
-            activeColor="#22c55e"
-            title="Solo"
-          >
-            <span className="text-[9px] font-bold">S</span>
-          </TrackBtn>
-          <TrackBtn
-            onClick={(e) => {
-              e.stopPropagation();
-              toggleArm(track.id);
-            }}
-            active={track.armed}
-            activeColor="#ef4444"
-            title="Record arm"
-          >
-            <Mic size={11} />
-          </TrackBtn>
-        </div>
       </div>
 
-      {/* Bottom row: volume, pan, effects */}
       {!collapsed && track.height >= 64 && (
-        <div className="flex items-center gap-2 px-2 pb-1 mt-auto">
-          <div className="flex items-center gap-1 flex-1">
-            <span className="text-[9px] text-[#55557a] w-3">V</span>
-            <input
-              type="range"
-              min={0}
-              max={1.5}
-              step={0.01}
-              value={track.volume}
-              onChange={(e) => setTrackVolume(track.id, parseFloat(e.target.value))}
-              onClick={(e) => e.stopPropagation()}
-              className="flex-1 h-1"
-              title={`Volume: ${Math.round(track.volume * 100)}%`}
-            />
-          </div>
-          <div className="flex items-center gap-1 w-20">
-            <span className="text-[9px] text-[#55557a] w-3">P</span>
-            <input
-              type="range"
-              min={-1}
-              max={1}
-              step={0.01}
-              value={track.pan}
-              onChange={(e) => setTrackPan(track.id, parseFloat(e.target.value))}
-              onClick={(e) => e.stopPropagation()}
-              className="flex-1 h-1"
-              title={`Pan: ${track.pan > 0 ? 'R' : track.pan < 0 ? 'L' : 'C'}`}
-            />
+        <>
+          {/* ── Row 2: type badge + plugin badge ── */}
+          <div className="flex items-center gap-1.5 px-2 py-0.5">
+            <span
+              className="text-[9px] font-bold px-1.5 py-0.5 rounded text-white/90 shrink-0"
+              style={{ backgroundColor: TYPE_COLOR[track.type] }}
+            >
+              {TYPE_LABEL[track.type]}
+            </span>
+            <button
+              className="flex items-center gap-0.5 text-[10px] text-[#a0a0c0] bg-[#1e1e2c] hover:bg-[#2a2a3a] border border-[#2a2a3a] rounded px-1.5 py-0.5 truncate max-w-[110px] transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                openEffects(track.id);
+              }}
+              title="Open effects"
+            >
+              <Plus size={8} className="shrink-0 opacity-70" />
+              <span className="truncate">Add VST</span>
+            </button>
+
+            {/* Right side icons */}
+            <div className="ml-auto flex items-center gap-0.5">
+              <button
+                title="Record arm"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleArm(track.id);
+                }}
+                className={cn(
+                  'w-4 h-4 flex items-center justify-center rounded transition-colors',
+                  track.armed
+                    ? 'text-[#ef4444]'
+                    : 'text-[#55557a] hover:text-[#ef4444]'
+                )}
+              >
+                <Mic size={9} />
+              </button>
+              <button
+                title="Import audio"
+                className="w-4 h-4 flex items-center justify-center text-[#55557a] hover:text-[#e8e8f0] transition-colors"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  fileInputRef.current?.click();
+                }}
+              >
+                <Upload size={9} />
+              </button>
+              <button
+                title="Effects"
+                className="w-4 h-4 flex items-center justify-center text-[#55557a] hover:text-[#e8e8f0] transition-colors"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openEffects(track.id);
+                }}
+              >
+                <Sliders size={9} />
+              </button>
+              <button
+                title="Duplicate"
+                className="w-4 h-4 flex items-center justify-center text-[#55557a] hover:text-[#e8e8f0] transition-colors"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  duplicateTrack(track.id);
+                }}
+              >
+                <Copy size={9} />
+              </button>
+              <button
+                title="Remove track"
+                className="w-4 h-4 flex items-center justify-center text-[#55557a] hover:text-red-400 transition-colors"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (confirm(`Remove "${track.name}"?`)) removeTrack(track.id);
+                }}
+              >
+                <Trash2 size={9} />
+              </button>
+            </div>
           </div>
 
-          {/* Icons */}
-          <button
-            title="Import audio"
-            className="text-[#55557a] hover:text-[#e8e8f0] transition-colors"
-            onClick={(e) => {
-              e.stopPropagation();
-              fileInputRef.current?.click();
-            }}
-          >
-            <Upload size={11} />
-          </button>
-          <button
-            title="Effects"
-            className="text-[#55557a] hover:text-[#e8e8f0] transition-colors"
-            onClick={(e) => {
-              e.stopPropagation();
-              openEffects(track.id);
-            }}
-          >
-            <Sliders size={11} />
-          </button>
-          <button
-            title="Duplicate track"
-            className="text-[#55557a] hover:text-[#e8e8f0] transition-colors"
-            onClick={(e) => {
-              e.stopPropagation();
-              duplicateTrack(track.id);
-            }}
-          >
-            <Copy size={11} />
-          </button>
-          <button
-            title="Remove track"
-            className="text-[#55557a] hover:text-red-400 transition-colors"
-            onClick={(e) => {
-              e.stopPropagation();
-              if (confirm(`Remove "${track.name}"?`)) removeTrack(track.id);
-            }}
-          >
-            <Trash2 size={11} />
-          </button>
-        </div>
+          {/* ── Row 3: volume slider + VU meters ── */}
+          <div className="flex items-center gap-2 px-2 pb-1.5 mt-auto">
+            <div className="flex-1 flex items-center gap-1 min-w-0">
+              <input
+                type="range"
+                min={0}
+                max={1.5}
+                step={0.01}
+                value={track.volume}
+                onChange={(e) => setTrackVolume(track.id, parseFloat(e.target.value))}
+                onClick={(e) => e.stopPropagation()}
+                className="flex-1 h-1 accent-current min-w-0"
+                style={{ accentColor: color }}
+                title={`Volume: ${Math.round(track.volume * 100)}%`}
+              />
+            </div>
+            {/* Mini VU meter strips */}
+            <MiniVU color={color} volume={track.volume} muted={track.muted} />
+          </div>
+        </>
       )}
 
       <input
@@ -259,31 +296,37 @@ export function TrackHeader({ track, isSelected }: TrackHeaderProps) {
   );
 }
 
-function TrackBtn({
-  children,
-  onClick,
-  active,
-  activeColor,
-  title,
+function MiniVU({
+  color,
+  volume,
+  muted,
 }: {
-  children: React.ReactNode;
-  onClick: (e: React.MouseEvent) => void;
-  active: boolean;
-  activeColor: string;
-  title?: string;
+  color: string;
+  volume: number;
+  muted: boolean;
 }) {
+  const bars = 5;
+  const lit = muted ? 0 : Math.round(volume * bars);
   return (
-    <button
-      title={title}
-      onClick={onClick}
-      className={cn(
-        'w-5 h-5 flex items-center justify-center rounded text-[10px] transition-colors',
-        active ? 'text-white' : 'text-[#55557a] hover:text-[#8888aa]'
-      )}
-      style={active ? { backgroundColor: activeColor + '33', color: activeColor } : undefined}
-    >
-      {children}
-    </button>
+    <div className="flex items-end gap-px shrink-0">
+      {Array.from({ length: bars }, (_, i) => (
+        <div
+          key={i}
+          className="w-1 rounded-sm transition-colors"
+          style={{
+            height: 4 + i * 2,
+            backgroundColor:
+              i < lit
+                ? i >= bars - 1
+                  ? '#ef4444'
+                  : i >= bars - 2
+                  ? '#f59e0b'
+                  : color
+                : '#2a2a38',
+          }}
+        />
+      ))}
+    </div>
   );
 }
 

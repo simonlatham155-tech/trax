@@ -28,7 +28,7 @@ function makeDefaultTrack(index: number, type: Track['type'] = 'audio'): Track {
     muted: false,
     soloed: false,
     armed: false,
-    height: 80,
+    height: 90,
     clips: [],
     effects: structuredClone(DEFAULT_EFFECTS),
     sends: [],
