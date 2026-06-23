@@ -34,3 +34,12 @@ Thumbs.db
 bridge/__pycache__/
 *.pyc
 *.pyo
+
+# Bridge build artifacts
+bridge-dist/
+bridge/AppIcon.icns
+bridge/AppIcon.iconset/
+bridge/icon.ico
+bridge/icon.png
+.build-cache/
+*.spec

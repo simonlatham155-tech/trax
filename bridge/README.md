@@ -1,46 +1,89 @@
-# TRAX VST Bridge
+# TRAX Bridge
 
-A local WebSocket server that gives the TRAX web app access to your
-native VST3, VST2, and AU plugins.
+A small companion app that gives the TRAX web app access to your local
+VST3, VST2, and AU plugins. Runs as a system tray app (Mac menu bar /
+Windows notification area) with a WebSocket server on **ws://127.0.0.1:7899**.
 
-## Requirements
+---
 
-- Python 3.11+
-- `pip install -r requirements.txt`
+## Download (pre-built)
 
-## Start the bridge
+Grab the latest release from the **[GitHub Releases](../../releases)** page:
+
+| Platform | File |
+|---|---|
+| macOS | `TRAX-Bridge-mac.dmg` |
+| Windows | `TRAX Bridge.exe` |
+
+No Python required — everything is bundled.
+
+---
+
+## Run from source
 
 ```bash
-# From the project root:
-npm run bridge
-
-# Or directly:
+pip install -r bridge/requirements.txt
+python3 bridge/app.py          # system tray app
+# or headless (no tray):
 python3 bridge/server.py
-
-# Custom port:
-python3 bridge/server.py --port 7899
+# or via npm:
+npm run bridge
 ```
 
-The bridge listens on **ws://127.0.0.1:7899** by default.
-Open TRAX in your browser — it will auto-connect and show a green bridge indicator.
+---
+
+## Build it yourself
+
+### macOS
+```bash
+bash bridge/build_mac.sh
+# → bridge-dist/mac/TRAX Bridge.dmg
+```
+
+### Windows
+```bat
+bridge\build_win.bat
+# → bridge-dist\win\TRAX Bridge.exe
+```
+
+### Automated (GitHub Actions)
+Push a tag matching `bridge-v*` to trigger a build on both platforms
+and publish a GitHub Release automatically:
+
+```bash
+git tag bridge-v1.0.0
+git push origin bridge-v1.0.0
+```
+
+---
 
 ## How it works
 
 ```
-Browser (TRAX)  ──WebSocket──►  Bridge Server  ──pedalboard──►  VST Plugin
-                ◄──audio b64──                 ◄──PCM audio──
+Browser (TRAX)  ──WebSocket──►  TRAX Bridge  ──pedalboard──►  VST Plugin
+                ◄── WAV b64 ──               ◄── PCM audio ──
 ```
 
-1. On startup, TRAX connects to `ws://127.0.0.1:7899`
-2. Click **"Add VST"** on a MIDI track → bridge scans your plugin dirs
-3. Select a plugin → bridge loads it
-4. On playback, TRAX sends the MIDI notes for each clip → bridge renders audio → TRAX plays it back
+1. Launch TRAX Bridge — icon appears in menu bar / tray
+2. Open TRAX in your browser — it auto-connects (green VST indicator)
+3. Click **"Add VST"** on any track → Plugin Browser lists your installed plugins
+4. Select a plugin → Bridge loads it in memory
+5. On playback, TRAX sends MIDI notes → Bridge renders audio → TRAX plays it back
 
-## Packaging as a standalone app
+## Protocol
 
-```bash
-pip install pyinstaller
-pyinstaller --onefile --name "TRAX Bridge" bridge/server.py
-```
+All messages are JSON over WebSocket.
 
-The resulting `dist/TRAX Bridge` (or `.exe` on Windows) runs without Python installed.
+| Browser → Bridge | Description |
+|---|---|
+| `{type:"scan", extra_paths:[]}` | Scan standard + custom plugin dirs |
+| `{type:"load", track_id, path}` | Load a plugin for a track |
+| `{type:"render", track_id, notes, bpm, duration_beats}` | Render MIDI → audio |
+| `{type:"get_params", track_id}` | List plugin parameters |
+| `{type:"set_param", track_id, name, value}` | Set a parameter |
+
+| Bridge → Browser | Description |
+|---|---|
+| `{type:"scan_result", plugins:[...]}` | Plugin list |
+| `{type:"loaded", success, name}` | Load result |
+| `{type:"rendered", audio_b64, sample_rate, channels}` | WAV audio |

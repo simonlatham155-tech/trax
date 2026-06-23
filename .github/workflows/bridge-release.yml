@@ -1,0 +1,167 @@
+name: Build TRAX Bridge
+
+on:
+  push:
+    tags:
+      - 'bridge-v*'        # trigger on tags like bridge-v1.0.0
+  workflow_dispatch:       # allow manual runs from GitHub Actions UI
+
+permissions:
+  contents: write          # needed to create a GitHub Release
+
+jobs:
+  # ── macOS build ─────────────────────────────────────────────────────────────
+  build-mac:
+    name: macOS (.dmg)
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install bridge dependencies
+        run: |
+          pip install pedalboard websockets numpy pystray Pillow pyinstaller
+
+      - name: Generate icon
+        run: python bridge/icon.py
+
+      - name: Build .app
+        run: |
+          pyinstaller \
+            --noconfirm \
+            --windowed \
+            --onedir \
+            --name "TRAX Bridge" \
+            --distpath bridge-dist/mac \
+            --workpath .build-cache/mac \
+            --specpath .build-cache \
+            --add-data "bridge/icon.png:." \
+            --hidden-import pedalboard \
+            --hidden-import pystray \
+            --hidden-import PIL \
+            --hidden-import websockets \
+            --hidden-import numpy \
+            --collect-all pedalboard \
+            bridge/app.py
+
+      - name: Create .dmg
+        run: |
+          hdiutil create \
+            -volname "TRAX Bridge" \
+            -srcfolder "bridge-dist/mac/TRAX Bridge.app" \
+            -ov -format UDZO \
+            "bridge-dist/mac/TRAX-Bridge-mac.dmg"
+
+      - name: Upload macOS artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: TRAX-Bridge-mac
+          path: bridge-dist/mac/TRAX-Bridge-mac.dmg
+          retention-days: 30
+
+  # ── Windows build ────────────────────────────────────────────────────────────
+  build-windows:
+    name: Windows (.exe)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install bridge dependencies
+        run: |
+          pip install pedalboard websockets numpy pystray Pillow pyinstaller
+
+      - name: Generate icon + .ico
+        run: |
+          python bridge/icon.py
+          python -c "from PIL import Image; img = Image.open('bridge/icon.png'); img.save('bridge/icon.ico', sizes=[(16,16),(32,32),(48,48),(64,64),(128,128),(256,256)])"
+
+      - name: Build .exe
+        run: |
+          pyinstaller `
+            --noconfirm `
+            --windowed `
+            --onefile `
+            --name "TRAX Bridge" `
+            --distpath bridge-dist/win `
+            --workpath .build-cache/win `
+            --specpath .build-cache `
+            --icon bridge/icon.ico `
+            --add-data "bridge/icon.png;." `
+            --hidden-import pedalboard `
+            --hidden-import pystray `
+            --hidden-import PIL `
+            --hidden-import websockets `
+            --hidden-import numpy `
+            --collect-all pedalboard `
+            bridge/app.py
+
+      - name: Upload Windows artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: TRAX-Bridge-windows
+          path: "bridge-dist/win/TRAX Bridge.exe"
+          retention-days: 30
+
+  # ── Create GitHub Release with both artifacts ─────────────────────────────
+  release:
+    name: Create GitHub Release
+    needs: [build-mac, build-windows]
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download macOS artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: TRAX-Bridge-mac
+          path: release/
+
+      - name: Download Windows artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: TRAX-Bridge-windows
+          path: release/
+
+      - name: Extract version from tag
+        id: version
+        run: echo "version=${GITHUB_REF#refs/tags/bridge-}" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "TRAX Bridge ${{ steps.version.outputs.version }}"
+          body: |
+            ## TRAX Bridge ${{ steps.version.outputs.version }}
+
+            A local companion server that gives the TRAX web app access to your
+            native VST3/VST2/AU plugins.
+
+            ### Install
+
+            | Platform | Download |
+            |---|---|
+            | macOS | `TRAX-Bridge-mac.dmg` |
+            | Windows | `TRAX Bridge.exe` |
+
+            ### Usage
+            1. Run the app — it appears in your menu bar (Mac) or system tray (Windows)
+            2. Open TRAX in your browser — it connects automatically
+            3. Click **"Add VST"** on any track to browse and assign your plugins
+
+            ### Requirements
+            No additional software needed — all dependencies are bundled.
+          files: |
+            release/TRAX-Bridge-mac.dmg
+            release/TRAX Bridge.exe
+          draft: false
+          prerelease: false
