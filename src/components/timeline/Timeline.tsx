@@ -475,7 +475,7 @@ export function Timeline() {
   const loopEnd = useDAWStore(s => s.transport.loopEnd);
   const loopEnabled = useDAWStore(s => s.transport.loopEnabled);
 
-  const setPosition = useDAWStore(s => s.setPosition);
+  const setPosition = useDAWStore(s => s.seekTo);
   const setScroll = useDAWStore(s => s.setScroll);
   const setZoom = useDAWStore(s => s.setZoom);
 

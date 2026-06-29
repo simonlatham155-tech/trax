@@ -132,6 +132,15 @@ export function Transport() {
     audioEngine.stopPlayback();
   }, [stop]);
 
+  // Live seek: if playing, restart audio from new position
+  const handleSeek = useCallback(async (beat: number) => {
+    setPosition(beat);
+    if (isPlaying) {
+      await audioEngine.init();
+      await audioEngine.startPlayback(beat);
+    }
+  }, [isPlaying, setPosition]);
+
   const handleRecord = useCallback(async () => {
     await audioEngine.init();
     await audioEngine.resume();

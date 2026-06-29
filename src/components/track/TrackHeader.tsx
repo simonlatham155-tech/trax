@@ -46,6 +46,7 @@ export function TrackHeader({ track, isSelected }: TrackHeaderProps) {
   const toggleSolo = useDAWStore((s) => s.toggleSolo);
   const toggleArm = useDAWStore((s) => s.toggleArm);
   const setTrackVolume = useDAWStore((s) => s.setTrackVolume);
+  const setTrackPan = useDAWStore((s) => s.setTrackPan);
   const updateTrack = useDAWStore((s) => s.updateTrack);
   const openEffects = useDAWStore((s) => s.openEffects);
   const addClip = useDAWStore((s) => s.addClip);
@@ -70,6 +71,7 @@ export function TrackHeader({ track, isSelected }: TrackHeaderProps) {
         gain: 1.0,
         fadeIn: 0,
         fadeOut: 0,
+        originalBpm: useDAWStore.getState().project.bpm,
       });
     },
     [track, color, addClip]
@@ -290,24 +292,33 @@ export function TrackHeader({ track, isSelected }: TrackHeaderProps) {
             </div>
           </div>
 
-          {/* ── Row 3: volume slider + VU meters ── */}
-          <div className="flex items-center gap-2 px-2 pb-1.5 mt-auto">
-            <div className="flex-1 flex items-center gap-1 min-w-0">
+          {/* ── Row 3: volume + pan sliders + VU meters ── */}
+          <div className="flex flex-col gap-0.5 px-2 pb-1.5 mt-auto">
+            <div className="flex items-center gap-1">
+              <span className="text-[8px] text-[#55557a] w-3 shrink-0">V</span>
               <input
-                type="range"
-                min={0}
-                max={1.5}
-                step={0.01}
+                type="range" min={0} max={1.5} step={0.01}
                 value={track.volume}
                 onChange={(e) => setTrackVolume(track.id, parseFloat(e.target.value))}
                 onClick={(e) => e.stopPropagation()}
-                className="flex-1 h-1 accent-current min-w-0"
+                className="flex-1 h-1 min-w-0"
                 style={{ accentColor: color }}
                 title={`Volume: ${Math.round(track.volume * 100)}%`}
               />
+              <MiniVU color={color} volume={track.volume} muted={track.muted} />
             </div>
-            {/* Mini VU meter strips */}
-            <MiniVU color={color} volume={track.volume} muted={track.muted} />
+            <div className="flex items-center gap-1">
+              <span className="text-[8px] text-[#55557a] w-3 shrink-0">P</span>
+              <input
+                type="range" min={-1} max={1} step={0.01}
+                value={track.pan}
+                onChange={(e) => setTrackPan(track.id, parseFloat(e.target.value))}
+                onClick={(e) => e.stopPropagation()}
+                className="flex-1 h-1 min-w-0"
+                style={{ accentColor: color }}
+                title={`Pan: ${track.pan > 0 ? `R${Math.round(track.pan*100)}` : track.pan < 0 ? `L${Math.round(-track.pan*100)}` : 'C'}`}
+              />
+            </div>
           </div>
         </>
       )}

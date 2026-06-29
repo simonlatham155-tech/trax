@@ -76,6 +76,7 @@ interface DAWState {
   stop: () => void;
   record: () => void;
   setPosition: (beat: number) => void;
+  seekTo: (beat: number) => void;  // seek + re-schedule if playing
   toggleLoop: () => void;
   setLoopRange: (start: number, end: number) => void;
   toggleMetronome: () => void;
@@ -188,9 +189,20 @@ export const useDAWStore = create<DAWState>()(
         s.transport.state = 'recording';
       }),
     setPosition: (beat) =>
-      set((s) => {
-        s.transport.position = Math.max(0, beat);
-      }),
+      set((s) => { s.transport.position = Math.max(0, beat); }),
+
+    seekTo: (beat) => {
+      set((s) => { s.transport.position = Math.max(0, beat); });
+      // If playing, the audio-engine subscription will detect state change
+      // and engine.startPlayback is called explicitly from the subscriber
+      const state = useDAWStore.getState().transport.state;
+      if (state === 'playing') {
+        // Dynamically import to avoid circular dep at module load time
+        import('@/engine/audio-engine').then(({ audioEngine }) => {
+          audioEngine.startPlayback(Math.max(0, beat));
+        });
+      }
+    },
     toggleLoop: () =>
       set((s) => {
         s.transport.loopEnabled = !s.transport.loopEnabled;
@@ -316,6 +328,7 @@ export const useDAWStore = create<DAWState>()(
         if (c) {
           if (!c.notes) c.notes = [];
           c.notes.push({ ...noteData, id });
+          c.audioBuffer = undefined; // invalidate bridge render cache
         }
       });
       return id;
@@ -325,19 +338,19 @@ export const useDAWStore = create<DAWState>()(
         const t = s.tracks.find((t) => t.id === trackId);
         const c = t?.clips.find((c) => c.id === clipId);
         const n = c?.notes?.find((n) => n.id === noteId);
-        if (n) Object.assign(n, patch);
+        if (n) { Object.assign(n, patch); if (c) c.audioBuffer = undefined; }
       }),
     removeMidiNote: (trackId, clipId, noteId) =>
       set((s) => {
         const t = s.tracks.find((t) => t.id === trackId);
         const c = t?.clips.find((c) => c.id === clipId);
-        if (c?.notes) c.notes = c.notes.filter((n) => n.id !== noteId);
+        if (c?.notes) { c.notes = c.notes.filter((n) => n.id !== noteId); c.audioBuffer = undefined; }
       }),
     setMidiNotes: (trackId, clipId, notes) =>
       set((s) => {
         const t = s.tracks.find((t) => t.id === trackId);
         const c = t?.clips.find((c) => c.id === clipId);
-        if (c) c.notes = notes;
+        if (c) { c.notes = notes; c.audioBuffer = undefined; }
       }),
 
     setTool: (tool) =>
