@@ -217,9 +217,9 @@ function ClipContextMenu({ x, y, clip, trackId, onClose }: {
 }
 
 // ─── Single clip view ─────────────────────────────────────────────────────────
-function ClipView({ clip, color, trackId, trackType, zoom, scrollX, trackHeight, isSelected }: {
+function ClipView({ clip, color, trackId, trackType, zoom, scrollX, trackHeight, isSelected, isRecording }: {
   clip: Clip; color: string; trackId: string; trackType: Track['type'];
-  zoom: number; scrollX: number; trackHeight: number; isSelected: boolean;
+  zoom: number; scrollX: number; trackHeight: number; isSelected: boolean; isRecording: boolean;
 }) {
   const tool = useDAWStore(s => s.ui.tool);
   const snapEnabled = useDAWStore(s => s.ui.snapEnabled);
@@ -339,8 +339,13 @@ function ClipView({ clip, color, trackId, trackType, zoom, scrollX, trackHeight,
           <MidiPattern clip={clip} color={color} width={w} height={waveH} />
         )}
 
+        {/* Recording pulse overlay */}
+        {isRecording && (
+          <div className="absolute inset-0 bg-red-500/20 animate-pulse pointer-events-none rounded-sm" />
+        )}
+
         {/* Resize handle */}
-        {tool === 'pointer' && (
+        {tool === 'pointer' && !isRecording && (
           <div className="absolute top-0 right-0 h-full cursor-col-resize opacity-0 hover:opacity-100 hover:bg-white/10 transition-opacity"
             style={{ width: RESIZE_HANDLE_PX }}
             onMouseDown={(e) => {
@@ -390,9 +395,9 @@ function GridLines({ zoom, scrollX, width, numerator, height }: {
 }
 
 // ─── Track lane (clips + resize border) ──────────────────────────────────────
-function TrackLane({ track, zoom, scrollX, position, startBeat, loopEnabled, loopStart, loopEnd, width }: {
+function TrackLane({ track, zoom, scrollX, position, startBeat, loopEnabled, loopStart, loopEnd, width, recordingClipIds }: {
   track: Track; zoom: number; scrollX: number; position: number; startBeat: number;
-  loopEnabled: boolean; loopStart: number; loopEnd: number; width: number;
+  loopEnabled: boolean; loopStart: number; loopEnd: number; width: number; recordingClipIds: Set<string>;
 }) {
   const selectedClipId = useDAWStore(s => s.ui.selectedClipId);
   const updateTrack = useDAWStore(s => s.updateTrack);
@@ -447,7 +452,8 @@ function TrackLane({ track, zoom, scrollX, position, startBeat, loopEnabled, loo
         <ClipView key={clip.id} clip={clip} color={colorHex}
           trackId={track.id} trackType={track.type}
           zoom={zoom} scrollX={scrollX} trackHeight={track.height}
-          isSelected={clip.id === selectedClipId} />
+          isSelected={clip.id === selectedClipId}
+          isRecording={recordingClipIds.has(clip.id)} />
       ))}
 
       {/* Playhead */}
@@ -478,6 +484,8 @@ export function Timeline() {
   const setPosition = useDAWStore(s => s.seekTo);
   const setScroll = useDAWStore(s => s.setScroll);
   const setZoom = useDAWStore(s => s.setZoom);
+  const recordingSessions = useDAWStore(s => s.recording);
+  const recordingClipIds = new Set(recordingSessions.map(r => r.clipId));
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(800);
@@ -515,7 +523,8 @@ export function Timeline() {
         {tracks.map(track => (
           <TrackLane key={track.id} track={track} zoom={zoom} scrollX={scrollX}
             position={position} startBeat={startBeat} loopEnabled={loopEnabled}
-            loopStart={loopStart} loopEnd={loopEnd} width={width} />
+            loopStart={loopStart} loopEnd={loopEnd} width={width}
+            recordingClipIds={recordingClipIds} />
         ))}
       </div>
     </div>

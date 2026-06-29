@@ -127,10 +127,11 @@ export function Transport() {
     }
   }, [isPlaying, pause, play, position]);
 
-  const handleStop = useCallback(() => {
+  const handleStop = useCallback(async () => {
+    if (isRecording) await audioEngine.stopRecording();
     stop();
     audioEngine.stopPlayback();
-  }, [stop]);
+  }, [stop, isRecording]);
 
   // Live seek: if playing, restart audio from new position
   const handleSeek = useCallback(async (beat: number) => {
@@ -144,14 +145,19 @@ export function Transport() {
   const handleRecord = useCallback(async () => {
     await audioEngine.init();
     await audioEngine.resume();
+
     if (isRecording) {
-      stop();
-      audioEngine.stopPlayback();
+      // Stop recording, but keep playing
+      await audioEngine.stopRecording();
+      play(); // transition back to plain playing state
+      useDAWStore.getState().play(); // keep transport rolling
     } else {
-      record();
-      await audioEngine.startPlayback(position);
+      // Start recording: also start playback if not already playing
+      record(); // sets state to 'recording'
+      if (!isPlaying) await audioEngine.startPlayback(position);
+      await audioEngine.startRecording(position);
     }
-  }, [isRecording, stop, record, position]);
+  }, [isRecording, isPlaying, record, play, position]);
 
   useEffect(() => {
     audioEngine.setMasterVolume(masterVolume);
@@ -220,13 +226,13 @@ export function Transport() {
       {/* Transport controls */}
       <div className="flex items-center gap-1.5">
         <TransportBtn
-          onClick={() => { handleStop(); setPosition(0); }}
+          onClick={async () => { await handleStop(); setPosition(0); }}
           title="Return to start (Home)"
         >
           <SkipBack size={14} />
         </TransportBtn>
-        <TransportBtn onClick={handlePlay} active={isPlaying} title="Play/Pause (Space)">
-          {isPlaying ? <Pause size={15} /> : <Play size={15} />}
+        <TransportBtn onClick={handlePlay} active={isPlaying || isRecording} title="Play/Pause (Space)">
+          {isPlaying || isRecording ? <Pause size={15} /> : <Play size={15} />}
         </TransportBtn>
         <TransportBtn onClick={handleStop} title="Stop (Home)">
           <Square size={13} />
@@ -235,9 +241,11 @@ export function Transport() {
           onClick={handleRecord}
           active={isRecording}
           danger
-          title="Record"
+          title={isRecording ? 'Stop recording' : 'Record (arms all armed tracks)'}
         >
-          <Circle size={13} />
+          {isRecording
+            ? <span className="w-3 h-3 rounded-full bg-white animate-pulse block" />
+            : <Circle size={13} />}
         </TransportBtn>
         <TransportBtn
           onClick={() => setPosition(position + useDAWStore.getState().project.timeSignature.numerator)}

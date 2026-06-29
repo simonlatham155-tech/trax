@@ -53,6 +53,13 @@ interface UIState {
   gridSize: number;
 }
 
+interface RecordingSession {
+  trackId: string;
+  clipId: string;      // placeholder clip shown while recording
+  startBeat: number;
+  type: 'audio' | 'midi';
+}
+
 interface DAWState {
   project: ProjectSettings;
   tracks: Track[];
@@ -66,6 +73,7 @@ interface DAWState {
     metronomeEnabled: boolean;
     countInEnabled: boolean;
   };
+  recording: RecordingSession[];   // active recording sessions (one per armed track)
   ui: UIState;
   masterVolume: number;
   masterLimiterEnabled: boolean;
@@ -76,7 +84,13 @@ interface DAWState {
   stop: () => void;
   record: () => void;
   setPosition: (beat: number) => void;
-  seekTo: (beat: number) => void;  // seek + re-schedule if playing
+  seekTo: (beat: number) => void;
+
+  // Recording sessions
+  beginRecordingSession: (sessions: RecordingSession[]) => void;
+  updateRecordingClipDuration: (clipId: string, durationBeats: number) => void;
+  finalizeRecordingClip: (clipId: string, audioBuffer?: AudioBuffer, notes?: import('@/types').MidiNote[]) => void;
+  cancelRecordingSessions: () => void;
   toggleLoop: () => void;
   setLoopRange: (start: number, end: number) => void;
   toggleMetronome: () => void;
@@ -144,6 +158,7 @@ export const useDAWStore = create<DAWState>()(
       makeDefaultTrack(2, 'audio'),
     ],
     markers: [],
+    recording: [],
     transport: {
       state: 'stopped',
       position: 0,
@@ -399,6 +414,62 @@ export const useDAWStore = create<DAWState>()(
     setMasterVolume: (v) =>
       set((s) => {
         s.masterVolume = Math.max(0, Math.min(1.5, v));
+      }),
+
+    beginRecordingSession: (sessions) =>
+      set((s) => {
+        s.recording = sessions;
+        // Add placeholder clips
+        for (const sess of sessions) {
+          const track = s.tracks.find(t => t.id === sess.trackId);
+          if (!track) continue;
+          track.clips.push({
+            id: sess.clipId,
+            trackId: sess.trackId,
+            startBeat: sess.startBeat,
+            durationBeats: 0.01,
+            name: sess.type === 'midi' ? 'MIDI Rec…' : 'Audio Rec…',
+            color: '#ef4444',
+            gain: 1,
+            fadeIn: 0,
+            fadeOut: 0,
+            notes: sess.type === 'midi' ? [] : undefined,
+            originalBpm: s.project.bpm,
+          });
+        }
+      }),
+
+    updateRecordingClipDuration: (clipId, durationBeats) =>
+      set((s) => {
+        for (const track of s.tracks) {
+          const clip = track.clips.find(c => c.id === clipId);
+          if (clip) { clip.durationBeats = Math.max(0.01, durationBeats); return; }
+        }
+      }),
+
+    finalizeRecordingClip: (clipId, audioBuffer, notes) =>
+      set((s) => {
+        s.recording = s.recording.filter(r => r.clipId !== clipId);
+        for (const track of s.tracks) {
+          const clip = track.clips.find(c => c.id === clipId);
+          if (clip) {
+            clip.name = audioBuffer ? 'Audio' : 'MIDI';
+            if (audioBuffer) clip.audioBuffer = audioBuffer;
+            if (notes) clip.notes = notes;
+            clip.color = track.color;   // revert to track color
+            return;
+          }
+        }
+      }),
+
+    cancelRecordingSessions: () =>
+      set((s) => {
+        // Remove placeholder clips
+        for (const sess of s.recording) {
+          const track = s.tracks.find(t => t.id === sess.trackId);
+          if (track) track.clips = track.clips.filter(c => c.id !== sess.clipId);
+        }
+        s.recording = [];
       }),
   }))
 );

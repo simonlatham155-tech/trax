@@ -235,19 +235,22 @@ export function TrackHeader({ track, isSelected }: TrackHeaderProps) {
             {/* Right side icons */}
             <div className="ml-auto flex items-center gap-0.5">
               <button
-                title="Record arm"
+                title={track.armed ? 'Disarm track' : 'Arm track for recording'}
                 onClick={(e) => {
                   e.stopPropagation();
                   toggleArm(track.id);
                 }}
                 className={cn(
-                  'w-4 h-4 flex items-center justify-center rounded transition-colors',
+                  'w-4 h-4 flex items-center justify-center rounded transition-colors relative',
                   track.armed
-                    ? 'text-[#ef4444]'
+                    ? 'text-[#ef4444] bg-[#ef4444]/15'
                     : 'text-[#55557a] hover:text-[#ef4444]'
                 )}
               >
                 <Mic size={9} />
+                {track.armed && (
+                  <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-[#ef4444] animate-pulse" />
+                )}
               </button>
               <button
                 title="Import audio"

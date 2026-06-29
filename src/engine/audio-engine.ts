@@ -1,7 +1,8 @@
 import { useDAWStore } from '@/store/daw-store';
 import { beatsToSeconds } from '@/utils/beats';
 import { vstBridge } from '@/services/vstBridge';
-import type { Track, Clip } from '@/types';
+import { generateId } from '@/utils/id';
+import type { Track, Clip, MidiNote } from '@/types';
 
 // ── Per-track node chain ───────────────────────────────────────────────────────
 // source(s) → gainNode → panNode → eqNodes → compNode → reverbGain → delayGain → masterGain
@@ -36,6 +37,21 @@ class AudioEngine {
   // Metronome
   private metronomeTimer: ReturnType<typeof setInterval> | null = null;
   private metronomeSounds: { click: AudioBuffer | null; accent: AudioBuffer | null } = { click: null, accent: null };
+
+  // ── Recording ─────────────────────────────────────────────────────────────
+  // Audio recording
+  private mediaStream: MediaStream | null = null;
+  private mediaRecorders: Map<string, { recorder: MediaRecorder; chunks: Blob[]; clipId: string; startBeat: number }> = new Map();
+  // MIDI recording
+  private midiAccess: MIDIAccess | null = null;
+  private midiRecordTrackId: string | null = null;
+  private midiRecordClipId: string | null = null;
+  private midiRecordStartBeat = 0;
+  private midiRecordStartTime = 0; // AudioContext time
+  private midiActiveNotes = new Map<number, { startBeat: number; velocity: number }>();
+  private midiCapturedNotes: MidiNote[] = [];
+  // Shared
+  private recordingDurationTimer: ReturnType<typeof setInterval> | null = null;
 
   // ── Init ─────────────────────────────────────────────────────────────────────
 
@@ -344,6 +360,203 @@ class AudioEngine {
         }
       }
     }
+  }
+
+  // ── Recording ─────────────────────────────────────────────────────────────
+
+  async startRecording(fromBeat: number): Promise<void> {
+    await this.init();
+    await this.resume();
+
+    const { tracks, project } = useDAWStore.getState();
+    const armedTracks = tracks.filter(t => t.armed);
+    if (armedTracks.length === 0) return;
+
+    // Build recording sessions
+    const sessions: { trackId: string; clipId: string; startBeat: number; type: 'audio' | 'midi' }[] = [];
+    for (const track of armedTracks) {
+      sessions.push({ trackId: track.id, clipId: generateId(), startBeat: fromBeat, type: track.type === 'midi' ? 'midi' : 'audio' });
+    }
+
+    useDAWStore.getState().beginRecordingSession(sessions);
+
+    // Start audio recording for audio tracks
+    const audioTracks = armedTracks.filter(t => t.type !== 'midi');
+    if (audioTracks.length > 0) {
+      try {
+        this.mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      } catch (err) {
+        console.error('Mic access denied:', err);
+        useDAWStore.getState().cancelRecordingSessions();
+        return;
+      }
+
+      for (const track of audioTracks) {
+        const sess = sessions.find(s => s.trackId === track.id)!;
+        const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus')
+          ? 'audio/webm;codecs=opus'
+          : 'audio/webm';
+        const recorder = new MediaRecorder(this.mediaStream, { mimeType });
+        const chunks: Blob[] = [];
+        recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
+        this.mediaRecorders.set(track.id, { recorder, chunks, clipId: sess.clipId, startBeat: sess.startBeat });
+        recorder.start(100); // collect data every 100ms
+      }
+    }
+
+    // Start MIDI recording for MIDI tracks
+    const midiTracks = armedTracks.filter(t => t.type === 'midi');
+    if (midiTracks.length > 0) {
+      const track = midiTracks[0]; // record first armed MIDI track
+      const sess = sessions.find(s => s.trackId === track.id)!;
+      this.midiRecordTrackId = track.id;
+      this.midiRecordClipId = sess.clipId;
+      this.midiRecordStartBeat = fromBeat;
+      this.midiRecordStartTime = this.ctx!.currentTime;
+      this.midiActiveNotes.clear();
+      this.midiCapturedNotes = [];
+      await this._initMidi();
+    }
+
+    // Start a timer to grow placeholder clip durations live
+    this.recordingDurationTimer = setInterval(() => {
+      if (!this.ctx) return;
+      const elapsed = this.ctx.currentTime - this.startTime;
+      const currentBeat = this.startBeat + (elapsed / 60) * useDAWStore.getState().project.bpm;
+      for (const sess of sessions) {
+        const dur = Math.max(0.01, currentBeat - sess.startBeat);
+        useDAWStore.getState().updateRecordingClipDuration(sess.clipId, dur);
+      }
+    }, 100);
+  }
+
+  async stopRecording(): Promise<void> {
+    if (this.recordingDurationTimer) {
+      clearInterval(this.recordingDurationTimer);
+      this.recordingDurationTimer = null;
+    }
+
+    const { project } = useDAWStore.getState();
+
+    // Finalize audio recordings
+    const audioFinalize: Promise<void>[] = [];
+    for (const [, rec] of this.mediaRecorders) {
+      const promise = new Promise<void>((resolve) => {
+        rec.recorder.onstop = async () => {
+          try {
+            const blob = new Blob(rec.chunks, { type: rec.recorder.mimeType });
+            const arrayBuffer = await blob.arrayBuffer();
+            const audioBuffer = await this.ctx!.decodeAudioData(arrayBuffer);
+            useDAWStore.getState().finalizeRecordingClip(rec.clipId, audioBuffer, undefined);
+          } catch (err) {
+            console.error('Failed to decode recording:', err);
+            useDAWStore.getState().finalizeRecordingClip(rec.clipId, undefined, undefined);
+          }
+          resolve();
+        };
+        if (rec.recorder.state !== 'inactive') rec.recorder.stop();
+        else resolve();
+      });
+      audioFinalize.push(promise);
+    }
+    await Promise.all(audioFinalize);
+    this.mediaRecorders.clear();
+
+    if (this.mediaStream) {
+      this.mediaStream.getTracks().forEach(t => t.stop());
+      this.mediaStream = null;
+    }
+
+    // Finalize MIDI recording
+    if (this.midiRecordClipId && this.ctx) {
+      // Close any still-open notes
+      const currentBeat = this.midiRecordStartBeat +
+        ((this.ctx.currentTime - this.midiRecordStartTime) / 60) * project.bpm;
+      for (const [pitch, { startBeat, velocity }] of this.midiActiveNotes) {
+        this.midiCapturedNotes.push({
+          id: generateId(), pitch, startBeat,
+          durationBeats: Math.max(0.0625, currentBeat - startBeat), velocity,
+        });
+      }
+      this.midiActiveNotes.clear();
+      useDAWStore.getState().finalizeRecordingClip(this.midiRecordClipId, undefined, this.midiCapturedNotes);
+      this.midiCapturedNotes = [];
+      this.midiRecordTrackId = null;
+      this.midiRecordClipId = null;
+    }
+  }
+
+  private async _initMidi(): Promise<void> {
+    if (!navigator.requestMIDIAccess) return;
+    try {
+      this.midiAccess = await navigator.requestMIDIAccess({ sysex: false });
+      this.midiAccess.inputs.forEach(input => {
+        input.onmidimessage = (e) => this._handleMidiMessage(e);
+      });
+      // Listen for new devices
+      this.midiAccess.onstatechange = () => {
+        this.midiAccess?.inputs.forEach(input => {
+          input.onmidimessage = (e) => this._handleMidiMessage(e);
+        });
+      };
+    } catch (err) {
+      console.warn('Web MIDI not available:', err);
+    }
+  }
+
+  private _handleMidiMessage(e: MIDIMessageEvent): void {
+    if (!this.midiRecordClipId || !this.ctx || !e.data) return;
+    const [status, pitch, velocity] = Array.from(e.data as Uint8Array);
+    const channel = status & 0x0f;
+    const type = status & 0xf0;
+    const { bpm } = useDAWStore.getState().project;
+
+    const currentBeat = this.midiRecordStartBeat +
+      ((this.ctx.currentTime - this.midiRecordStartTime) / 60) * bpm;
+
+    if (type === 0x90 && velocity > 0) {
+      // Note On
+      this.midiActiveNotes.set(pitch, { startBeat: currentBeat - this.midiRecordStartBeat, velocity });
+      // Also trigger synth sound if instrument loaded
+      this._triggerMidiNote(pitch, velocity, true);
+    } else if (type === 0x80 || (type === 0x90 && velocity === 0)) {
+      // Note Off
+      const active = this.midiActiveNotes.get(pitch);
+      if (active) {
+        const dur = (currentBeat - this.midiRecordStartBeat) - active.startBeat;
+        this.midiCapturedNotes.push({
+          id: generateId(), pitch,
+          startBeat: active.startBeat,
+          durationBeats: Math.max(0.0625, dur),
+          velocity: active.velocity,
+        });
+        this.midiActiveNotes.delete(pitch);
+        this._triggerMidiNote(pitch, 0, false);
+      }
+    }
+    void channel; // suppress unused warning
+  }
+
+  private _triggerMidiNote(pitch: number, velocity: number, on: boolean): void {
+    if (!this.ctx) return;
+    // Simple synth preview: a short sine/sawtooth note
+    if (on && velocity > 0) {
+      const osc = this.ctx.createOscillator();
+      const env = this.ctx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.value = 440 * Math.pow(2, (pitch - 69) / 12);
+      env.gain.setValueAtTime(0, this.ctx.currentTime);
+      env.gain.linearRampToValueAtTime(velocity / 127 * 0.3, this.ctx.currentTime + 0.005);
+      env.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 2.0);
+      osc.connect(env);
+      env.connect(this.masterGain ?? this.ctx.destination);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 2.0);
+    }
+  }
+
+  get isRecording(): boolean {
+    return this.mediaRecorders.size > 0 || this.midiRecordClipId !== null;
   }
 
   // ── External sync API (called by store subscriptions) ─────────────────────
