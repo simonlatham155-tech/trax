@@ -1,6 +1,14 @@
 export type TrackType = 'audio' | 'midi' | 'bus';
 export type TrackColor = 'purple' | 'cyan' | 'green' | 'amber' | 'red' | 'pink' | 'blue';
 
+export interface MidiNote {
+  id: string;
+  pitch: number;       // MIDI note number 0-127
+  startBeat: number;   // relative to clip start
+  durationBeats: number;
+  velocity: number;    // 0-127
+}
+
 export interface Clip {
   id: string;
   trackId: string;
@@ -13,6 +21,10 @@ export interface Clip {
   gain: number;
   fadeIn: number;
   fadeOut: number;
+  notes?: MidiNote[];       // MIDI clips carry notes
+  originalBpm?: number;     // BPM the audio was recorded/imported at (Ableton warp)
+  trimStart?: number;       // beats to skip from clip start
+  trimEnd?: number;         // beats to skip from clip end
 }
 
 export interface EQBand {
@@ -66,6 +78,7 @@ export interface Track {
   clips: Clip[];
   effects: TrackEffects;
   sends: { busId: string; level: number }[];
+  instrument?: string;  // instrument preset ID for midi tracks
 }
 
 export interface TimeSignature {
@@ -81,6 +94,7 @@ export interface ProjectSettings {
 }
 
 export type TransportState = 'stopped' | 'playing' | 'recording' | 'paused';
+export type EditTool = 'pointer' | 'draw' | 'split' | 'erase';
 
 export interface Marker {
   id: string;

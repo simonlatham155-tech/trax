@@ -4,6 +4,8 @@ node_modules/
 # Build output
 dist/
 dist-ssr/
+out/
+dist-release/
 
 # Local env
 .env
@@ -27,3 +29,17 @@ Thumbs.db
 # Cache
 .cache/
 *.tsbuildinfo
+
+# Python
+bridge/__pycache__/
+*.pyc
+*.pyo
+
+# Bridge build artifacts
+bridge-dist/
+bridge/AppIcon.icns
+bridge/AppIcon.iconset/
+bridge/icon.ico
+bridge/icon.png
+.build-cache/
+*.spec

@@ -9,23 +9,19 @@ export function TrackList() {
   const addTrack = useDAWStore((s) => s.addTrack);
 
   return (
-    <div
-      className="w-52 shrink-0 flex flex-col bg-[#111118] border-r border-[#2a2a38] overflow-hidden"
-    >
-      {/* Header */}
-      <div className="h-7 flex items-center justify-between px-2 border-b border-[#2a2a38] bg-[#0f0f1a]">
-        <span className="text-[10px] font-semibold text-[#55557a] uppercase tracking-wider">
-          Tracks
+    <div className="w-56 shrink-0 flex flex-col bg-[#0f0f18] border-r border-[#1e1e2a] overflow-hidden">
+      {/* Header row matching timeline ruler height */}
+      <div className="h-7 flex items-center justify-between px-3 border-b border-[#1e1e2a] bg-[#0a0a12] shrink-0">
+        <span className="text-[9px] font-bold text-[#55557a] uppercase tracking-widest">
+          Track
         </span>
-        <div className="flex gap-1">
-          <button
-            onClick={() => addTrack('audio')}
-            title="Add audio track"
-            className="w-5 h-5 flex items-center justify-center rounded text-[#55557a] hover:text-[#e8e8f0] hover:bg-[#22222e] transition-colors"
-          >
-            <Plus size={11} />
-          </button>
-        </div>
+        <button
+          onClick={() => addTrack('audio')}
+          title="Add track"
+          className="w-5 h-5 flex items-center justify-center rounded text-[#55557a] hover:text-[#e8e8f0] hover:bg-[#22222e] transition-colors"
+        >
+          <Plus size={11} />
+        </button>
       </div>
 
       {/* Track list */}
@@ -56,19 +52,26 @@ export function TrackList() {
       </div>
 
       {/* Footer */}
-      <div className="border-t border-[#2a2a38] p-2 flex gap-1">
+      <div className="border-t border-[#1e1e2a] p-1.5 flex gap-1">
         <button
           onClick={() => addTrack('audio')}
-          className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded bg-[#1a1a24] hover:bg-[#22222e] text-[#8888aa] hover:text-[#e8e8f0] transition-colors text-xs"
+          className="flex-1 flex items-center justify-center gap-1 py-1 rounded bg-[#1a1a24] hover:bg-[#22222e] text-[#8888aa] hover:text-[#e8e8f0] transition-colors text-[10px]"
         >
-          <Waves size={11} />
+          <Waves size={10} />
           Audio
         </button>
         <button
-          onClick={() => addTrack('bus')}
-          className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded bg-[#1a1a24] hover:bg-[#22222e] text-[#8888aa] hover:text-[#e8e8f0] transition-colors text-xs"
+          onClick={() => addTrack('midi')}
+          className="flex-1 flex items-center justify-center gap-1 py-1 rounded bg-[#1a1a24] hover:bg-[#22222e] text-[#8888aa] hover:text-[#e8e8f0] transition-colors text-[10px]"
         >
-          <Music2 size={11} />
+          <Music2 size={10} />
+          MIDI
+        </button>
+        <button
+          onClick={() => addTrack('bus')}
+          className="flex-1 flex items-center justify-center gap-1 py-1 rounded bg-[#1a1a24] hover:bg-[#22222e] text-[#8888aa] hover:text-[#e8e8f0] transition-colors text-[10px]"
+        >
+          <span className="text-[9px] font-bold">B</span>
           Bus
         </button>
       </div>

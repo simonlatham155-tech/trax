@@ -8,6 +8,8 @@ import type {
   ProjectSettings,
   Marker,
   TrackEffects,
+  EditTool,
+  MidiNote,
 } from '@/types';
 import { generateId } from '@/utils/id';
 import { DEFAULT_EFFECTS, TRACK_COLORS } from '@/types';
@@ -28,7 +30,7 @@ function makeDefaultTrack(index: number, type: Track['type'] = 'audio'): Track {
     muted: false,
     soloed: false,
     armed: false,
-    height: 80,
+    height: 90,
     clips: [],
     effects: structuredClone(DEFAULT_EFFECTS),
     sends: [],
@@ -39,14 +41,23 @@ interface UIState {
   selectedTrackId: string | null;
   selectedClipId: string | null;
   openEffectsTrackId: string | null;
+  pianoRollClipId: string | null;    // which clip is open in piano roll
   showMixer: boolean;
   showPianoRoll: boolean;
+  tool: EditTool;
   zoom: number;
   scrollX: number;
   scrollY: number;
   snapEnabled: boolean;
   snapGrid: number;
   gridSize: number;
+}
+
+interface RecordingSession {
+  trackId: string;
+  clipId: string;      // placeholder clip shown while recording
+  startBeat: number;
+  type: 'audio' | 'midi';
 }
 
 interface DAWState {
@@ -62,6 +73,7 @@ interface DAWState {
     metronomeEnabled: boolean;
     countInEnabled: boolean;
   };
+  recording: RecordingSession[];   // active recording sessions (one per armed track)
   ui: UIState;
   masterVolume: number;
   masterLimiterEnabled: boolean;
@@ -72,6 +84,13 @@ interface DAWState {
   stop: () => void;
   record: () => void;
   setPosition: (beat: number) => void;
+  seekTo: (beat: number) => void;
+
+  // Recording sessions
+  beginRecordingSession: (sessions: RecordingSession[]) => void;
+  updateRecordingClipDuration: (clipId: string, durationBeats: number) => void;
+  finalizeRecordingClip: (clipId: string, audioBuffer?: AudioBuffer, notes?: import('@/types').MidiNote[]) => void;
+  cancelRecordingSessions: () => void;
   toggleLoop: () => void;
   setLoopRange: (start: number, end: number) => void;
   toggleMetronome: () => void;
@@ -97,6 +116,21 @@ interface DAWState {
 
   // Effects actions
   updateEffects: (trackId: string, effects: Partial<TrackEffects>) => void;
+
+  // Instrument / VST assignment
+  setTrackInstrument: (trackId: string, instrument: string | undefined) => void;
+
+  // MIDI note actions
+  addMidiNote: (trackId: string, clipId: string, note: Omit<MidiNote, 'id'>) => string;
+  updateMidiNote: (trackId: string, clipId: string, noteId: string, patch: Partial<MidiNote>) => void;
+  removeMidiNote: (trackId: string, clipId: string, noteId: string) => void;
+  setMidiNotes: (trackId: string, clipId: string, notes: MidiNote[]) => void;
+
+  // Tool
+  setTool: (tool: EditTool) => void;
+
+  // Piano roll
+  openPianoRoll: (clipId: string | null) => void;
 
   // UI actions
   selectTrack: (id: string | null) => void;
@@ -124,6 +158,7 @@ export const useDAWStore = create<DAWState>()(
       makeDefaultTrack(2, 'audio'),
     ],
     markers: [],
+    recording: [],
     transport: {
       state: 'stopped',
       position: 0,
@@ -137,8 +172,10 @@ export const useDAWStore = create<DAWState>()(
       selectedTrackId: null,
       selectedClipId: null,
       openEffectsTrackId: null,
+      pianoRollClipId: null,
       showMixer: false,
       showPianoRoll: false,
+      tool: 'pointer',
       zoom: 60,
       scrollX: 0,
       scrollY: 0,
@@ -167,9 +204,20 @@ export const useDAWStore = create<DAWState>()(
         s.transport.state = 'recording';
       }),
     setPosition: (beat) =>
-      set((s) => {
-        s.transport.position = Math.max(0, beat);
-      }),
+      set((s) => { s.transport.position = Math.max(0, beat); }),
+
+    seekTo: (beat) => {
+      set((s) => { s.transport.position = Math.max(0, beat); });
+      // If playing, the audio-engine subscription will detect state change
+      // and engine.startPlayback is called explicitly from the subscriber
+      const state = useDAWStore.getState().transport.state;
+      if (state === 'playing') {
+        // Dynamically import to avoid circular dep at module load time
+        import('@/engine/audio-engine').then(({ audioEngine }) => {
+          audioEngine.startPlayback(Math.max(0, beat));
+        });
+      }
+    },
     toggleLoop: () =>
       set((s) => {
         s.transport.loopEnabled = !s.transport.loopEnabled;
@@ -281,6 +329,54 @@ export const useDAWStore = create<DAWState>()(
         if (t) Object.assign(t.effects, effects);
       }),
 
+    setTrackInstrument: (trackId, instrument) =>
+      set((s) => {
+        const t = s.tracks.find((t) => t.id === trackId);
+        if (t) t.instrument = instrument;
+      }),
+
+    addMidiNote: (trackId, clipId, noteData) => {
+      const id = generateId();
+      set((s) => {
+        const t = s.tracks.find((t) => t.id === trackId);
+        const c = t?.clips.find((c) => c.id === clipId);
+        if (c) {
+          if (!c.notes) c.notes = [];
+          c.notes.push({ ...noteData, id });
+          c.audioBuffer = undefined; // invalidate bridge render cache
+        }
+      });
+      return id;
+    },
+    updateMidiNote: (trackId, clipId, noteId, patch) =>
+      set((s) => {
+        const t = s.tracks.find((t) => t.id === trackId);
+        const c = t?.clips.find((c) => c.id === clipId);
+        const n = c?.notes?.find((n) => n.id === noteId);
+        if (n) { Object.assign(n, patch); if (c) c.audioBuffer = undefined; }
+      }),
+    removeMidiNote: (trackId, clipId, noteId) =>
+      set((s) => {
+        const t = s.tracks.find((t) => t.id === trackId);
+        const c = t?.clips.find((c) => c.id === clipId);
+        if (c?.notes) { c.notes = c.notes.filter((n) => n.id !== noteId); c.audioBuffer = undefined; }
+      }),
+    setMidiNotes: (trackId, clipId, notes) =>
+      set((s) => {
+        const t = s.tracks.find((t) => t.id === trackId);
+        const c = t?.clips.find((c) => c.id === clipId);
+        if (c) { c.notes = notes; c.audioBuffer = undefined; }
+      }),
+
+    setTool: (tool) =>
+      set((s) => { s.ui.tool = tool; }),
+
+    openPianoRoll: (clipId) =>
+      set((s) => {
+        s.ui.pianoRollClipId = clipId;
+        s.ui.showPianoRoll = clipId !== null;
+      }),
+
     selectTrack: (id) =>
       set((s) => {
         s.ui.selectedTrackId = id;
@@ -314,9 +410,66 @@ export const useDAWStore = create<DAWState>()(
       set((s) => {
         s.ui.snapGrid = grid;
       }),
+
     setMasterVolume: (v) =>
       set((s) => {
         s.masterVolume = Math.max(0, Math.min(1.5, v));
+      }),
+
+    beginRecordingSession: (sessions) =>
+      set((s) => {
+        s.recording = sessions;
+        // Add placeholder clips
+        for (const sess of sessions) {
+          const track = s.tracks.find(t => t.id === sess.trackId);
+          if (!track) continue;
+          track.clips.push({
+            id: sess.clipId,
+            trackId: sess.trackId,
+            startBeat: sess.startBeat,
+            durationBeats: 0.01,
+            name: sess.type === 'midi' ? 'MIDI Rec…' : 'Audio Rec…',
+            color: '#ef4444',
+            gain: 1,
+            fadeIn: 0,
+            fadeOut: 0,
+            notes: sess.type === 'midi' ? [] : undefined,
+            originalBpm: s.project.bpm,
+          });
+        }
+      }),
+
+    updateRecordingClipDuration: (clipId, durationBeats) =>
+      set((s) => {
+        for (const track of s.tracks) {
+          const clip = track.clips.find(c => c.id === clipId);
+          if (clip) { clip.durationBeats = Math.max(0.01, durationBeats); return; }
+        }
+      }),
+
+    finalizeRecordingClip: (clipId, audioBuffer, notes) =>
+      set((s) => {
+        s.recording = s.recording.filter(r => r.clipId !== clipId);
+        for (const track of s.tracks) {
+          const clip = track.clips.find(c => c.id === clipId);
+          if (clip) {
+            clip.name = audioBuffer ? 'Audio' : 'MIDI';
+            if (audioBuffer) clip.audioBuffer = audioBuffer;
+            if (notes) clip.notes = notes;
+            clip.color = track.color;   // revert to track color
+            return;
+          }
+        }
+      }),
+
+    cancelRecordingSessions: () =>
+      set((s) => {
+        // Remove placeholder clips
+        for (const sess of s.recording) {
+          const track = s.tracks.find(t => t.id === sess.trackId);
+          if (track) track.clips = track.clips.filter(c => c.id !== sess.clipId);
+        }
+        s.recording = [];
       }),
   }))
 );

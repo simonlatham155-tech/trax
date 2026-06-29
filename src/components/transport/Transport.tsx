@@ -10,12 +10,21 @@ import {
   Volume2,
   Sliders,
   Music,
+  MousePointer2,
+  Pencil,
+  Scissors,
+  Eraser,
+  Magnet,
+  ZoomIn,
+  ZoomOut,
 } from 'lucide-react';
+import type { EditTool } from '@/types';
 import { useDAWStore } from '@/store/daw-store';
 import { audioEngine } from '@/engine/audio-engine';
 import { formatTime, formatBeatPosition, beatsToSeconds } from '@/utils/beats';
 import { cn } from '@/utils/cn';
 import { ProjectBar } from '@/components/project/ProjectBar';
+import { BridgeStatusIndicator } from '@/components/plugins/BridgeStatus';
 
 function BpmInput() {
   const bpm = useDAWStore((s) => s.project.bpm);
@@ -114,26 +123,41 @@ export function Transport() {
       audioEngine.stopPlayback();
     } else {
       play();
-      audioEngine.startPlayback(position);
+      await audioEngine.startPlayback(position);
     }
   }, [isPlaying, pause, play, position]);
 
-  const handleStop = useCallback(() => {
+  const handleStop = useCallback(async () => {
+    if (isRecording) await audioEngine.stopRecording();
     stop();
     audioEngine.stopPlayback();
-  }, [stop]);
+  }, [stop, isRecording]);
+
+  // Live seek: if playing, restart audio from new position
+  const handleSeek = useCallback(async (beat: number) => {
+    setPosition(beat);
+    if (isPlaying) {
+      await audioEngine.init();
+      await audioEngine.startPlayback(beat);
+    }
+  }, [isPlaying, setPosition]);
 
   const handleRecord = useCallback(async () => {
     await audioEngine.init();
     await audioEngine.resume();
+
     if (isRecording) {
-      stop();
-      audioEngine.stopPlayback();
+      // Stop recording, but keep playing
+      await audioEngine.stopRecording();
+      play(); // transition back to plain playing state
+      useDAWStore.getState().play(); // keep transport rolling
     } else {
-      record();
-      audioEngine.startPlayback(position);
+      // Start recording: also start playback if not already playing
+      record(); // sets state to 'recording'
+      if (!isPlaying) await audioEngine.startPlayback(position);
+      await audioEngine.startRecording(position);
     }
-  }, [isRecording, stop, record, position]);
+  }, [isRecording, isPlaying, record, play, position]);
 
   useEffect(() => {
     audioEngine.setMasterVolume(masterVolume);
@@ -202,13 +226,13 @@ export function Transport() {
       {/* Transport controls */}
       <div className="flex items-center gap-1.5">
         <TransportBtn
-          onClick={() => { handleStop(); setPosition(0); }}
+          onClick={async () => { await handleStop(); setPosition(0); }}
           title="Return to start (Home)"
         >
           <SkipBack size={14} />
         </TransportBtn>
-        <TransportBtn onClick={handlePlay} active={isPlaying} title="Play/Pause (Space)">
-          {isPlaying ? <Pause size={15} /> : <Play size={15} />}
+        <TransportBtn onClick={handlePlay} active={isPlaying || isRecording} title="Play/Pause (Space)">
+          {isPlaying || isRecording ? <Pause size={15} /> : <Play size={15} />}
         </TransportBtn>
         <TransportBtn onClick={handleStop} title="Stop (Home)">
           <Square size={13} />
@@ -217,9 +241,11 @@ export function Transport() {
           onClick={handleRecord}
           active={isRecording}
           danger
-          title="Record"
+          title={isRecording ? 'Stop recording' : 'Record (arms all armed tracks)'}
         >
-          <Circle size={13} />
+          {isRecording
+            ? <span className="w-3 h-3 rounded-full bg-white animate-pulse block" />
+            : <Circle size={13} />}
         </TransportBtn>
         <TransportBtn
           onClick={() => setPosition(position + useDAWStore.getState().project.timeSignature.numerator)}
@@ -278,6 +304,124 @@ export function Transport() {
       <TransportBtn onClick={toggleMixer} active={showMixer} title="Toggle mixer">
         <Sliders size={14} />
       </TransportBtn>
+
+      <div className="w-px h-8 bg-[#2a2a38]" />
+
+      {/* VST Bridge status */}
+      <BridgeStatusIndicator />
     </div>
+  );
+}
+
+// ── Arrange toolbar (tool selector + snap + zoom) ─────────────────────────────
+
+const TOOLS: { id: EditTool; icon: React.ReactNode; label: string; key: string }[] = [
+  { id: 'pointer', icon: <MousePointer2 size={13} />, label: 'Select  (F1)', key: 'F1' },
+  { id: 'draw',    icon: <Pencil size={13} />,        label: 'Draw    (F2)', key: 'F2' },
+  { id: 'split',   icon: <Scissors size={13} />,      label: 'Split   (F3)', key: 'F3' },
+  { id: 'erase',   icon: <Eraser size={13} />,        label: 'Erase   (F4)', key: 'F4' },
+];
+
+export function ArrangeToolbar() {
+  const tool = useDAWStore((s) => s.ui.tool);
+  const zoom = useDAWStore((s) => s.ui.zoom);
+  const snapEnabled = useDAWStore((s) => s.ui.snapEnabled);
+  const snapGrid = useDAWStore((s) => s.ui.snapGrid);
+  const setTool = useDAWStore((s) => s.setTool);
+  const setZoom = useDAWStore((s) => s.setZoom);
+  const toggleSnap = useDAWStore((s) => s.toggleSnap);
+  const setSnapGrid = useDAWStore((s) => s.setSnapGrid);
+
+  // Keyboard shortcuts F1–F4
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLInputElement) return;
+      const t = TOOLS.find((t) => t.key === e.code || t.key === e.key);
+      if (t) { e.preventDefault(); setTool(t.id); }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [setTool]);
+
+  return (
+    <div className="flex items-center gap-0.5 px-3 py-1 bg-[#0d0d16] border-b border-[#1e1e2a] shrink-0 h-8">
+      {/* Tools */}
+      <div className="flex items-center gap-0.5 mr-3">
+        {TOOLS.map((t) => (
+          <button
+            key={t.id}
+            title={t.label}
+            onClick={() => setTool(t.id)}
+            className={cn(
+              'w-6 h-6 flex items-center justify-center rounded transition-colors',
+              tool === t.id
+                ? 'bg-[#6c63ff] text-white'
+                : 'text-[#55557a] hover:text-[#e8e8f0] hover:bg-[#1e1e2a]'
+            )}
+          >
+            {t.icon}
+          </button>
+        ))}
+      </div>
+
+      <div className="w-px h-4 bg-[#2a2a38] mx-1" />
+
+      {/* Snap */}
+      <button
+        onClick={toggleSnap}
+        title="Toggle snap"
+        className={cn(
+          'flex items-center gap-1 px-1.5 h-6 rounded text-[10px] transition-colors',
+          snapEnabled ? 'text-[#6c63ff] bg-[#6c63ff]/10' : 'text-[#55557a] hover:text-[#8888aa]'
+        )}
+      >
+        <Magnet size={10} />
+        <span className="font-semibold">Snap</span>
+      </button>
+
+      <select
+        value={snapGrid}
+        onChange={(e) => setSnapGrid(parseFloat(e.target.value))}
+        className="bg-[#111118] text-[#55557a] border border-[#2a2a38] rounded px-1 text-[10px] outline-none h-5 ml-1"
+      >
+        <option value={0.0625}>1/16</option>
+        <option value={0.125}>1/8</option>
+        <option value={0.25}>1/4</option>
+        <option value={0.5}>1/2</option>
+        <option value={1}>1 Bar</option>
+        <option value={2}>2 Bars</option>
+        <option value={4}>4 Bars</option>
+      </select>
+
+      <div className="w-px h-4 bg-[#2a2a38] mx-2" />
+
+      {/* Zoom */}
+      <div className="flex items-center gap-1">
+        <button onClick={() => setZoom(zoom * 0.75)} className="text-[#55557a] hover:text-[#e8e8f0] transition-colors" title="Zoom out">
+          <ZoomOut size={11} />
+        </button>
+        <span className="text-[10px] text-[#55557a] font-mono w-8 text-center">{Math.round(zoom)}</span>
+        <button onClick={() => setZoom(zoom * 1.33)} className="text-[#55557a] hover:text-[#e8e8f0] transition-colors" title="Zoom in">
+          <ZoomIn size={11} />
+        </button>
+      </div>
+
+      <div className="flex-1" />
+
+      {/* Track count summary */}
+      <TrackSummary />
+    </div>
+  );
+}
+
+function TrackSummary() {
+  const tracks = useDAWStore((s) => s.tracks);
+  const bpm = useDAWStore((s) => s.project.bpm);
+  const sig = useDAWStore((s) => s.project.timeSignature);
+  const clips = tracks.reduce((n, t) => n + t.clips.length, 0);
+  return (
+    <span className="text-[9px] text-[#3a3a4a] font-mono">
+      {tracks.length} tracks · {clips} clips · {bpm} BPM · {sig.numerator}/{sig.denominator}
+    </span>
   );
 }
