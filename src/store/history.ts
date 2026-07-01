@@ -22,6 +22,7 @@ function cloneTracks(tracks: Track[]): Track[] {
     ...t,
     clips: t.clips.map((c) => ({ ...c })),
     effects: structuredClone(t.effects),
+    plugins: structuredClone(t.plugins ?? []),
     sends: [...t.sends],
   }));
 }

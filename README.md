@@ -111,7 +111,7 @@ src/
 - [x] Project save / load (IndexedDB)
 - [ ] Audio recording from microphone
 - [x] Export mix to WAV / MP3
-- [ ] Plugin host (WebAssembly / AudioWorklet)
+- [x] Plugin host (WebAssembly / AudioWorklet)
 
 ## License
 

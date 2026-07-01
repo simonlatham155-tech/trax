@@ -6,6 +6,11 @@ import {
   syncTrackChain,
   type TrackChainNodes,
 } from '@/engine/effects-chain';
+import {
+  TrackPluginChain,
+  wirePluginChain,
+  createOfflinePluginChain,
+} from '@/engine/plugin-host';
 
 export interface RenderOptions {
   bpm: number;
@@ -20,6 +25,8 @@ class AudioEngine {
   private masterCompressor: DynamicsCompressorNode | null = null;
   private masterAnalyser: AnalyserNode | null = null;
   private trackChains: Map<string, TrackChainNodes> = new Map();
+  private trackPluginChains: Map<string, TrackPluginChain> = new Map();
+  private trackPluginHashes: Map<string, string> = new Map();
   private trackAnalysers: Map<string, AnalyserNode> = new Map();
   private scheduledSources: Map<string, AudioBufferSourceNode[]> = new Map();
   private animationFrame: number | null = null;
@@ -55,15 +62,16 @@ class AudioEngine {
 
     await this.createMetronomeSounds();
     this.subscribeToStore();
-    this.prepareAllTrackChains();
+    void this.prepareAllTrackChains();
   }
 
   /** Create per-track effect chains and analysers without starting playback. */
-  prepareAllTrackChains(): void {
+  async prepareAllTrackChains(): Promise<void> {
     if (!this.ctx || !this.masterGain) return;
     const { tracks } = useDAWStore.getState();
     for (const track of tracks) {
       this.ensureTrackChain(track);
+      await this.syncTrackPlugins(track);
     }
   }
 
@@ -76,18 +84,29 @@ class AudioEngine {
       for (const track of state.tracks) {
         if (!prev.tracks.find((t) => t.id === track.id)) {
           this.ensureTrackChain(track);
+          void this.syncTrackPlugins(track);
         }
       }
 
       for (const track of state.tracks) {
         const prevTrack = prev.tracks.find((t) => t.id === track.id);
+        if (!prevTrack) continue;
+
         if (
-          !prevTrack ||
           prevTrack.volume !== track.volume ||
           prevTrack.pan !== track.pan ||
           JSON.stringify(prevTrack.effects) !== JSON.stringify(track.effects)
         ) {
           this.syncTrack(track);
+        }
+
+        const plugins = track.plugins ?? [];
+        const prevPlugins = prevTrack.plugins ?? [];
+        if (JSON.stringify(prevPlugins) !== JSON.stringify(plugins)) {
+          void this.syncTrackPlugins(track);
+        } else if (plugins.length > 0) {
+          const pc = this.trackPluginChains.get(track.id);
+          pc?.syncSlots(plugins);
         }
       }
       if (state.masterVolume !== prev.masterVolume) {
@@ -143,10 +162,37 @@ class AudioEngine {
       this.trackAnalysers.set(track.id, analyser);
 
       this.trackChains.set(track.id, chain);
+
+      const pluginChain = new TrackPluginChain(this.ctx);
+      this.trackPluginChains.set(track.id, pluginChain);
     }
 
     syncTrackChain(chain, track.effects, track.volume, track.pan, this.ctx);
     return chain;
+  }
+
+  private async syncTrackPlugins(track: Track): Promise<void> {
+    if (!this.ctx) return;
+    const chain = this.trackChains.get(track.id);
+    let pluginChain = this.trackPluginChains.get(track.id);
+    if (!chain) return;
+
+    if (!pluginChain) {
+      pluginChain = new TrackPluginChain(this.ctx);
+      this.trackPluginChains.set(track.id, pluginChain);
+    }
+
+    const plugins = track.plugins ?? [];
+    const hash = JSON.stringify(plugins);
+    const prevHash = this.trackPluginHashes.get(track.id);
+
+    if (hash !== prevHash) {
+      await pluginChain.rebuild(plugins);
+      wirePluginChain(chain, pluginChain, plugins.length > 0);
+      this.trackPluginHashes.set(track.id, hash);
+    } else {
+      pluginChain.syncSlots(plugins);
+    }
   }
 
   private syncTrack(track: Track): void {
@@ -157,9 +203,11 @@ class AudioEngine {
     }
   }
 
-  startPlayback(fromBeat: number): void {
+  async startPlayback(fromBeat: number): Promise<void> {
     if (!this.ctx || !this.masterGain) return;
     this.stopPlayback();
+
+    await this.prepareAllTrackChains();
 
     this.startBeat = fromBeat;
     this.startTime = this.ctx.currentTime;
@@ -300,7 +348,7 @@ class AudioEngine {
         state.transport.loopEnabled &&
         currentBeat >= state.transport.loopEnd
       ) {
-        this.startPlayback(state.transport.loopStart);
+        void this.startPlayback(state.transport.loopStart);
         return;
       }
 
@@ -387,6 +435,16 @@ class AudioEngine {
 
       const chain = createTrackChain(offline);
       syncTrackChain(chain, track.effects, track.volume, track.pan, offline, 0);
+
+      const plugins = track.plugins ?? [];
+      let clipTarget: AudioNode = chain.input;
+      if (plugins.length > 0) {
+        const pluginChain = await createOfflinePluginChain(offline, plugins);
+        chain.input.connect(pluginChain.input);
+        pluginChain.output.connect(chain.fxInput);
+        clipTarget = chain.input;
+      }
+
       chain.output.connect(masterGain);
 
       for (const clip of track.clips) {
@@ -449,7 +507,7 @@ class AudioEngine {
         }
 
         source.connect(gainNode);
-        gainNode.connect(chain.input);
+        gainNode.connect(clipTarget);
         source.start(when, offset, actualDuration);
       }
     }

@@ -10,7 +10,8 @@ import type {
   TrackEffects,
 } from '@/types';
 import { generateId } from '@/utils/id';
-import { DEFAULT_EFFECTS, TRACK_COLORS } from '@/types';
+import { DEFAULT_EFFECTS, TRACK_COLORS, createPluginSlot } from '@/types';
+import { getPluginManifest } from '@/plugins/registry';
 import { withHistory, undo as historyUndo, redo as historyRedo, mutateWithoutHistory } from '@/store/history';
 
 const TRACK_COLOR_CYCLE: TrackColor[] = [
@@ -32,6 +33,7 @@ function makeDefaultTrack(index: number, type: Track['type'] = 'audio'): Track {
     height: 80,
     clips: [],
     effects: structuredClone(DEFAULT_EFFECTS),
+    plugins: [],
     sends: [],
   };
 }
@@ -99,6 +101,13 @@ interface DAWState {
 
   // Effects actions
   updateEffects: (trackId: string, effects: Partial<TrackEffects>) => void;
+
+  // Plugin actions
+  addPlugin: (trackId: string, pluginId: string) => void;
+  removePlugin: (trackId: string, slotId: string) => void;
+  togglePlugin: (trackId: string, slotId: string) => void;
+  setPluginParam: (trackId: string, slotId: string, paramId: string, value: number) => void;
+  movePlugin: (trackId: string, fromIndex: number, toIndex: number) => void;
 
   // UI actions
   selectTrack: (id: string | null) => void;
@@ -323,6 +332,51 @@ export const useDAWStore = create<DAWState>()(
         set((s) => {
           const t = s.tracks.find((t) => t.id === trackId);
           if (t) Object.assign(t.effects, effects);
+        })
+      ),
+
+    addPlugin: (trackId, pluginId) =>
+      withHistory(() =>
+        set((s) => {
+          const t = s.tracks.find((t) => t.id === trackId);
+          const manifest = getPluginManifest(pluginId);
+          if (!t || !manifest) return;
+          if (!t.plugins) t.plugins = [];
+          if (t.plugins.length >= 8) return;
+          t.plugins.push(createPluginSlot(pluginId, manifest));
+        })
+      ),
+    removePlugin: (trackId, slotId) =>
+      withHistory(() =>
+        set((s) => {
+          const t = s.tracks.find((t) => t.id === trackId);
+          if (!t?.plugins) return;
+          t.plugins = t.plugins.filter((p) => p.id !== slotId);
+        })
+      ),
+    togglePlugin: (trackId, slotId) =>
+      withHistory(() =>
+        set((s) => {
+          const t = s.tracks.find((t) => t.id === trackId);
+          const slot = t?.plugins?.find((p) => p.id === slotId);
+          if (slot) slot.enabled = !slot.enabled;
+        })
+      ),
+    setPluginParam: (trackId, slotId, paramId, value) =>
+      withHistory(() =>
+        set((s) => {
+          const t = s.tracks.find((t) => t.id === trackId);
+          const slot = t?.plugins?.find((p) => p.id === slotId);
+          if (slot) slot.params[paramId] = value;
+        })
+      ),
+    movePlugin: (trackId, fromIndex, toIndex) =>
+      withHistory(() =>
+        set((s) => {
+          const t = s.tracks.find((t) => t.id === trackId);
+          if (!t?.plugins) return;
+          const [removed] = t.plugins.splice(fromIndex, 1);
+          t.plugins.splice(toIndex, 0, removed);
         })
       ),
 

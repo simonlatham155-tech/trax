@@ -1,3 +1,5 @@
+export * from './plugins';
+import type { PluginSlot } from './plugins';
 export type TrackType = 'audio' | 'midi' | 'bus';
 export type TrackColor = 'purple' | 'cyan' | 'green' | 'amber' | 'red' | 'pink' | 'blue';
 
@@ -65,6 +67,7 @@ export interface Track {
   height: number;
   clips: Clip[];
   effects: TrackEffects;
+  plugins: PluginSlot[];
   sends: { busId: string; level: number }[];
 }
 

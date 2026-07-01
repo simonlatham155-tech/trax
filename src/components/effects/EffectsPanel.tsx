@@ -1,9 +1,10 @@
-import { X, Power } from 'lucide-react';
+import { X, Power, Trash2, ChevronUp, ChevronDown } from 'lucide-react';
 import { useDAWStore } from '@/store/daw-store';
 import { Knob } from '@/components/common/Knob';
 import { cn } from '@/utils/cn';
 import { TRACK_COLORS } from '@/types';
-import type { TrackEffects } from '@/types';
+import type { TrackEffects, PluginSlot } from '@/types';
+import { listPlugins, getPluginManifest } from '@/plugins/registry';
 
 interface SectionProps {
   title: string;
@@ -38,10 +39,92 @@ function Section({ title, enabled, onToggle, children, color = '#6c63ff' }: Sect
   );
 }
 
+function PluginSlotEditor({
+  slot,
+  trackId,
+  index,
+  total,
+  color,
+}: {
+  slot: PluginSlot;
+  trackId: string;
+  index: number;
+  total: number;
+  color: string;
+}) {
+  const togglePlugin = useDAWStore((s) => s.togglePlugin);
+  const removePlugin = useDAWStore((s) => s.removePlugin);
+  const setPluginParam = useDAWStore((s) => s.setPluginParam);
+  const movePlugin = useDAWStore((s) => s.movePlugin);
+
+  const manifest = getPluginManifest(slot.pluginId);
+  if (!manifest) return null;
+
+  return (
+    <Section
+      title={manifest.name}
+      enabled={slot.enabled}
+      color={color}
+      onToggle={() => togglePlugin(trackId, slot.id)}
+    >
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-[9px] text-[#55557a]">{manifest.vendor} · AudioWorklet</span>
+        <div className="flex items-center gap-0.5">
+          <button
+            onClick={() => index > 0 && movePlugin(trackId, index, index - 1)}
+            disabled={index === 0}
+            className="w-5 h-5 flex items-center justify-center rounded text-[#55557a] hover:text-[#e8e8f0] disabled:opacity-30"
+            title="Move up"
+          >
+            <ChevronUp size={11} />
+          </button>
+          <button
+            onClick={() => index < total - 1 && movePlugin(trackId, index, index + 1)}
+            disabled={index >= total - 1}
+            className="w-5 h-5 flex items-center justify-center rounded text-[#55557a] hover:text-[#e8e8f0] disabled:opacity-30"
+            title="Move down"
+          >
+            <ChevronDown size={11} />
+          </button>
+          <button
+            onClick={() => removePlugin(trackId, slot.id)}
+            className="w-5 h-5 flex items-center justify-center rounded text-[#55557a] hover:text-[#ef4444]"
+            title="Remove plugin"
+          >
+            <Trash2 size={11} />
+          </button>
+        </div>
+      </div>
+      <div className="flex gap-3 flex-wrap">
+        {manifest.parameters.map((param) => (
+          <Knob
+            key={param.id}
+            value={slot.params[param.id] ?? param.default}
+            min={param.min}
+            max={param.max}
+            size={32}
+            color={color}
+            label={param.name.slice(0, 4).toUpperCase()}
+            valueLabel={
+              param.unit === 'Hz'
+                ? `${Math.round(slot.params[param.id] ?? param.default)} Hz`
+                : param.unit === '%'
+                  ? `${Math.round((slot.params[param.id] ?? param.default) * 100)}%`
+                  : (slot.params[param.id] ?? param.default).toFixed(2)
+            }
+            onChange={(v) => setPluginParam(trackId, slot.id, param.id, v)}
+          />
+        ))}
+      </div>
+    </Section>
+  );
+}
+
 export function EffectsPanel() {
   const openEffectsTrackId = useDAWStore((s) => s.ui.openEffectsTrackId);
   const openEffects = useDAWStore((s) => s.openEffects);
   const updateEffects = useDAWStore((s) => s.updateEffects);
+  const addPlugin = useDAWStore((s) => s.addPlugin);
 
   const track = useDAWStore((s) =>
     s.tracks.find((t) => t.id === openEffectsTrackId)
@@ -51,6 +134,8 @@ export function EffectsPanel() {
 
   const color = TRACK_COLORS[track.color];
   const fx = track.effects;
+  const plugins = track.plugins ?? [];
+  const availablePlugins = listPlugins();
 
   const update = (patch: Partial<TrackEffects>) => {
     updateEffects(track.id, patch);
@@ -63,7 +148,7 @@ export function EffectsPanel() {
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full" style={{ backgroundColor: color }} />
           <span className="text-xs font-semibold text-[#e8e8f0] truncate">{track.name}</span>
-          <span className="text-[10px] text-[#55557a]">Effects</span>
+          <span className="text-[10px] text-[#55557a]">Inserts</span>
         </div>
         <button
           onClick={() => openEffects(null)}
@@ -75,6 +160,49 @@ export function EffectsPanel() {
 
       {/* Effects */}
       <div className="flex-1 overflow-y-auto p-2 flex flex-col gap-2">
+        {/* Plugin inserts */}
+        <div className="rounded border border-[#2a2a38]">
+          <div className="flex items-center justify-between px-3 py-2 border-b border-[#1e1e2a]">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#e8e8f0]">
+              Plugins
+            </span>
+            <select
+              value=""
+              onChange={(e) => {
+                if (e.target.value) addPlugin(track.id, e.target.value);
+                e.target.value = '';
+              }}
+              className="bg-[#1a1a24] text-[#8888aa] border border-[#2a2a38] rounded px-1.5 py-0.5 text-[10px] outline-none max-w-[120px]"
+              title="Add plugin"
+            >
+              <option value="">+ Add</option>
+              {availablePlugins.map((p) => (
+                <option key={p.id} value={p.id}>
+                  {p.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="p-2 flex flex-col gap-2">
+            {plugins.length === 0 ? (
+              <p className="text-[10px] text-[#55557a] px-1 py-2">
+                Add AudioWorklet plugins — browser-native inserts (not desktop VST files).
+              </p>
+            ) : (
+              plugins.map((slot, i) => (
+                <PluginSlotEditor
+                  key={slot.id}
+                  slot={slot}
+                  trackId={track.id}
+                  index={i}
+                  total={plugins.length}
+                  color={color}
+                />
+              ))
+            )}
+          </div>
+        </div>
+
         {/* EQ */}
         <Section
           title="EQ"

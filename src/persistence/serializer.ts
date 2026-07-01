@@ -145,7 +145,7 @@ export async function deserializeProject(
           return { ...rest, audioBuffer };
         })
       );
-      return { ...track, clips };
+      return { ...track, clips, plugins: track.plugins ?? [] };
     })
   );
 

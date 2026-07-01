@@ -2,6 +2,7 @@ import type { TrackEffects } from '@/types';
 
 export interface TrackChainNodes {
   input: GainNode;
+  fxInput: GainNode;
   output: GainNode;
   pan: StereoPannerNode;
   eqFilters: BiquadFilterNode[];
@@ -38,11 +39,14 @@ function createReverbImpulse(ctx: BaseAudioContext, decay: number, preDelay: num
 
 export function createTrackChain(ctx: BaseAudioContext): TrackChainNodes {
   const input = ctx.createGain();
+  const fxInput = ctx.createGain();
   const output = ctx.createGain();
   const pan = ctx.createStereoPanner();
 
+  input.connect(fxInput);
+
   const eqFilters: BiquadFilterNode[] = [];
-  let prev: AudioNode = input;
+  let prev: AudioNode = fxInput;
   for (let i = 0; i < 4; i++) {
     const f = ctx.createBiquadFilter();
     prev.connect(f);
@@ -87,6 +91,7 @@ export function createTrackChain(ctx: BaseAudioContext): TrackChainNodes {
 
   return {
     input,
+    fxInput,
     output,
     pan,
     eqFilters,
