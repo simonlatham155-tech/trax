@@ -10,12 +10,15 @@ import {
   Volume2,
   Sliders,
   Music,
+  Undo2,
+  Redo2,
 } from 'lucide-react';
 import { useDAWStore } from '@/store/daw-store';
 import { audioEngine } from '@/engine/audio-engine';
 import { formatTime, formatBeatPosition, beatsToSeconds } from '@/utils/beats';
 import { cn } from '@/utils/cn';
 import { ProjectBar } from '@/components/project/ProjectBar';
+import { useHistoryState } from '@/hooks/use-history';
 
 function BpmInput() {
   const bpm = useDAWStore((s) => s.project.bpm);
@@ -102,6 +105,10 @@ export function Transport() {
   const toggleMetronome = useDAWStore((s) => s.toggleMetronome);
   const setMasterVolume = useDAWStore((s) => s.setMasterVolume);
   const toggleMixer = useDAWStore((s) => s.toggleMixer);
+  const undo = useDAWStore((s) => s.undo);
+  const redo = useDAWStore((s) => s.redo);
+
+  const { canUndo, canRedo } = useHistoryState();
 
   const isPlaying = state === 'playing';
   const isRecording = state === 'recording';
@@ -150,10 +157,18 @@ export function Transport() {
       if (e.code === 'Home') {
         handleStop();
       }
+      if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
+        e.preventDefault();
+        undo();
+      }
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) {
+        e.preventDefault();
+        redo();
+      }
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
-  }, [handlePlay, handleStop]);
+  }, [handlePlay, handleStop, undo, redo]);
 
   const TransportBtn = ({
     children,
@@ -196,6 +211,40 @@ export function Transport() {
 
       {/* Project controls */}
       <ProjectBar />
+
+      <div className="w-px h-8 bg-[#2a2a38]" />
+
+      <div className="w-px h-8 bg-[#2a2a38]" />
+
+      {/* Undo / Redo */}
+      <div className="flex items-center gap-1">
+        <button
+          onClick={() => canUndo && undo()}
+          disabled={!canUndo}
+          title="Undo (Ctrl+Z)"
+          className={cn(
+            'w-9 h-9 flex items-center justify-center rounded transition-all',
+            canUndo
+              ? 'bg-[#1a1a24] text-[#e8e8f0] hover:bg-[#22222e]'
+              : 'bg-[#1a1a24] text-[#3a3a50] cursor-not-allowed'
+          )}
+        >
+          <Undo2 size={14} />
+        </button>
+        <button
+          onClick={() => canRedo && redo()}
+          disabled={!canRedo}
+          title="Redo (Ctrl+Shift+Z)"
+          className={cn(
+            'w-9 h-9 flex items-center justify-center rounded transition-all',
+            canRedo
+              ? 'bg-[#1a1a24] text-[#e8e8f0] hover:bg-[#22222e]'
+              : 'bg-[#1a1a24] text-[#3a3a50] cursor-not-allowed'
+          )}
+        >
+          <Redo2 size={14} />
+        </button>
+      </div>
 
       <div className="w-px h-8 bg-[#2a2a38]" />
 

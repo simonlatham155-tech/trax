@@ -11,6 +11,7 @@ import {
   Loader2,
   FileMusic,
   Clock,
+  AudioLines,
 } from 'lucide-react';
 import { useProjectStore } from '@/store/project-store';
 import { cn } from '@/utils/cn';
@@ -317,6 +318,7 @@ export function ProjectBar() {
   const newProject = useProjectStore((s) => s.newProject);
   const refreshProjectList = useProjectStore((s) => s.refreshProjectList);
   const exportTraxFile = useProjectStore((s) => s.exportTraxFile);
+  const exportMixToWav = useProjectStore((s) => s.exportMixToWav);
   const importTraxFile = useProjectStore((s) => s.importTraxFile);
 
   const [showProjectsModal, setShowProjectsModal] = useState(false);
@@ -419,6 +421,16 @@ export function ProjectBar() {
           className="w-7 h-7 flex items-center justify-center rounded text-[#55557a] hover:text-[#e8e8f0] hover:bg-[#22222e] transition-colors"
         >
           <FilePlus size={13} />
+        </button>
+
+        {/* Export mix WAV */}
+        <button
+          onClick={() => exportMixToWav()}
+          disabled={isLoading}
+          title="Export mix to WAV"
+          className="w-7 h-7 flex items-center justify-center rounded text-[#55557a] hover:text-[#e8e8f0] hover:bg-[#22222e] transition-colors disabled:opacity-50"
+        >
+          <AudioLines size={13} />
         </button>
 
         {/* Export .trax file */}

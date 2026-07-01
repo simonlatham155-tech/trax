@@ -11,6 +11,7 @@ import type {
 } from '@/types';
 import { generateId } from '@/utils/id';
 import { DEFAULT_EFFECTS, TRACK_COLORS } from '@/types';
+import { withHistory, undo as historyUndo, redo as historyRedo, mutateWithoutHistory } from '@/store/history';
 
 const TRACK_COLOR_CYCLE: TrackColor[] = [
   'purple', 'cyan', 'green', 'amber', 'red', 'pink', 'blue',
@@ -93,6 +94,7 @@ interface DAWState {
   addClip: (trackId: string, clip: Omit<Clip, 'id' | 'trackId'>) => string;
   removeClip: (trackId: string, clipId: string) => void;
   updateClip: (trackId: string, clipId: string, patch: Partial<Clip>) => void;
+  updateClipSilent: (trackId: string, clipId: string, patch: Partial<Clip>) => void;
   moveClip: (clipId: string, fromTrackId: string, toTrackId: string, startBeat: number) => void;
 
   // Effects actions
@@ -108,6 +110,9 @@ interface DAWState {
   toggleSnap: () => void;
   setSnapGrid: (grid: number) => void;
   setMasterVolume: (v: number) => void;
+
+  undo: () => void;
+  redo: () => void;
 }
 
 export const useDAWStore = create<DAWState>()(
@@ -184,102 +189,142 @@ export const useDAWStore = create<DAWState>()(
         s.transport.metronomeEnabled = !s.transport.metronomeEnabled;
       }),
     setBpm: (bpm) =>
-      set((s) => {
-        s.project.bpm = Math.max(20, Math.min(300, bpm));
-      }),
+      withHistory(() =>
+        set((s) => {
+          s.project.bpm = Math.max(20, Math.min(300, bpm));
+        })
+      ),
 
     addTrack: (type = 'audio') =>
-      set((s) => {
-        s.tracks.push(makeDefaultTrack(s.tracks.length, type));
-      }),
+      withHistory(() =>
+        set((s) => {
+          s.tracks.push(makeDefaultTrack(s.tracks.length, type));
+        })
+      ),
     removeTrack: (id) =>
-      set((s) => {
-        s.tracks = s.tracks.filter((t) => t.id !== id);
-      }),
+      withHistory(() =>
+        set((s) => {
+          s.tracks = s.tracks.filter((t) => t.id !== id);
+        })
+      ),
     duplicateTrack: (id) =>
-      set((s) => {
-        const src = s.tracks.find((t) => t.id === id);
-        if (!src) return;
-        const clone = structuredClone(src);
-        clone.id = generateId();
-        clone.name = `${src.name} copy`;
-        clone.clips = clone.clips.map((c) => ({ ...c, id: generateId() }));
-        const idx = s.tracks.findIndex((t) => t.id === id);
-        s.tracks.splice(idx + 1, 0, clone);
-      }),
+      withHistory(() =>
+        set((s) => {
+          const src = s.tracks.find((t) => t.id === id);
+          if (!src) return;
+          const clone = structuredClone(src);
+          clone.id = generateId();
+          clone.name = `${src.name} copy`;
+          clone.clips = clone.clips.map((c) => ({ ...c, id: generateId() }));
+          const idx = s.tracks.findIndex((t) => t.id === id);
+          s.tracks.splice(idx + 1, 0, clone);
+        })
+      ),
     updateTrack: (id, patch) =>
-      set((s) => {
-        const t = s.tracks.find((t) => t.id === id);
-        if (t) Object.assign(t, patch);
-      }),
+      withHistory(() =>
+        set((s) => {
+          const t = s.tracks.find((t) => t.id === id);
+          if (t) Object.assign(t, patch);
+        })
+      ),
     setTrackVolume: (id, volume) =>
-      set((s) => {
-        const t = s.tracks.find((t) => t.id === id);
-        if (t) t.volume = Math.max(0, Math.min(1.5, volume));
-      }),
+      withHistory(() =>
+        set((s) => {
+          const t = s.tracks.find((t) => t.id === id);
+          if (t) t.volume = Math.max(0, Math.min(1.5, volume));
+        })
+      ),
     setTrackPan: (id, pan) =>
-      set((s) => {
-        const t = s.tracks.find((t) => t.id === id);
-        if (t) t.pan = Math.max(-1, Math.min(1, pan));
-      }),
+      withHistory(() =>
+        set((s) => {
+          const t = s.tracks.find((t) => t.id === id);
+          if (t) t.pan = Math.max(-1, Math.min(1, pan));
+        })
+      ),
     toggleMute: (id) =>
-      set((s) => {
-        const t = s.tracks.find((t) => t.id === id);
-        if (t) t.muted = !t.muted;
-      }),
+      withHistory(() =>
+        set((s) => {
+          const t = s.tracks.find((t) => t.id === id);
+          if (t) t.muted = !t.muted;
+        })
+      ),
     toggleSolo: (id) =>
-      set((s) => {
-        const t = s.tracks.find((t) => t.id === id);
-        if (t) t.soloed = !t.soloed;
-      }),
+      withHistory(() =>
+        set((s) => {
+          const t = s.tracks.find((t) => t.id === id);
+          if (t) t.soloed = !t.soloed;
+        })
+      ),
     toggleArm: (id) =>
-      set((s) => {
-        const t = s.tracks.find((t) => t.id === id);
-        if (t) t.armed = !t.armed;
-      }),
+      withHistory(() =>
+        set((s) => {
+          const t = s.tracks.find((t) => t.id === id);
+          if (t) t.armed = !t.armed;
+        })
+      ),
     reorderTracks: (fromIndex, toIndex) =>
-      set((s) => {
-        const [removed] = s.tracks.splice(fromIndex, 1);
-        s.tracks.splice(toIndex, 0, removed);
-      }),
+      withHistory(() =>
+        set((s) => {
+          const [removed] = s.tracks.splice(fromIndex, 1);
+          s.tracks.splice(toIndex, 0, removed);
+        })
+      ),
 
     addClip: (trackId, clipData) => {
       const id = generateId();
-      set((s) => {
-        const t = s.tracks.find((t) => t.id === trackId);
-        if (t) t.clips.push({ ...clipData, id, trackId });
-      });
+      withHistory(() =>
+        set((s) => {
+          const t = s.tracks.find((t) => t.id === trackId);
+          if (t) t.clips.push({ ...clipData, id, trackId });
+        })
+      );
       return id;
     },
     removeClip: (trackId, clipId) =>
-      set((s) => {
-        const t = s.tracks.find((t) => t.id === trackId);
-        if (t) t.clips = t.clips.filter((c) => c.id !== clipId);
-      }),
+      withHistory(() =>
+        set((s) => {
+          const t = s.tracks.find((t) => t.id === trackId);
+          if (t) t.clips = t.clips.filter((c) => c.id !== clipId);
+        })
+      ),
     updateClip: (trackId, clipId, patch) =>
-      set((s) => {
-        const t = s.tracks.find((t) => t.id === trackId);
-        const c = t?.clips.find((c) => c.id === clipId);
-        if (c) Object.assign(c, patch);
-      }),
+      withHistory(() =>
+        set((s) => {
+          const t = s.tracks.find((t) => t.id === trackId);
+          const c = t?.clips.find((c) => c.id === clipId);
+          if (c) Object.assign(c, patch);
+        })
+      ),
+    updateClipSilent: (trackId, clipId, patch) =>
+      mutateWithoutHistory(() =>
+        set((s) => {
+          const t = s.tracks.find((t) => t.id === trackId);
+          const c = t?.clips.find((c) => c.id === clipId);
+          if (c) Object.assign(c, patch);
+        })
+      ),
     moveClip: (clipId, fromTrackId, toTrackId, startBeat) =>
-      set((s) => {
-        const fromTrack = s.tracks.find((t) => t.id === fromTrackId);
-        const toTrack = s.tracks.find((t) => t.id === toTrackId);
-        if (!fromTrack || !toTrack) return;
-        const clipIdx = fromTrack.clips.findIndex((c) => c.id === clipId);
-        if (clipIdx === -1) return;
-        const [clip] = fromTrack.clips.splice(clipIdx, 1);
-        clip.trackId = toTrackId;
-        clip.startBeat = startBeat;
-        toTrack.clips.push(clip);
-      }),
+      withHistory(() =>
+        set((s) => {
+          const fromTrack = s.tracks.find((t) => t.id === fromTrackId);
+          const toTrack = s.tracks.find((t) => t.id === toTrackId);
+          if (!fromTrack || !toTrack) return;
+          const clipIdx = fromTrack.clips.findIndex((c) => c.id === clipId);
+          if (clipIdx === -1) return;
+          const [clip] = fromTrack.clips.splice(clipIdx, 1);
+          clip.trackId = toTrackId;
+          clip.startBeat = startBeat;
+          toTrack.clips.push(clip);
+        })
+      ),
 
     updateEffects: (trackId, effects) =>
-      set((s) => {
-        const t = s.tracks.find((t) => t.id === trackId);
-        if (t) Object.assign(t.effects, effects);
-      }),
+      withHistory(() =>
+        set((s) => {
+          const t = s.tracks.find((t) => t.id === trackId);
+          if (t) Object.assign(t.effects, effects);
+        })
+      ),
 
     selectTrack: (id) =>
       set((s) => {
@@ -315,8 +360,17 @@ export const useDAWStore = create<DAWState>()(
         s.ui.snapGrid = grid;
       }),
     setMasterVolume: (v) =>
-      set((s) => {
-        s.masterVolume = Math.max(0, Math.min(1.5, v));
-      }),
+      withHistory(() =>
+        set((s) => {
+          s.masterVolume = Math.max(0, Math.min(1.5, v));
+        })
+      ),
+
+    undo: () => {
+      historyUndo();
+    },
+    redo: () => {
+      historyRedo();
+    },
   }))
 );

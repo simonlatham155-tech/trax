@@ -1,6 +1,9 @@
-import { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { useDAWStore } from '@/store/daw-store';
 import { cn } from '@/utils/cn';
+import { snapToGrid } from '@/utils/beats';
+import { beginGesture, endGesture } from '@/store/history';
+import { ClipWaveform } from '@/components/timeline/ClipWaveform';
 
 const RULER_HEIGHT = 28;
 
@@ -122,13 +125,16 @@ interface ClipViewProps {
     durationBeats: number;
     gain: number;
     color: string;
+    audioBuffer?: AudioBuffer;
   };
   zoom: number;
   scrollX: number;
   trackHeight: number;
   isSelected: boolean;
+  snapEnabled: boolean;
+  snapGrid: number;
   onSelect: (id: string) => void;
-  onMove: (id: string, dx: number) => void;
+  onMove: (id: string, beat: number, isFinal: boolean) => void;
 }
 
 function ClipView({
@@ -137,26 +143,41 @@ function ClipView({
   scrollX,
   trackHeight,
   isSelected,
+  snapEnabled,
+  snapGrid,
   onSelect,
   onMove,
 }: ClipViewProps) {
-  const dragRef = useRef<{ startX: number; startBeat: number } | null>(null);
+  const dragRef = useRef<{ startX: number; startBeat: number; dragging: boolean } | null>(null);
 
   const x = clip.startBeat * zoom - scrollX;
   const clipWidth = Math.max(8, clip.durationBeats * zoom);
+  const clipBodyHeight = trackHeight - 8;
 
   const handleMouseDown = (e: React.MouseEvent) => {
     e.stopPropagation();
     onSelect(clip.id);
-    dragRef.current = { startX: e.clientX, startBeat: clip.startBeat };
+    dragRef.current = { startX: e.clientX, startBeat: clip.startBeat, dragging: false };
 
     const handleMove = (ev: MouseEvent) => {
       if (!dragRef.current) return;
       const dx = ev.clientX - dragRef.current.startX;
-      onMove(clip.id, dx);
+      if (!dragRef.current.dragging && Math.abs(dx) > 2) {
+        dragRef.current.dragging = true;
+        beginGesture();
+      }
+      const beat = dragRef.current.startBeat + dx / zoom;
+      onMove(clip.id, beat, false);
     };
 
-    const handleUp = () => {
+    const handleUp = (ev: MouseEvent) => {
+      if (!dragRef.current) return;
+      const dx = ev.clientX - dragRef.current.startX;
+      if (dragRef.current.dragging) {
+        const beat = dragRef.current.startBeat + dx / zoom;
+        onMove(clip.id, beat, true);
+        endGesture();
+      }
       dragRef.current = null;
       window.removeEventListener('mousemove', handleMove);
       window.removeEventListener('mouseup', handleUp);
@@ -177,18 +198,24 @@ function ClipView({
       style={{
         left: x,
         width: clipWidth,
-        height: trackHeight - 8,
-        backgroundColor: `${clip.color}33`,
+        height: clipBodyHeight,
+        backgroundColor: `${clip.color}22`,
         borderColor: isSelected ? clip.color : 'transparent',
       }}
       onMouseDown={handleMouseDown}
     >
       <div
-        className="w-full h-1"
+        className="w-full h-1 relative z-10"
         style={{ backgroundColor: clip.color }}
       />
+      <ClipWaveform
+        audioBuffer={clip.audioBuffer}
+        width={clipWidth}
+        height={clipBodyHeight - 18}
+        color={clip.color}
+      />
       <span
-        className="px-1.5 pt-0.5 text-[10px] font-medium truncate block"
+        className="relative z-10 px-1.5 pt-0.5 text-[10px] font-medium truncate block"
         style={{ color: clip.color }}
       >
         {clip.name}
@@ -207,8 +234,12 @@ export function Timeline() {
   const bpm = useDAWStore((s) => s.project.bpm);
   const numerator = useDAWStore((s) => s.project.timeSignature.numerator);
 
+  const snapEnabled = useDAWStore((s) => s.ui.snapEnabled);
+  const snapGrid = useDAWStore((s) => s.ui.snapGrid);
+
   const setPosition = useDAWStore((s) => s.setPosition);
   const selectClip = useDAWStore((s) => s.selectClip);
+  const updateClipSilent = useDAWStore((s) => s.updateClipSilent);
   const updateClip = useDAWStore((s) => s.updateClip);
   const setScroll = useDAWStore((s) => s.setScroll);
   const setZoom = useDAWStore((s) => s.setZoom);
@@ -240,16 +271,20 @@ export function Timeline() {
   );
 
   const handleClipMove = useCallback(
-    (clipId: string, dx: number) => {
+    (clipId: string, beat: number, isFinal: boolean) => {
       const track = tracks.find((t) => t.clips.some((c) => c.id === clipId));
       if (!track) return;
-      const clip = track.clips.find((c) => c.id === clipId);
-      if (!clip) return;
-      const deltaBeat = dx / zoom;
-      const newStart = Math.max(0, clip.startBeat + deltaBeat);
-      updateClip(track.id, clipId, { startBeat: newStart });
+      let newStart = Math.max(0, beat);
+      if (isFinal && snapEnabled) {
+        newStart = snapToGrid(newStart, snapGrid);
+      }
+      if (isFinal) {
+        updateClip(track.id, clipId, { startBeat: newStart });
+      } else {
+        updateClipSilent(track.id, clipId, { startBeat: newStart });
+      }
     },
-    [tracks, zoom, updateClip]
+    [tracks, snapEnabled, snapGrid, updateClip, updateClipSilent]
   );
 
   const loopStart = useDAWStore((s) => s.transport.loopStart);
@@ -330,6 +365,8 @@ export function Timeline() {
                   scrollX={scrollX}
                   trackHeight={track.height}
                   isSelected={clip.id === selectedClipId}
+                  snapEnabled={snapEnabled}
+                  snapGrid={snapGrid}
                   onSelect={selectClip}
                   onMove={handleClipMove}
                 />
@@ -397,4 +434,3 @@ function GridLines({
   );
 }
 
-import React from 'react';

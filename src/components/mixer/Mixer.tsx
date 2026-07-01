@@ -1,7 +1,10 @@
 import { X } from 'lucide-react';
+import { useEffect } from 'react';
 import { useDAWStore } from '@/store/daw-store';
 import { TRACK_COLORS } from '@/types';
 import { Knob } from '@/components/common/Knob';
+import { VuMeter } from '@/components/common/VuMeter';
+import { audioEngine } from '@/engine/audio-engine';
 import { cn } from '@/utils/cn';
 
 function ChannelStrip({ trackId }: { trackId: string }) {
@@ -13,16 +16,21 @@ function ChannelStrip({ trackId }: { trackId: string }) {
   const toggleSolo = useDAWStore((s) => s.toggleSolo);
   const selectTrack = useDAWStore((s) => s.selectTrack);
 
+  useEffect(() => {
+    audioEngine.init();
+  }, []);
+
   if (!track) return null;
 
   const color = TRACK_COLORS[track.color];
   const isSelected = track.id === selectedTrackId;
   const faderDb = 20 * Math.log10(track.volume + 1e-6);
+  const analyser = audioEngine.getTrackAnalyser(track.id);
 
   return (
     <div
       className={cn(
-        'flex flex-col items-center gap-1.5 px-2 py-3 rounded border cursor-pointer min-w-[64px] transition-colors',
+        'flex flex-col items-center gap-1.5 px-2 py-3 rounded border cursor-pointer min-w-[72px] transition-colors',
         isSelected ? 'bg-[#1a1a24] border-[#3a3a50]' : 'bg-[#111118] border-[#1e1e2a] hover:bg-[#161620]'
       )}
       onClick={() => selectTrack(track.id)}
@@ -45,8 +53,9 @@ function ChannelStrip({ trackId }: { trackId: string }) {
         onChange={(v) => setTrackPan(track.id, v)}
       />
 
-      {/* Fader */}
-      <div className="flex-1 flex items-center justify-center py-1">
+      {/* VU meter + Fader */}
+      <div className="flex-1 flex items-center gap-1.5 py-1">
+        <VuMeter analyser={analyser} width={6} height={90} />
         <input
           type="range"
           min={0}
@@ -117,9 +126,10 @@ function MasterStrip() {
   const masterVolume = useDAWStore((s) => s.masterVolume);
   const setMasterVolume = useDAWStore((s) => s.setMasterVolume);
   const masterDb = 20 * Math.log10(masterVolume + 1e-6);
+  const analyser = audioEngine.getMasterAnalyser();
 
   return (
-    <div className="flex flex-col items-center gap-1.5 px-2 py-3 rounded border bg-[#1a1a24] border-[#3a3a50] min-w-[64px]">
+    <div className="flex flex-col items-center gap-1.5 px-2 py-3 rounded border bg-[#1a1a24] border-[#3a3a50] min-w-[72px]">
       <div className="w-full h-1 rounded-full bg-[#6c63ff]" />
       <Knob
         value={0}
@@ -130,7 +140,8 @@ function MasterStrip() {
         label="PAN"
         onChange={() => {}}
       />
-      <div className="flex-1 flex items-center justify-center py-1">
+      <div className="flex-1 flex items-center gap-1.5 py-1">
+        <VuMeter analyser={analyser} width={6} height={90} />
         <input
           type="range"
           min={0}
@@ -162,6 +173,10 @@ function MasterStrip() {
 export function Mixer() {
   const tracks = useDAWStore((s) => s.tracks);
   const toggleMixer = useDAWStore((s) => s.toggleMixer);
+
+  useEffect(() => {
+    audioEngine.init();
+  }, []);
 
   return (
     <div className="h-64 border-t border-[#2a2a38] bg-[#0a0a0f] flex flex-col shrink-0">

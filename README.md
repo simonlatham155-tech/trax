@@ -105,12 +105,12 @@ src/
 
 - [ ] MIDI sequencer / piano roll
 - [ ] Sample browser
-- [ ] Waveform rendering in clips
+- [x] Waveform rendering in clips
 - [ ] Tempo automation
-- [ ] Undo / redo
-- [ ] Project save / load (IndexedDB)
+- [x] Undo / redo
+- [x] Project save / load (IndexedDB)
 - [ ] Audio recording from microphone
-- [ ] Export mix to WAV / MP3
+- [x] Export mix to WAV / MP3
 - [ ] Plugin host (WebAssembly / AudioWorklet)
 
 ## License
