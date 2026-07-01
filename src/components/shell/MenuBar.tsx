@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useDAWStore } from '@/store/daw-store';
 import { useProjectStore } from '@/store/project-store';
 import { cn } from '@/utils/cn';
-import { detectBridgePlatform, openBridgeDownload, openBridgeReleases } from '@/utils/bridge-download';
+import { promptBridgeDownload } from '@/utils/bridge-download';
 
 interface MenuItem {
   label: string;
@@ -93,14 +93,6 @@ export function MenuBar() {
   const newProject = useProjectStore((s) => s.newProject);
   const exportTraxFile = useProjectStore((s) => s.exportTraxFile);
 
-  const bridgePlatform = detectBridgePlatform();
-  const bridgeDownloadLabel =
-    bridgePlatform === 'mac'
-      ? 'Download TRAX Bridge (macOS)'
-      : bridgePlatform === 'windows'
-        ? 'Download TRAX Bridge (Windows)'
-        : 'Download TRAX Bridge…';
-
   const menus: MenuDef[] = [
     {
       label: 'File',
@@ -137,9 +129,6 @@ export function MenuBar() {
       items: [
         { label: 'Add MIDI Track', action: () => addTrack('midi') },
         { label: 'Open Piano Roll', action: () => pianoRollClipId && openPianoRoll(pianoRollClipId), disabled: !pianoRollClipId },
-        { divider: true, label: '' },
-        { label: bridgeDownloadLabel, action: () => openBridgeDownload() },
-        { label: 'Bridge Releases…', action: () => openBridgeReleases() },
       ],
     },
     {
@@ -152,10 +141,7 @@ export function MenuBar() {
     {
       label: 'Help',
       items: [
-        { label: bridgeDownloadLabel, action: () => openBridgeDownload() },
-        { label: 'Download for macOS', action: () => openBridgeDownload('mac') },
-        { label: 'Download for Windows', action: () => openBridgeDownload('windows') },
-        { label: 'All Bridge Releases…', action: () => openBridgeReleases() },
+        { label: 'Download & Run TRAX Bridge', action: () => promptBridgeDownload() },
         { divider: true, label: '' },
         { label: 'Keyboard Shortcuts', disabled: true },
         {

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Wifi, WifiOff, Loader2, AlertCircle } from 'lucide-react'
 import { vstBridge, type BridgeStatus } from '@/services/vstBridge'
 import { cn } from '@/utils/cn'
+import { promptBridgeDownload } from '@/utils/bridge-download'
 
 export function BridgeStatusIndicator() {
   const [status, setStatus] = useState<BridgeStatus>(vstBridge.currentStatus)
@@ -36,7 +37,11 @@ export function BridgeStatusIndicator() {
         className={cn('flex items-center gap-1 transition-colors', colour)}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
-        onClick={() => status !== 'connected' && vstBridge.connect()}
+        onClick={() => {
+          if (status === 'connected') return
+          if (status === 'disconnected' || status === 'error') promptBridgeDownload()
+          else vstBridge.connect()
+        }}
         title={label}
       >
         {icon}
@@ -51,7 +56,7 @@ export function BridgeStatusIndicator() {
             {label}
             {status !== 'connected' && (
               <div className="text-[9px] text-[#55557a] mt-0.5">
-                Run: <span className="font-mono text-[#6c63ff]">npm run bridge</span>
+                Help → Download &amp; Run TRAX Bridge
               </div>
             )}
           </div>

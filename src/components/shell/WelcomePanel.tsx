@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Upload, Play, MousePointerClick, X } from 'lucide-react';
+import { Upload, Play, MousePointerClick, X, Download } from 'lucide-react';
+import { promptBridgeDownload } from '@/utils/bridge-download';
 
 const DISMISS_KEY = 'webdaw-welcome-dismissed';
 
@@ -67,8 +68,14 @@ export function WelcomePanel() {
         </ol>
 
         <div className="text-[10px] text-[#55557a] bg-[#0a0a0f] rounded-lg p-3 mb-4 border border-[#1e1e2a]">
-          <strong className="text-[#8888aa]">Cubase users:</strong> The demo MIDI tracks need the desktop VST bridge to make sound.
-          For a quick test, ignore them and drop your own audio file instead.
+          <strong className="text-[#8888aa]">Want VSTs?</strong> Download the small desktop app, open it once, and leave it running.
+          <button
+            onClick={() => promptBridgeDownload()}
+            className="mt-2 w-full flex items-center justify-center gap-1.5 py-2 rounded-md bg-[#1a1a24] border border-[#2a2a38] text-[#c8c8d8] hover:border-[#6c63ff]/50 hover:text-white transition-colors text-xs font-medium"
+          >
+            <Download size={12} />
+            Download &amp; Run TRAX Bridge
+          </button>
         </div>
 
         <button

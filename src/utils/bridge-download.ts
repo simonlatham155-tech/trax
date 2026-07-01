@@ -9,6 +9,18 @@ export const BRIDGE_DOWNLOAD = {
 
 export type BridgePlatform = keyof typeof BRIDGE_DOWNLOAD;
 
+type BridgeDownloadListener = () => void;
+const listeners = new Set<BridgeDownloadListener>();
+
+export function subscribeBridgeDownload(listener: BridgeDownloadListener) {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+}
+
+export function promptBridgeDownload() {
+  listeners.forEach((listener) => listener());
+}
+
 export function detectBridgePlatform(): BridgePlatform | null {
   if (typeof navigator === 'undefined') return null;
   const ua = navigator.userAgent;
@@ -18,12 +30,22 @@ export function detectBridgePlatform(): BridgePlatform | null {
   return null;
 }
 
-export function openBridgeDownload(platform?: BridgePlatform) {
+export function getBridgePlatformLabel(): string {
+  const platform = detectBridgePlatform();
+  if (platform === 'mac') return 'macOS';
+  if (platform === 'windows') return 'Windows';
+  return 'your computer';
+}
+
+export function getBridgeRunHint(): string {
+  const platform = detectBridgePlatform();
+  if (platform === 'mac') return 'Open the .dmg, drag TRAX Bridge to Applications, then launch it.';
+  if (platform === 'windows') return 'Open TRAX Bridge.exe from your Downloads folder.';
+  return 'Open the downloaded file and leave the app running.';
+}
+
+export function downloadBridgeApp(platform?: BridgePlatform) {
   const detected = platform ?? detectBridgePlatform();
   const url = detected ? BRIDGE_DOWNLOAD[detected] : BRIDGE_RELEASES_URL;
   window.open(url, '_blank', 'noopener,noreferrer');
-}
-
-export function openBridgeReleases() {
-  window.open(BRIDGE_RELEASES_URL, '_blank', 'noopener,noreferrer');
 }

@@ -3,6 +3,7 @@ import { Transport, ArrangeToolbar } from '@/components/transport/Transport';
 import { MenuBar } from '@/components/shell/MenuBar';
 import { StatusBar } from '@/components/shell/StatusBar';
 import { WelcomePanel } from '@/components/shell/WelcomePanel';
+import { BridgeDownloadProvider } from '@/components/shell/BridgeDownloadProvider';
 import { TrackList } from '@/components/track/TrackList';
 import { Timeline } from '@/components/timeline/Timeline';
 import { Mixer } from '@/components/mixer/Mixer';
@@ -79,6 +80,7 @@ export default function App() {
   const openEffectsTrackId = useDAWStore((s) => s.ui.openEffectsTrackId);
 
   return (
+    <BridgeDownloadProvider>
     <div className="flex flex-col h-full bg-[#0a0a0f] relative">
       <MenuBar />
       <Transport />
@@ -113,6 +115,7 @@ export default function App() {
       <StatusBar />
       <WelcomePanel />
     </div>
+    </BridgeDownloadProvider>
   );
 }
 
