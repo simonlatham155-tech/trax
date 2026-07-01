@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Upload, Play, MousePointerClick, X, Download } from 'lucide-react';
+import { Upload, Play, MousePointerClick, X } from 'lucide-react';
 import { promptBridgeDownload } from '@/utils/bridge-download';
+import { BridgeAppIcon } from '@/components/shell/BridgeAppIcon';
 
 const DISMISS_KEY = 'webdaw-welcome-dismissed';
 
@@ -67,15 +68,22 @@ export function WelcomePanel() {
           </li>
         </ol>
 
-        <div className="text-[10px] text-[#55557a] bg-[#0a0a0f] rounded-lg p-3 mb-4 border border-[#1e1e2a]">
-          <strong className="text-[#8888aa]">Want VSTs?</strong> Download the small desktop app, open it once, and leave it running.
-          <button
-            onClick={() => promptBridgeDownload()}
-            className="mt-2 w-full flex items-center justify-center gap-1.5 py-2 rounded-md bg-[#1a1a24] border border-[#2a2a38] text-[#c8c8d8] hover:border-[#6c63ff]/50 hover:text-white transition-colors text-xs font-medium"
-          >
-            <Download size={12} />
-            Download &amp; Run TRAX Bridge
-          </button>
+        <div className="rounded-xl bg-[#0a0a0f] border border-[#1e1e2a] p-4 mb-4">
+          <div className="flex items-start gap-3">
+            <BridgeAppIcon size={40} connected={false} />
+            <div className="flex-1">
+              <p className="text-sm font-medium text-[#e8e8f0]">Need your VST plugins?</p>
+              <p className="text-xs text-[#55557a] mt-1">
+                Install TRAX Bridge — a small desktop app for your menu bar or system tray.
+              </p>
+              <button
+                onClick={() => promptBridgeDownload()}
+                className="mt-3 w-full py-2 rounded-lg bg-[#6c63ff] text-white text-xs font-semibold hover:bg-[#7a72ff] transition-colors"
+              >
+                Get TRAX Bridge App
+              </button>
+            </div>
+          </div>
         </div>
 
         <button

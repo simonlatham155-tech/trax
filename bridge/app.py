@@ -43,7 +43,7 @@ logger = logging.getLogger("trax-bridge-app")
 PORT = 7899
 HOST = "127.0.0.1"
 BRIDGE_URL = f"ws://{HOST}:{PORT}"
-WEB_URL = "http://localhost:5173"    # TRAX dev server
+WEB_URL = os.environ.get("TRAX_URL", "https://simonlatham155-tech.github.io/trax/")
 
 # ── Global state ─────────────────────────────────────────────────────────────
 _client_count = 0
@@ -79,8 +79,8 @@ def _refresh_tray():
 
 def _tray_title() -> str:
     if _client_count == 0:
-        return "TRAX Bridge — waiting for browser"
-    return f"TRAX Bridge — {_client_count} tab{'s' if _client_count != 1 else ''} connected"
+        return "TRAX Bridge — open WebDAW to connect"
+    return f"TRAX Bridge — connected to WebDAW"
 
 
 # ── Server thread ─────────────────────────────────────────────────────────────
@@ -202,19 +202,6 @@ def _build_menu():
     def open_trax(icon, item):
         webbrowser.open(WEB_URL)
 
-    def copy_url(icon, item):
-        try:
-            import subprocess
-            if sys.platform == "darwin":
-                subprocess.run(["pbcopy"], input=BRIDGE_URL.encode(), check=True)
-            elif sys.platform == "win32":
-                subprocess.run(["clip"], input=BRIDGE_URL.encode(), check=True)
-            else:
-                subprocess.run(["xclip", "-selection", "clipboard"],
-                               input=BRIDGE_URL.encode(), check=True)
-        except Exception:
-            pass
-
     def quit_app(icon, item):
         logger.info("Quitting TRAX Bridge")
         icon.stop()
@@ -223,23 +210,21 @@ def _build_menu():
         sys.exit(0)
 
     return pystray.Menu(
-        pystray.MenuItem("TRAX Bridge v1.0.0", None, enabled=False),
+        pystray.MenuItem("TRAX Bridge", None, enabled=False),
         pystray.Menu.SEPARATOR,
         pystray.MenuItem(
             lambda item: (
-                f"● {_client_count} tab{'s' if _client_count != 1 else ''} connected"
+                f"Connected to WebDAW ({_client_count} tab{'s' if _client_count != 1 else ''})"
                 if _client_count > 0
-                else "○ Waiting for browser…"
+                else "Waiting for WebDAW…"
             ),
             None,
             enabled=False,
         ),
-        pystray.MenuItem(f"Port: {PORT}", None, enabled=False),
         pystray.Menu.SEPARATOR,
-        pystray.MenuItem("Open TRAX in Browser", open_trax),
-        pystray.MenuItem("Copy Bridge URL", copy_url),
+        pystray.MenuItem("Open WebDAW", open_trax),
         pystray.Menu.SEPARATOR,
-        pystray.MenuItem("Quit", quit_app),
+        pystray.MenuItem("Quit TRAX Bridge", quit_app),
     )
 
 
@@ -269,6 +254,7 @@ def main():
     )
 
     logger.info("Starting TRAX Bridge tray app")
+    threading.Timer(1.0, lambda: webbrowser.open(WEB_URL)).start()
     _tray_icon.run()   # blocks on the main thread (required by most OS tray APIs)
 
 

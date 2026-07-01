@@ -1,7 +1,9 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Search, FolderOpen, RefreshCw, X, Music2, Check, Wifi, WifiOff } from 'lucide-react'
+import { Search, FolderOpen, RefreshCw, X, Music2, Check, Wifi, WifiOff, Download } from 'lucide-react'
 import { vstBridge, type BridgePlugin, type BridgeStatus } from '@/services/vstBridge'
 import { cn } from '@/utils/cn'
+import { promptBridgeDownload } from '@/utils/bridge-download'
+import { BridgeAppIcon } from '@/components/shell/BridgeAppIcon'
 
 interface PluginManagerProps {
   selected?: string          // currently assigned plugin path
@@ -110,11 +112,22 @@ export function PluginManager({ selected, onSelect, onClose }: PluginManagerProp
 
         {/* Bridge offline message */}
         {isBridgeOffline && (
-          <div className="mx-4 mt-3 mb-0 px-4 py-3 rounded-lg bg-[#1a0a0a] border border-[#ef4444]/20 text-[11px] text-[#ef4444]/90">
-            <div className="font-semibold mb-0.5">Bridge server not running</div>
-            <div className="text-[#ef4444]/60">
-              Start it with: <span className="font-mono text-[#f87171]">npm run bridge</span>
-              &nbsp;— then this window will auto-connect.
+          <div className="mx-4 mt-3 mb-0 px-4 py-4 rounded-xl bg-[#0a0a0f] border border-[#2a2a38]">
+            <div className="flex items-start gap-3">
+              <BridgeAppIcon size={44} connected={false} />
+              <div className="flex-1 min-w-0">
+                <div className="text-sm font-semibold text-[#e8e8f0]">TRAX Bridge app required</div>
+                <p className="text-[11px] text-[#55557a] mt-1 leading-relaxed">
+                  Install the free TRAX Bridge desktop app to browse and use your VST plugins in WebDAW.
+                </p>
+                <button
+                  onClick={() => promptBridgeDownload()}
+                  className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#6c63ff] text-white text-[11px] font-semibold hover:bg-[#7a72ff] transition-colors"
+                >
+                  <Download size={12} />
+                  Get TRAX Bridge App
+                </button>
+              </div>
             </div>
           </div>
         )}

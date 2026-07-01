@@ -3,6 +3,7 @@ import { useDAWStore } from '@/store/daw-store';
 import { audioEngine } from '@/engine/audio-engine';
 import { vstBridge, type BridgeStatus } from '@/services/vstBridge';
 import { cn } from '@/utils/cn';
+import { promptBridgeDownload } from '@/utils/bridge-download';
 
 export function StatusBar() {
   const state = useDAWStore((s) => s.transport.state);
@@ -32,10 +33,10 @@ export function StatusBar() {
     state === 'playing' ? 'Playing' : state === 'recording' ? 'Recording' : state === 'paused' ? 'Paused' : 'Stopped';
 
   const bridgeLabel = {
-    connected: 'VST3 Bridge: Connected',
-    connecting: 'VST3 Bridge: Connecting…',
-    disconnected: 'VST3 Bridge: Offline',
-    error: 'VST3 Bridge: Error',
+    connected: 'TRAX Bridge: Running',
+    connecting: 'TRAX Bridge: Connecting…',
+    disconnected: 'TRAX Bridge: Not installed',
+    error: 'TRAX Bridge: Not found',
   }[bridgeStatus];
 
   const bridgeColor = {
@@ -54,7 +55,16 @@ export function StatusBar() {
 
       <div className="flex-1" />
 
-      <span className={bridgeColor}>{bridgeLabel}</span>
+      <button
+        type="button"
+        onClick={() => bridgeStatus !== 'connected' && promptBridgeDownload()}
+        className={cn(
+          bridgeColor,
+          bridgeStatus !== 'connected' && 'hover:underline cursor-pointer'
+        )}
+      >
+        {bridgeLabel}
+      </button>
       <span>MIDI: Web MIDI</span>
       <span>Audio: Web Audio</span>
     </div>

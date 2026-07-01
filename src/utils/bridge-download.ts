@@ -39,9 +39,9 @@ export function getBridgePlatformLabel(): string {
 
 export function getBridgeRunHint(): string {
   const platform = detectBridgePlatform();
-  if (platform === 'mac') return 'Open the .dmg, drag TRAX Bridge to Applications, then launch it.';
-  if (platform === 'windows') return 'Open TRAX Bridge.exe from your Downloads folder.';
-  return 'Open the downloaded file and leave the app running.';
+  if (platform === 'mac') return 'Open the installer, drag TRAX Bridge into Applications, then launch it from there.';
+  if (platform === 'windows') return 'Run TRAX Bridge from your Downloads folder. Pin it to the taskbar if you like.';
+  return 'Open the installer and launch TRAX Bridge like any other desktop app.';
 }
 
 export function downloadBridgeApp(platform?: BridgePlatform) {

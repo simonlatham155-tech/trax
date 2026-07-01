@@ -141,7 +141,7 @@ export function MenuBar() {
     {
       label: 'Help',
       items: [
-        { label: 'Download & Run TRAX Bridge', action: () => promptBridgeDownload() },
+        { label: 'Get TRAX Bridge App', action: () => promptBridgeDownload() },
         { divider: true, label: '' },
         { label: 'Keyboard Shortcuts', disabled: true },
         {
