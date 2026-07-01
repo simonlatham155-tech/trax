@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import {
   Play,
   Pause,
@@ -25,6 +25,36 @@ import { cn } from '@/utils/cn';
 import { ProjectBar } from '@/components/project/ProjectBar';
 import { BridgeStatusIndicator } from '@/components/plugins/BridgeStatus';
 import { CpuMeter } from '@/components/shell/CpuMeter';
+
+function TransportBtn({
+  children,
+  onClick,
+  active,
+  danger,
+  title,
+}: {
+  children: ReactNode;
+  onClick: () => void | Promise<void>;
+  active?: boolean;
+  danger?: boolean;
+  title?: string;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={() => void onClick()}
+      title={title}
+      className={cn(
+        'w-9 h-9 flex items-center justify-center rounded transition-all',
+        active && !danger && 'bg-[#6c63ff] text-white',
+        active && danger && 'bg-[#ef4444] text-white',
+        !active && 'bg-[#1a1a24] text-[#8888aa] hover:bg-[#22222e] hover:text-[#e8e8f0]'
+      )}
+    >
+      {children}
+    </button>
+  );
+}
 
 function BpmInput() {
   const bpm = useDAWStore((s) => s.project.bpm);
@@ -96,7 +126,6 @@ function TimeDisplay() {
 
 export function Transport() {
   const state = useDAWStore((s) => s.transport.state);
-  const position = useDAWStore((s) => s.transport.position);
   const loopEnabled = useDAWStore((s) => s.transport.loopEnabled);
   const metronomeEnabled = useDAWStore((s) => s.transport.metronomeEnabled);
   const masterVolume = useDAWStore((s) => s.masterVolume);
@@ -115,6 +144,12 @@ export function Transport() {
   const isPlaying = state === 'playing';
   const isRecording = state === 'recording';
   const isActive = isPlaying || isRecording;
+
+  const handleSkipForward = useCallback(() => {
+    const { position } = useDAWStore.getState().transport;
+    const numerator = useDAWStore.getState().project.timeSignature.numerator;
+    setPosition(position + numerator);
+  }, [setPosition]);
 
   const handlePlay = useCallback(async () => {
     await audioEngine.init();
@@ -143,14 +178,10 @@ export function Transport() {
     audioEngine.stopPlayback();
   }, [stop]);
 
-  const handleSeek = useCallback(async (beat: number) => {
-    setPosition(beat);
-    const currentState = useDAWStore.getState().transport.state;
-    if (currentState === 'playing' || currentState === 'recording') {
-      await audioEngine.init();
-      await audioEngine.startPlayback(beat);
-    }
-  }, [setPosition]);
+  const handleReturnToStart = useCallback(async () => {
+    await handleStop();
+    setPosition(0);
+  }, [handleStop, setPosition]);
 
   const handleRecord = useCallback(async () => {
     await audioEngine.init();
@@ -202,34 +233,6 @@ export function Transport() {
     return () => window.removeEventListener('keydown', handleKey);
   }, [handlePlay, handleStop]);
 
-  const TransportBtn = ({
-    children,
-    onClick,
-    active,
-    danger,
-    title,
-  }: {
-    children: React.ReactNode;
-    onClick: () => void;
-    active?: boolean;
-    danger?: boolean;
-    title?: string;
-  }) => (
-    <button
-      type="button"
-      onClick={() => void onClick()}
-      title={title}
-      className={cn(
-        'w-9 h-9 flex items-center justify-center rounded transition-all',
-        active && !danger && 'bg-[#6c63ff] text-white',
-        active && danger && 'bg-[#ef4444] text-white',
-        !active && 'bg-[#1a1a24] text-[#8888aa] hover:bg-[#22222e] hover:text-[#e8e8f0]'
-      )}
-    >
-      {children}
-    </button>
-  );
-
   return (
     <div className="relative z-50 flex items-center gap-4 px-4 py-2 bg-[#111118] border-b border-[#2a2a38] h-14 shrink-0">
       {/* Project controls */}
@@ -239,10 +242,7 @@ export function Transport() {
 
       {/* Transport controls */}
       <div className="flex items-center gap-1.5">
-        <TransportBtn
-          onClick={async () => { await handleStop(); setPosition(0); }}
-          title="Return to start (Home)"
-        >
+        <TransportBtn onClick={handleReturnToStart} title="Return to start (Home)">
           <SkipBack size={14} />
         </TransportBtn>
         <TransportBtn onClick={handlePlay} active={isActive} title="Play/Pause (Space)">
@@ -261,10 +261,7 @@ export function Transport() {
             ? <span className="w-3 h-3 rounded-full bg-white animate-pulse block" />
             : <Circle size={13} />}
         </TransportBtn>
-        <TransportBtn
-          onClick={() => setPosition(position + useDAWStore.getState().project.timeSignature.numerator)}
-          title="Skip forward"
-        >
+        <TransportBtn onClick={handleSkipForward} title="Skip forward">
           <SkipForward size={14} />
         </TransportBtn>
       </div>
