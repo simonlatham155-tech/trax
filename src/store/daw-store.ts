@@ -13,6 +13,11 @@ import type {
 } from '@/types';
 import { generateId } from '@/utils/id';
 import { DEFAULT_EFFECTS, TRACK_COLORS } from '@/types';
+import { createDemoTracks } from '@/data/demo-project';
+
+const INITIAL_DEMO_TRACKS = createDemoTracks();
+const INITIAL_LEAD_CLIP =
+  INITIAL_DEMO_TRACKS.find((t) => t.name === 'Synth Lead')?.clips[0]?.id ?? null;
 
 const TRACK_COLOR_CYCLE: TrackColor[] = [
   'purple', 'cyan', 'green', 'amber', 'red', 'pink', 'blue',
@@ -142,21 +147,18 @@ interface DAWState {
   toggleSnap: () => void;
   setSnapGrid: (grid: number) => void;
   setMasterVolume: (v: number) => void;
+  loadDemoProject: () => void;
 }
 
 export const useDAWStore = create<DAWState>()(
   immer((set) => ({
     project: {
-      bpm: 120,
+      bpm: 128,
       timeSignature: { numerator: 4, denominator: 4 },
-      sampleRate: 44100,
+      sampleRate: 48000,
       bufferSize: 256,
     },
-    tracks: [
-      makeDefaultTrack(0),
-      makeDefaultTrack(1, 'audio'),
-      makeDefaultTrack(2, 'audio'),
-    ],
+    tracks: INITIAL_DEMO_TRACKS,
     markers: [],
     recording: [],
     transport: {
@@ -164,7 +166,7 @@ export const useDAWStore = create<DAWState>()(
       position: 0,
       loopEnabled: false,
       loopStart: 0,
-      loopEnd: 16,
+      loopEnd: 32,
       metronomeEnabled: false,
       countInEnabled: false,
     },
@@ -172,9 +174,9 @@ export const useDAWStore = create<DAWState>()(
       selectedTrackId: null,
       selectedClipId: null,
       openEffectsTrackId: null,
-      pianoRollClipId: null,
+      pianoRollClipId: INITIAL_LEAD_CLIP,
       showMixer: false,
-      showPianoRoll: false,
+      showPianoRoll: true,
       tool: 'pointer',
       zoom: 60,
       scrollX: 0,
@@ -414,6 +416,20 @@ export const useDAWStore = create<DAWState>()(
     setMasterVolume: (v) =>
       set((s) => {
         s.masterVolume = Math.max(0, Math.min(1.5, v));
+      }),
+
+    loadDemoProject: () =>
+      set((s) => {
+        const tracks = createDemoTracks();
+        const leadClip = tracks.find((t) => t.name === 'Synth Lead')?.clips[0];
+        s.tracks = tracks;
+        s.project.bpm = 128;
+        s.transport.loopEnd = 32;
+        s.transport.position = 0;
+        s.transport.state = 'stopped';
+        s.ui.pianoRollClipId = leadClip?.id ?? null;
+        s.ui.showPianoRoll = !!leadClip;
+        s.ui.selectedClipId = leadClip?.id ?? null;
       }),
 
     beginRecordingSession: (sessions) =>

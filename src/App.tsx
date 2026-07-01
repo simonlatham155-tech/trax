@@ -1,5 +1,7 @@
 import { useCallback } from 'react';
 import { Transport, ArrangeToolbar } from '@/components/transport/Transport';
+import { MenuBar } from '@/components/shell/MenuBar';
+import { StatusBar } from '@/components/shell/StatusBar';
 import { TrackList } from '@/components/track/TrackList';
 import { Timeline } from '@/components/timeline/Timeline';
 import { Mixer } from '@/components/mixer/Mixer';
@@ -77,7 +79,7 @@ export default function App() {
 
   return (
     <div className="flex flex-col h-full bg-[#0a0a0f] relative">
-      {/* Transport bar */}
+      <MenuBar />
       <Transport />
 
       {/* Tool / snap / zoom bar */}
@@ -106,6 +108,8 @@ export default function App() {
 
       {/* Mixer */}
       {showMixer && <Mixer />}
+
+      <StatusBar />
     </div>
   );
 }

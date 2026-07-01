@@ -9,7 +9,6 @@ import {
   Repeat,
   Volume2,
   Sliders,
-  Music,
   MousePointer2,
   Pencil,
   Scissors,
@@ -25,6 +24,7 @@ import { formatTime, formatBeatPosition, beatsToSeconds } from '@/utils/beats';
 import { cn } from '@/utils/cn';
 import { ProjectBar } from '@/components/project/ProjectBar';
 import { BridgeStatusIndicator } from '@/components/plugins/BridgeStatus';
+import { CpuMeter } from '@/components/shell/CpuMeter';
 
 function BpmInput() {
   const bpm = useDAWStore((s) => s.project.bpm);
@@ -208,16 +208,6 @@ export function Transport() {
 
   return (
     <div className="flex items-center gap-4 px-4 py-2 bg-[#111118] border-b border-[#2a2a38] h-14 shrink-0">
-      {/* Logo */}
-      <div className="flex items-center gap-2 mr-1 shrink-0">
-        <div className="w-7 h-7 rounded bg-[#6c63ff] flex items-center justify-center">
-          <Music size={14} className="text-white" />
-        </div>
-        <span className="font-bold text-sm text-[#e8e8f0] tracking-widest uppercase">TRAX</span>
-      </div>
-
-      <div className="w-px h-8 bg-[#2a2a38]" />
-
       {/* Project controls */}
       <ProjectBar />
 
@@ -277,8 +267,15 @@ export function Transport() {
         </TransportBtn>
       </div>
 
-      {/* Spacer */}
       <div className="flex-1" />
+
+      <CpuMeter />
+
+      <div className="w-px h-8 bg-[#2a2a38]" />
+
+      <ProjectHeaderStats />
+
+      <div className="w-px h-8 bg-[#2a2a38]" />
 
       {/* Master volume */}
       <div className="flex items-center gap-2">
@@ -411,6 +408,17 @@ export function ArrangeToolbar() {
       {/* Track count summary */}
       <TrackSummary />
     </div>
+  );
+}
+
+function ProjectHeaderStats() {
+  const tracks = useDAWStore((s) => s.tracks);
+  const loopEnd = useDAWStore((s) => s.transport.loopEnd);
+  const sr = useDAWStore((s) => s.project.sampleRate);
+  return (
+    <span className="text-[9px] text-[#55557a] font-mono whitespace-nowrap">
+      {tracks.length} tracks | {loopEnd} bars | {sr / 1000} kHz · 24-bit
+    </span>
   );
 }
 
