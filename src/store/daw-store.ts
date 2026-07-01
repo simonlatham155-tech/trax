@@ -148,17 +148,18 @@ interface DAWState {
   setSnapGrid: (grid: number) => void;
   setMasterVolume: (v: number) => void;
   loadDemoProject: () => void;
+  startEmptyProject: () => void;
 }
 
 export const useDAWStore = create<DAWState>()(
   immer((set) => ({
     project: {
-      bpm: 128,
+      bpm: 120,
       timeSignature: { numerator: 4, denominator: 4 },
       sampleRate: 48000,
       bufferSize: 256,
     },
-    tracks: INITIAL_DEMO_TRACKS,
+    tracks: [makeDefaultTrack(0), makeDefaultTrack(1, 'audio')],
     markers: [],
     recording: [],
     transport: {
@@ -166,7 +167,7 @@ export const useDAWStore = create<DAWState>()(
       position: 0,
       loopEnabled: false,
       loopStart: 0,
-      loopEnd: 32,
+      loopEnd: 16,
       metronomeEnabled: false,
       countInEnabled: false,
     },
@@ -174,9 +175,9 @@ export const useDAWStore = create<DAWState>()(
       selectedTrackId: null,
       selectedClipId: null,
       openEffectsTrackId: null,
-      pianoRollClipId: INITIAL_LEAD_CLIP,
+      pianoRollClipId: null,
       showMixer: false,
-      showPianoRoll: true,
+      showPianoRoll: false,
       tool: 'pointer',
       zoom: 60,
       scrollX: 0,
@@ -430,6 +431,18 @@ export const useDAWStore = create<DAWState>()(
         s.ui.pianoRollClipId = leadClip?.id ?? null;
         s.ui.showPianoRoll = !!leadClip;
         s.ui.selectedClipId = leadClip?.id ?? null;
+      }),
+
+    startEmptyProject: () =>
+      set((s) => {
+        s.tracks = [makeDefaultTrack(0), makeDefaultTrack(1, 'audio')];
+        s.project.bpm = 120;
+        s.transport.loopEnd = 16;
+        s.transport.position = 0;
+        s.transport.state = 'stopped';
+        s.ui.pianoRollClipId = null;
+        s.ui.showPianoRoll = false;
+        s.ui.selectedClipId = null;
       }),
 
     beginRecordingSession: (sessions) =>

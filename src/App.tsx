@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { Transport, ArrangeToolbar } from '@/components/transport/Transport';
 import { MenuBar } from '@/components/shell/MenuBar';
 import { StatusBar } from '@/components/shell/StatusBar';
+import { WelcomePanel } from '@/components/shell/WelcomePanel';
 import { TrackList } from '@/components/track/TrackList';
 import { Timeline } from '@/components/timeline/Timeline';
 import { Mixer } from '@/components/mixer/Mixer';
@@ -110,6 +111,7 @@ export default function App() {
       {showMixer && <Mixer />}
 
       <StatusBar />
+      <WelcomePanel />
     </div>
   );
 }

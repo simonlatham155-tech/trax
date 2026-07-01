@@ -100,6 +100,8 @@ export function MenuBar() {
         { label: 'Save Project', action: () => save(), shortcut: '⌘S' },
         { label: 'Export .trax', action: () => exportTraxFile() },
         { divider: true, label: '' },
+        { label: 'Start Empty Project', action: () => useDAWStore.getState().startEmptyProject() },
+        { divider: true, label: '' },
         { label: 'Load Demo Project', action: () => loadDemoProject() },
       ],
     },
