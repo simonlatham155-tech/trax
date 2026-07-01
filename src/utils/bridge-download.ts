@@ -14,7 +14,9 @@ const listeners = new Set<BridgeDownloadListener>();
 
 export function subscribeBridgeDownload(listener: BridgeDownloadListener) {
   listeners.add(listener);
-  return () => listeners.delete(listener);
+  return () => {
+    listeners.delete(listener);
+  };
 }
 
 export function promptBridgeDownload() {

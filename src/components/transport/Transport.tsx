@@ -114,50 +114,73 @@ export function Transport() {
 
   const isPlaying = state === 'playing';
   const isRecording = state === 'recording';
+  const isActive = isPlaying || isRecording;
 
   const handlePlay = useCallback(async () => {
     await audioEngine.init();
     await audioEngine.resume();
-    if (isPlaying) {
+
+    const currentState = useDAWStore.getState().transport.state;
+    const beat = useDAWStore.getState().transport.position;
+
+    if (currentState === 'playing' || currentState === 'recording') {
+      if (currentState === 'recording') {
+        await audioEngine.stopRecording();
+      }
       pause();
       audioEngine.stopPlayback();
-    } else {
-      play();
-      await audioEngine.startPlayback(position);
+      return;
     }
-  }, [isPlaying, pause, play, position]);
+
+    play();
+    await audioEngine.startPlayback(beat);
+  }, [pause, play]);
 
   const handleStop = useCallback(async () => {
-    if (isRecording) await audioEngine.stopRecording();
+    const currentState = useDAWStore.getState().transport.state;
+    if (currentState === 'recording') await audioEngine.stopRecording();
     stop();
     audioEngine.stopPlayback();
-  }, [stop, isRecording]);
+  }, [stop]);
 
-  // Live seek: if playing, restart audio from new position
   const handleSeek = useCallback(async (beat: number) => {
     setPosition(beat);
-    if (isPlaying) {
+    const currentState = useDAWStore.getState().transport.state;
+    if (currentState === 'playing' || currentState === 'recording') {
       await audioEngine.init();
       await audioEngine.startPlayback(beat);
     }
-  }, [isPlaying, setPosition]);
+  }, [setPosition]);
 
   const handleRecord = useCallback(async () => {
     await audioEngine.init();
     await audioEngine.resume();
 
-    if (isRecording) {
-      // Stop recording, but keep playing
+    const currentState = useDAWStore.getState().transport.state;
+    const beat = useDAWStore.getState().transport.position;
+    const hasArmedTracks = useDAWStore.getState().tracks.some((t) => t.armed);
+
+    if (currentState === 'recording') {
       await audioEngine.stopRecording();
-      play(); // transition back to plain playing state
-      useDAWStore.getState().play(); // keep transport rolling
-    } else {
-      // Start recording: also start playback if not already playing
-      record(); // sets state to 'recording'
-      if (!isPlaying) await audioEngine.startPlayback(position);
-      await audioEngine.startRecording(position);
+      play();
+      return;
     }
-  }, [isRecording, isPlaying, record, play, position]);
+
+    if (!hasArmedTracks) {
+      window.alert('Arm a track first — click the red record button on a track header.');
+      return;
+    }
+
+    record();
+    if (currentState !== 'playing') {
+      await audioEngine.startPlayback(beat);
+    }
+    await audioEngine.startRecording(beat);
+
+    if (!audioEngine.isRecording) {
+      pause();
+    }
+  }, [record, play, pause]);
 
   useEffect(() => {
     audioEngine.setMasterVolume(masterVolume);
@@ -193,7 +216,8 @@ export function Transport() {
     title?: string;
   }) => (
     <button
-      onClick={onClick}
+      type="button"
+      onClick={() => void onClick()}
       title={title}
       className={cn(
         'w-9 h-9 flex items-center justify-center rounded transition-all',
@@ -207,7 +231,7 @@ export function Transport() {
   );
 
   return (
-    <div className="flex items-center gap-4 px-4 py-2 bg-[#111118] border-b border-[#2a2a38] h-14 shrink-0">
+    <div className="relative z-50 flex items-center gap-4 px-4 py-2 bg-[#111118] border-b border-[#2a2a38] h-14 shrink-0">
       {/* Project controls */}
       <ProjectBar />
 
@@ -221,8 +245,8 @@ export function Transport() {
         >
           <SkipBack size={14} />
         </TransportBtn>
-        <TransportBtn onClick={handlePlay} active={isPlaying || isRecording} title="Play/Pause (Space)">
-          {isPlaying || isRecording ? <Pause size={15} /> : <Play size={15} />}
+        <TransportBtn onClick={handlePlay} active={isActive} title="Play/Pause (Space)">
+          {isActive ? <Pause size={15} /> : <Play size={15} />}
         </TransportBtn>
         <TransportBtn onClick={handleStop} title="Stop (Home)">
           <Square size={13} />
@@ -341,7 +365,7 @@ export function ArrangeToolbar() {
   }, [setTool]);
 
   return (
-    <div className="flex items-center gap-0.5 px-3 py-1 bg-[#0d0d16] border-b border-[#1e1e2a] shrink-0 h-8">
+    <div className="relative z-50 flex items-center gap-0.5 px-3 py-1 bg-[#0d0d16] border-b border-[#1e1e2a] shrink-0 h-8">
       {/* Tools */}
       <div className="flex items-center gap-0.5 mr-3">
         {TOOLS.map((t) => (

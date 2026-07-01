@@ -153,7 +153,7 @@ export function MenuBar() {
   ];
 
   return (
-    <div className="flex items-center gap-0.5 px-3 py-1 bg-[#0a0a0f] border-b border-[#1e1e2a] shrink-0 h-7">
+    <div className="relative z-50 flex items-center gap-0.5 px-3 py-1 bg-[#0a0a0f] border-b border-[#1e1e2a] shrink-0 h-7">
       <span className="text-[10px] font-bold text-[#6c63ff] tracking-widest mr-3">WebDAW</span>
       {menus.map((menu) => (
         <MenuDropdown

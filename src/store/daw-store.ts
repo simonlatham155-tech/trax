@@ -195,7 +195,9 @@ export const useDAWStore = create<DAWState>()(
       }),
     pause: () =>
       set((s) => {
-        if (s.transport.state === 'playing') s.transport.state = 'paused';
+        if (s.transport.state === 'playing' || s.transport.state === 'recording') {
+          s.transport.state = 'paused';
+        }
       }),
     stop: () =>
       set((s) => {

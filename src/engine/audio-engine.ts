@@ -31,6 +31,7 @@ class AudioEngine {
   // Scheduled playback sources (clipId → sources)
   private scheduledSources = new Map<string, AudioBufferSourceNode[]>();
   private animationFrame: number | null = null;
+  private playbackGeneration = 0;
   private startTime = 0;
   private startBeat = 0;
 
@@ -210,29 +211,36 @@ class AudioEngine {
 
   async startPlayback(fromBeat: number): Promise<void> {
     if (!this.ctx || !this.masterGain) return;
-    this.stopPlayback();
+    const generation = ++this.playbackGeneration;
+    this._clearScheduledPlayback();
 
     this.startBeat = fromBeat;
     this.startTime = this.ctx.currentTime;
 
-    // Ensure all track nodes exist and are synced
     const { tracks } = useDAWStore.getState();
     for (const track of tracks) {
       this._ensureTrackNodes(track);
       this.syncTrack(track.id);
     }
 
-    // Pre-render MIDI clips via bridge
     await this._preRenderMidiClips();
+    if (generation !== this.playbackGeneration) return;
 
     this._scheduleAllClips(fromBeat);
-    this._startPositionTracking();
+    if (generation !== this.playbackGeneration) return;
+
+    this._startPositionTracking(generation);
 
     const state = useDAWStore.getState();
     if (state.transport.metronomeEnabled) this._startMetronome(fromBeat);
   }
 
   stopPlayback(): void {
+    this.playbackGeneration++;
+    this._clearScheduledPlayback();
+  }
+
+  private _clearScheduledPlayback(): void {
     if (this.animationFrame !== null) { cancelAnimationFrame(this.animationFrame); this.animationFrame = null; }
     if (this.metronomeTimer !== null) { clearInterval(this.metronomeTimer); this.metronomeTimer = null; }
     for (const sources of this.scheduledSources.values()) {
@@ -302,14 +310,15 @@ class AudioEngine {
     return src;
   }
 
-  private _startPositionTracking(): void {
+  private _startPositionTracking(generation: number): void {
     const tick = (): void => {
+      if (generation !== this.playbackGeneration) return;
       if (!this.ctx) return;
       const elapsed = this.ctx.currentTime - this.startTime;
       const currentBeat = this.startBeat + (elapsed / 60) * useDAWStore.getState().project.bpm;
       const state = useDAWStore.getState();
       if (state.transport.loopEnabled && currentBeat >= state.transport.loopEnd) {
-        this.startPlayback(state.transport.loopStart);
+        void this.startPlayback(state.transport.loopStart);
         return;
       }
       useDAWStore.getState().setPosition(currentBeat);
