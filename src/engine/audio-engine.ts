@@ -345,21 +345,64 @@ class AudioEngine {
   // ── MIDI pre-render ───────────────────────────────────────────────────────
 
   private async _preRenderMidiClips(): Promise<void> {
-    if (vstBridge.currentStatus !== 'connected') return;
     const { tracks, project } = useDAWStore.getState();
     for (const track of tracks) {
-      if (!track.instrument) continue;
       for (const clip of track.clips) {
         if (!clip.notes?.length) continue;
-        if (clip.audioBuffer) continue; // already rendered (cleared on note edit)
+        if (clip.audioBuffer) continue;
+
+        if (vstBridge.currentStatus === 'connected' && track.instrument) {
+          try {
+            const buf = await vstBridge.renderMidi(track.id, clip.notes, project.bpm, clip.durationBeats, track.volume);
+            useDAWStore.getState().updateClip(track.id, clip.id, { audioBuffer: buf, originalBpm: project.bpm });
+          } catch (e) {
+            console.warn(`Bridge render failed for ${clip.id}:`, e);
+          }
+          continue;
+        }
+
         try {
-          const buf = await vstBridge.renderMidi(track.id, clip.notes, project.bpm, clip.durationBeats, track.volume);
+          const buf = await this._renderMidiClipOffline(clip.notes, project.bpm, clip.durationBeats, track.volume);
           useDAWStore.getState().updateClip(track.id, clip.id, { audioBuffer: buf, originalBpm: project.bpm });
         } catch (e) {
-          console.warn(`Bridge render failed for ${clip.id}:`, e);
+          console.warn(`Built-in MIDI render failed for ${clip.id}:`, e);
         }
       }
     }
+  }
+
+  private async _renderMidiClipOffline(
+    notes: MidiNote[],
+    bpm: number,
+    durationBeats: number,
+    volume: number,
+  ): Promise<AudioBuffer> {
+    await this.init();
+    const sampleRate = this.ctx!.sampleRate;
+    const durationSec = Math.max(beatsToSeconds(durationBeats, bpm), 0.25);
+    const offline = new OfflineAudioContext(2, Math.ceil(sampleRate * durationSec), sampleRate);
+    const master = offline.createGain();
+    master.gain.value = volume;
+    master.connect(offline.destination);
+
+    for (const note of notes) {
+      const startSec = beatsToSeconds(note.startBeat, bpm);
+      const durSec = Math.max(beatsToSeconds(note.durationBeats, bpm), 0.05);
+      const osc = offline.createOscillator();
+      const env = offline.createGain();
+      osc.type = note.pitch < 48 ? 'sine' : 'sawtooth';
+      osc.frequency.value = 440 * Math.pow(2, (note.pitch - 69) / 12);
+      const vel = (note.velocity / 127) * 0.35;
+      env.gain.setValueAtTime(0, startSec);
+      env.gain.linearRampToValueAtTime(vel, startSec + 0.008);
+      env.gain.exponentialRampToValueAtTime(0.001, startSec + durSec);
+      osc.connect(env);
+      env.connect(master);
+      osc.start(startSec);
+      osc.stop(startSec + durSec + 0.05);
+    }
+
+    return offline.startRendering();
   }
 
   // ── Recording ─────────────────────────────────────────────────────────────

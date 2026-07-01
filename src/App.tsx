@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Transport, ArrangeToolbar } from '@/components/transport/Transport';
 import { MenuBar } from '@/components/shell/MenuBar';
 import { StatusBar } from '@/components/shell/StatusBar';
@@ -13,17 +13,21 @@ import { useDAWStore } from '@/store/daw-store';
 import { audioEngine } from '@/engine/audio-engine';
 import { Upload } from 'lucide-react';
 
+function isAudioFile(file: File): boolean {
+  if (file.type.startsWith('audio/')) return true;
+  return /\.(wav|mp3|ogg|flac|aac|m4a|aiff?)$/i.test(file.name);
+}
+
 function DropZone() {
   const addClip = useDAWStore((s) => s.addClip);
-  const [dragging, setDragging] = React.useState(false);
+  const [dragging, setDragging] = useState(false);
 
   const handleDrop = useCallback(
-    async (e: React.DragEvent) => {
+    async (e: DragEvent) => {
       e.preventDefault();
       setDragging(false);
-      const files = Array.from(e.dataTransfer.files).filter((f) =>
-        f.type.startsWith('audio/')
-      );
+
+      const files = Array.from(e.dataTransfer?.files ?? []).filter(isAudioFile);
       if (files.length === 0) return;
 
       await audioEngine.init();
@@ -54,21 +58,68 @@ function DropZone() {
     [addClip]
   );
 
+  useEffect(() => {
+    const onDragEnter = (e: DragEvent) => {
+      if (!e.dataTransfer?.types.includes('Files')) return;
+      e.preventDefault();
+      setDragging(true);
+    };
+    const onDragOver = (e: DragEvent) => {
+      if (!e.dataTransfer?.types.includes('Files')) return;
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'copy';
+      setDragging(true);
+    };
+    const onDragLeave = (e: DragEvent) => {
+      if (e.relatedTarget) return;
+      setDragging(false);
+    };
+    const onDrop = (e: DragEvent) => {
+      void handleDrop(e);
+    };
+
+    window.addEventListener('dragenter', onDragEnter);
+    window.addEventListener('dragover', onDragOver);
+    window.addEventListener('dragleave', onDragLeave);
+    window.addEventListener('drop', onDrop);
+    return () => {
+      window.removeEventListener('dragenter', onDragEnter);
+      window.removeEventListener('dragover', onDragOver);
+      window.removeEventListener('dragleave', onDragLeave);
+      window.removeEventListener('drop', onDrop);
+    };
+  }, [handleDrop]);
+
+  if (!dragging) return null;
+
   return (
-    <div
-      className="contents"
-      onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
-      onDragLeave={() => setDragging(false)}
-      onDrop={handleDrop}
-    >
-      {dragging && (
-        <div className="absolute inset-0 z-50 bg-[#6c63ff]/10 border-2 border-dashed border-[#6c63ff] rounded flex items-center justify-center pointer-events-none">
-          <div className="flex flex-col items-center gap-2">
-            <Upload size={32} className="text-[#6c63ff]" />
-            <span className="text-[#6c63ff] font-semibold">Drop audio files</span>
-          </div>
-        </div>
-      )}
+    <div className="absolute inset-0 z-50 bg-[#6c63ff]/10 border-2 border-dashed border-[#6c63ff] flex items-center justify-center pointer-events-none">
+      <div className="flex flex-col items-center gap-2">
+        <Upload size={32} className="text-[#6c63ff]" />
+        <span className="text-[#6c63ff] font-semibold">Drop audio files</span>
+      </div>
+    </div>
+  );
+}
+
+function EmptyWorkspaceHint() {
+  const tracks = useDAWStore((s) => s.tracks);
+  const loadDemoProject = useDAWStore((s) => s.loadDemoProject);
+  const hasClips = tracks.some((t) => t.clips.length > 0);
+
+  if (hasClips) return null;
+
+  return (
+    <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+      <div className="text-center max-w-sm px-6 pointer-events-auto">
+        <p className="text-sm text-[#8888aa] mb-3">Drop a .wav or .mp3 here, or try the demo project.</p>
+        <button
+          onClick={() => loadDemoProject()}
+          className="px-4 py-2 rounded-lg bg-[#6c63ff] text-white text-sm font-semibold hover:bg-[#7a72ff] transition-colors"
+        >
+          Load Demo Project
+        </button>
+      </div>
     </div>
   );
 }
@@ -81,42 +132,32 @@ export default function App() {
 
   return (
     <BridgeDownloadProvider>
-    <div className="flex flex-col h-full bg-[#0a0a0f] relative">
-      <MenuBar />
-      <Transport />
+      <div className="flex flex-col h-full bg-[#0a0a0f]">
+        <MenuBar />
+        <Transport />
+        <ArrangeToolbar />
 
-      {/* Tool / snap / zoom bar */}
-      <ArrangeToolbar />
+        <div className="flex flex-1 overflow-hidden relative min-h-0">
+          <TrackList />
 
-      {/* Main content area — grows to fill remaining height */}
-      <div className="flex flex-1 overflow-hidden relative min-h-0">
-        {/* Track headers */}
-        <TrackList />
+          <div className="flex-1 flex flex-col overflow-hidden relative min-h-0">
+            <Timeline />
+            <EmptyWorkspaceHint />
+            <DropZone />
+            <WelcomePanel />
+          </div>
 
-        {/* Timeline / arrangement */}
-        <div className="flex-1 flex flex-col overflow-hidden relative min-h-0">
-          <Timeline />
+          {openEffectsTrackId && <EffectsPanel />}
         </div>
 
-        {/* Effects panel */}
-        {openEffectsTrackId && <EffectsPanel />}
+        {showPianoRoll && pianoRollClipId && (
+          <PianoRoll clipId={pianoRollClipId} />
+        )}
 
-        <DropZone />
+        {showMixer && <Mixer />}
+
+        <StatusBar />
       </div>
-
-      {/* Piano Roll — resizable bottom panel */}
-      {showPianoRoll && pianoRollClipId && (
-        <PianoRoll clipId={pianoRollClipId} />
-      )}
-
-      {/* Mixer */}
-      {showMixer && <Mixer />}
-
-      <StatusBar />
-      <WelcomePanel />
-    </div>
     </BridgeDownloadProvider>
   );
 }
-
-import React from 'react';
