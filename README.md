@@ -56,12 +56,30 @@ A professional-grade Digital Audio Workstation that runs entirely in the browser
 
 ## Quick Start
 
+### Launch online (GitHub Pages)
+
+**[https://simonlatham155-tech.github.io/trax/](https://simonlatham155-tech.github.io/trax/)**
+
+> First-time setup: in the GitHub repo go to **Settings → Pages → Build and deployment → Source: GitHub Actions**.  
+> Pushes to `main` auto-deploy the app.
+
+### Run locally
+
 ```bash
 npm install
 npm run dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173)
+
+### Test the GitHub Pages build locally
+
+```bash
+npm run build:pages
+npm run preview
+```
+
+Open [http://localhost:4173/trax/](http://localhost:4173/trax/)
 
 ## Build
 

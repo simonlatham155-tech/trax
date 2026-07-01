@@ -2,7 +2,7 @@ import type { PluginSlot } from '@/types/plugins';
 import { getPluginManifest } from '@/plugins/registry';
 
 const loadedContexts = new WeakSet<BaseAudioContext>();
-const WORKLET_URL = '/worklets/trax-plugin-processor.js';
+const WORKLET_URL = `${import.meta.env.BASE_URL}worklets/trax-plugin-processor.js`;
 
 export interface PluginNodeEntry {
   slotId: string;

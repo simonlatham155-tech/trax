@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:pages": "BASE_PATH=/trax/ tsc -b && vite build",
     "lint": "oxlint src",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit"
