@@ -1,4 +1,8 @@
-name: Deploy to GitHub Pages
+name: Publish site to gh-pages
+
+# Pushes the built app to the `gh-pages` branch.
+# You must enable Pages once: Settings → Pages → Deploy from branch → gh-pages → / (root)
+# See docs/LAUNCH.md
 
 on:
   push:

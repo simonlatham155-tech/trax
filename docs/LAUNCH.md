@@ -2,6 +2,17 @@
 
 The app files are already on the **`gh-pages`** branch. You only need to turn Pages on once.
 
+## If you see a failed “Deploy to GitHub Pages” run
+
+**That’s the old workflow** (run #1) — it tried to use GitHub’s `github-pages` environment before Pages was enabled. **You can ignore it.**
+
+The **current workflow** is **“Publish site to gh-pages”** — look for a **green** run after commit `Fix Pages deploy: push to gh-pages branch`.
+
+Successful run example:  
+https://github.com/simonlatham155-tech/trax/actions/workflows/deploy-pages.yml
+
+---
+
 ## Step 1 — Open Pages settings
 
 **https://github.com/simonlatham155-tech/trax/settings/pages**
