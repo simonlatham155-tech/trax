@@ -30,22 +30,12 @@ import zlib
 # ---------------------------------------------------------------------------
 DISTRIBUTION_XML = """\
 <?xml version="1.0" encoding="utf-8"?>
-<installer-gui-script minSpecVersion="2">
+<installer-gui-script minSpecVersion="1">
     <title>ESU 1808 USB Audio Interface Driver v3.4.10</title>
-    <background file="background" mime-type="image/png" alignment="bottomleft" scaling="none"/>
-    <welcome mime-type="text/plain"><![CDATA[This package installs the ESU 1808 USB Audio Interface driver for macOS.
-
-IMPORTANT – macOS Monterey (12) / Big Sur (11) users:
-After installation and restart, open:
-  System Preferences → Security & Privacy → General
-and click "Allow" next to the blocked ESU 1808 kernel extension.
-Then restart your Mac again.
-
-NOTE: This driver is Intel (x86_64) only and will NOT work on Apple Silicon (M1/M2) Macs.]]></welcome>
     <allowed-os-versions>
         <os-version min="10.9"/>
     </allowed-os-versions>
-    <options customize="never" require-scripts="false" rootVolumeOnly="true" hostArchitectures="x86_64"/>
+    <options customize="never" require-scripts="false" rootVolumeOnly="true"/>
     <choices-outline>
         <line choice="default">
             <line choice="com.esi-audiotechnik.esu1808.usb.pkg"/>
@@ -210,16 +200,19 @@ exit 0
 # ---------------------------------------------------------------------------
 
 def main():
-    if len(sys.argv) != 3:
-        print(f"Usage: {sys.argv[0]} <original.pkg> <output.pkg>")
+    if len(sys.argv) not in (2, 3):
+        print(f"Usage: {sys.argv[0]} <original.pkg> [output_dir]")
         sys.exit(1)
 
     original_pkg = sys.argv[1]
-    output_pkg = sys.argv[2]
+    output_dir = sys.argv[2] if len(sys.argv) == 3 else os.path.dirname(original_pkg)
 
     if not os.path.exists(original_pkg):
         print(f"Error: {original_pkg} not found")
         sys.exit(1)
+
+    output_pkg = os.path.join(output_dir, "ESU1808_v3.4.10_monterey.pkg")
+    flat_pkg = os.path.join(output_dir, "ESU1808_v3.4.10_monterey_flat.pkg")
 
     # -----------------------------------------------------------------------
     # 1. Extract the original flat pkg to get its internals
@@ -304,10 +297,21 @@ def main():
     with open(output_pkg, "wb") as f:
         f.write(dist_pkg_bytes)
 
+    # Also write the flat component pkg on its own (simpler, same installer command)
+    with open(flat_pkg, "wb") as f:
+        f.write(component_pkg_bytes)
+
     size_kb = len(dist_pkg_bytes) // 1024
-    print(f"\nDone! Output: {output_pkg} ({size_kb} KB)")
-    print("\nTo install on macOS Monterey (Intel Mac only):")
+    flat_kb = len(component_pkg_bytes) // 1024
+    print(f"\nDone!")
+    print(f"  Distribution pkg : {output_pkg} ({size_kb} KB)")
+    print(f"  Flat component   : {flat_pkg} ({flat_kb} KB)")
+    print()
+    print("To install on macOS Monterey (Intel Mac only) – try in this order:")
+    print(f"  sudo installer -pkg '{flat_pkg}' -target /")
+    print(f"  # if that fails, try the distribution version:")
     print(f"  sudo installer -pkg '{output_pkg}' -target /")
+    print()
     print("Then open System Preferences → Security & Privacy → General")
     print("and click 'Allow' for the ESU1808 driver, then restart.")
 
