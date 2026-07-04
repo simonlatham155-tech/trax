@@ -13,22 +13,52 @@
 
 set -euo pipefail
 
-# ── Defaults ────────────────────────────────────────────────────────────────
-PKG_PATH="${1:-./ESU1808_v3.4.10_2652.pkg}"
+# ── Auto-locate the original pkg if no argument was given ────────────────────
+find_pkg() {
+    for dir in "$HOME/Downloads" "$HOME/Desktop" "$HOME" /tmp; do
+        for f in "$dir"/ESU1808*.pkg "$dir"/esu1808*.pkg; do
+            if [[ -f "$f" ]]; then
+                echo "$f"
+                return 0
+            fi
+        done
+    done
+    return 1
+}
+
+if [[ -n "${1:-}" && "$1" != "/path/to/"* && "$1" != "path/to/"* ]]; then
+    PKG_PATH="$1"
+else
+    echo "No package path given – searching Downloads, Desktop, Home…"
+    if ! PKG_PATH="$(find_pkg)"; then
+        echo ""
+        echo "ERROR: Could not find ESU1808*.pkg automatically."
+        echo ""
+        echo "Please drag the original ESU1808_v3.4.10_2652.pkg onto this Terminal"
+        echo "window and re-run:"
+        echo "  sudo bash $0 <drag-pkg-here>"
+        exit 1
+    fi
+    echo "Found: $PKG_PATH"
+fi
+
 WORK_DIR="$(mktemp -d /tmp/esu1808_install.XXXXXX)"
 trap 'rm -rf "$WORK_DIR"' EXIT
 
 # ── Checks ───────────────────────────────────────────────────────────────────
 if [[ $EUID -ne 0 ]]; then
-    echo "Error: this script must be run as root (use sudo)."
+    echo ""
+    echo "ERROR: Run this with sudo:"
+    echo "  sudo bash $0"
     exit 1
 fi
 
 if [[ ! -f "$PKG_PATH" ]]; then
-    echo "Error: package not found: $PKG_PATH"
-    echo "Usage: sudo bash $0 [path/to/ESU1808_v3.4.10_2652.pkg]"
+    echo "ERROR: Package not found at: $PKG_PATH"
     exit 1
 fi
+
+echo "Installing from: $PKG_PATH"
 
 ARCH="$(uname -m)"
 if [[ "$ARCH" != "x86_64" ]]; then
