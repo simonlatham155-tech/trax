@@ -1,0 +1,64 @@
+---
+id: soundsation
+title: Soundsation
+subtitle: UK Electronic Music Project, 1994–1999
+category: Artist
+year: 1994
+yearEnd: 1999
+tags: [Soundsation, UK, progressive-house, trance, Stress-Records, FFRR, SOS-Recordings, Simon-Latham, Pete-Lunn, Martyn-The-Hat]
+sortKey: 105
+createdAt: "2026-07-15T00:00:00.000Z"
+updatedAt: "2026-07-15T00:00:00.000Z"
+---
+
+## What It Was
+
+Soundsation was a UK electronic music project active between 1994 and 1999. Members: Simon Latham, Pete Lunn, Martyn "The Hat", and Warren Clarke (departed 1995).
+
+The project began in the white-label sampling era and moved through progressive house before documenting a clear shift toward melodic/uplifting trance by the late 1990s. Its catalogue charts the transition from the inside — not as observers of the genre shift but as participants in it.
+
+## The White-Label Years
+
+Early work circulated as white labels across UK clubs before commercial release. *Peace & Joy* (1994) was pressed as Smokin' Vinyl SMK 001 and circulated widely before being picked up by FFRR / London Records. The early pressings contained an uncleared vocal sample characteristic of the era — club audiences noticed the absence of the sample on the retail version, confirming their prior exposure to the white label.
+
+This pattern — underground circulation first, commercial release second — was standard for the period and reflects how progressive house records actually moved through the DJ network.
+
+## Stress Records
+
+The Stress Records release of *Do You Feel It?* (1996) is the moment that placed Soundsation most firmly in the progressive house scene. Stress was Dave Seaman's label — co-founded with Steve Hillier — and one of the defining imprints of the era. Being on Stress meant being taken seriously by the people who mattered.
+
+## John Digweed's Record of 1996
+
+On Pete Tong's BBC Radio 1 Essential Selection Best of 1996 (27 December 1996), John Digweed named *Do You Feel It?* as his favourite record of the year:
+
+> "1996 has been a great year for me… one of my favourite records of this year is a track by Soundsation and it's called Do You Feel It?. Hope you like it, have a good Christmas and a happy new year."
+
+On a subsequent broadcast (7 February 1997), Tong referenced the track's prior underground circulation:
+
+> "I do believe that was John Digweed's big tune of '96 actually — Soundsation 'Do You Feel It?'. Mainly because he was the only one that had it, but we can all have it now."
+
+This exchange is a document of how progressive house records spread — DJ to DJ before any official release, with exclusivity as part of the value.
+
+## Sasha and Cream
+
+The record was also played by Sasha, including at his Cream, Liverpool residency set on 15 June 1996. Sasha playing a record at Cream in 1996 was as significant an endorsement as the scene had.
+
+## The Compilation Placements
+
+- *Peace & Joy* — The House Collection: Club Classics
+- *Do You Feel It?* — Renaissance: The Mix Collection Part 4
+- *New Direction* — La Bush: Music From The Temple Of House Volume 7
+
+Renaissance Part 4 in particular is significant — the Renaissance compilation series was the definitive document of the progressive house era.
+
+## The Trance Shift
+
+*New Direction* (1998, SOS Recordings) documented the project's movement toward melodic/uplifting trance. It received multiple plays on Judge Jules' BBC Radio 1 show in October 1998. This shift reflected exactly the broader genre split happening across the UK scene — the same transition from progressive house to trance that defines this entire knowledge base, experienced from the producing side.
+
+## SOS Recordings
+
+Soundsation's own independent imprint. Distributed via Amato (1994–1997) and MOS Music (1997–1999). Functioned as a release vehicle outside major-label and established independent label constraints.
+
+## Production Setup
+
+Mid-1990s hardware studio: Atari computers running Cubase, Roland synthesisers, Akai sampling, rack effects processors, Behringer Eurodesk mixer, final recording to DAT. This was the standard UK electronic music production environment of the period — no software DAWs, no plugins, everything in the room.
