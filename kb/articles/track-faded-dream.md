@@ -27,6 +27,12 @@ The Future Music Magazine placement served the same purpose from a different ang
 
 *Faded Dream* was not a standalone track. It was Soundsation making the case for the next stage, on a publisher's terms, in the same year as the underground circuit was responding to *Do You Feel It?* entirely on its own terms. Both were real; neither cancelled the other out.
 
+## The Album Option That Didn't Come
+
+The album option was not secured. Despite the publishing deal, the PolyGram-directed work, and the production credibility demonstrated by the Future Music placement, the major label pathway did not advance.
+
+The next Soundsation release after this period was *New Direction* (1998) on SOS Recordings — their own label, a full lead vocal trance record, entirely outside the major publishing world. The two years between *Faded Dream* and *New Direction* are the gap left by the option that didn't happen. The music that emerged from that gap went in a different direction entirely — and that direction turned out to be where the genre was going.
+
 ## The Producer Response
 
 Many producers spoke to Soundsation about *Faded Dream* after its appearance on the magazine CD. This is a specific kind of attention — not DJs saying they were playing it, not chart positions, but people who made records reaching out about the production itself. In 1996, with *Do You Feel It?* simultaneously circulating through the DJ network, *Faded Dream* was opening a parallel conversation with the production community.
