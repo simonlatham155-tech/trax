@@ -52,7 +52,7 @@ Inclusion on *Renaissance — The Mix Collection Part 4* placed *Do You Feel It?
 
 ## Dave Seaman at the Opera House — Watching from the Balcony
 
-Simon Latham was present when Dave Seaman played *Do You Feel It?* at the Opera House in Bournemouth. He and Pete watched from the balcony before going down to the dancefloor.
+Simon Latham was present when Dave Seaman played *Do You Feel It?* at the Opera House in Bournemouth, around 1997. He and Pete watched from the balcony before going down to the dancefloor.
 
 The balcony view came first — seeing the crowd from above, watching the room respond to the record, the distance before the immersion. Then going down.
 

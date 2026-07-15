@@ -35,7 +35,7 @@ His Global Underground Athens album is one of the best entries in that landmark 
 
 ## The Opera House, Bournemouth
 
-Seaman played *Do You Feel It?* — the Stress Records release on his own label — at the Opera House in Bournemouth. Simon Latham and Pete Lunn watched from the balcony before going down to the dancefloor. Seaman's label had released the record; the people who made it were in the room watching the crowd respond to it from above before going down into it.
+Seaman played *Do You Feel It?* — the Stress Records release on his own label — at the Opera House in Bournemouth, around 1997. Simon Latham and Pete Lunn watched from the balcony before going down to the dancefloor. Seaman's label had released the record; the people who made it were in the room watching the crowd respond to it from above before going down into it.
 
 ## Muzik Magazine
 
