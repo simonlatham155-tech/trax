@@ -43,13 +43,21 @@ This exchange is a precise document of how progressive house records spread thro
 
 Sasha played *Do You Feel It?* at his Cream, Liverpool residency on 15 June 1996. A Sasha play at Cream in 1996 was among the most significant endorsements the progressive house scene could offer.
 
-## The Rare Pressing — Confirmed
+## The Banned Pressing — The Real Rare Copy
 
-The version Sasha and Digweed played was the **SOS Recordings pressing (12SOS003)** — the Soundsation own-label release carrying the *Original Mix* and the *Lunn & Latham Mix*. This is distinct from the commercial Stress Records release (12STR 88), which carries the Chris & James Solar Power Remix and Big C Remix.
+Before the SOS003 pressing, there was an earlier version: *Do You Feel It* with an uncleared **Colonel Abrams** vocal on the B-side — *You're the One for Me*. This pressing was limited to approximately **1,000 copies** before it was banned due to the uncleared vocal.
 
-Pete Tong confirmed the exclusivity on his 7 February 1997 Essential Selection: "mainly because he was the only one that had it, but we can all have it now."
+This is the version Sasha, Digweed, and the DJs in their network had. The ban meant it never circulated beyond those initial 1,000 copies — which is precisely what made it the record that Digweed was "the only one that had." Pete Tong confirmed this on his 7 February 1997 Essential Selection: "mainly because he was the only one that had it, but we can all have it now."
 
-The SOS pressing circulated through the DJ network before Stress picked it up — the same white-label-first model that had carried *Peace & Joy* before FFRR. The Lunn & Latham Mix on 12SOS003 is the version that built the record's reputation. The Stress release with remixes is what the wider market eventually received.
+The banned Colonel Abrams pressing follows exactly the same pattern as *Peace & Joy* — an early pressing with an uncleared sample that gave the record its underground life before legal intervention stopped it. In both cases the sample or vocal was removed for subsequent commercial releases; in both cases the version the DJs wanted was the one that couldn't legally exist at scale.
+
+**Colonel Abrams** was a US R&B and soul artist known for *Trapped* (1985) and *You're the One for Me*. His vocals circulated widely in the UK house and progressive scene through uncleared samples and edits — a standard practice of the white-label era.
+
+## The SOS003 Pressing
+
+Following the ban, SOS Recordings released 12SOS003 — the *Original Mix* and *Lunn & Latham Mix* — as the next version in circulation. This is the pressing some DJs had after the banned copy but before the Stress Records commercial release.
+
+Pete Tong's "we can all have it now" referred to the Stress release reaching the wider market — but the record had already moved through at least two underground pressings before that point.
 
 ## The Label Decision — Jackpot vs. Stress
 
@@ -95,15 +103,16 @@ It was BBC Radio 1. The record that had moved through the DJ network as a rare p
 
 ## Full Discography of the Track
 
-| Release | Label | Cat No | Year | Mixes |
+| Release | Label | Cat No | Year | Notes |
 |---|---|---|---|---|
-| Rare pressing | SOS Recordings | 12SOS003 | 1996 | Original Mix, Lunn & Latham Mix |
-| Promo | Stress Records | 12STR 88P | 1996 | Original Mix, Dos Deviants Principle Vocal Mix |
-| Commercial release | Stress Records | 12STR 88 | 1998 | Chris & James Solar Power Remix, Original Mix, Big C Remix |
-| Digital reissue | Airport Route Recordings | ART005 | 2008 | Remastered Mix, Royal Sapien Big Brother Remix, Royal Sapien DnB Remix, Android Cartel Remix |
-| Later remixes | Capital Heaven | — | 2019+ | Tuxedo "Dreamy" Remix, Framewerk's Resistance Remix, Terje Saether Remix, Denny Loco Remix, Blnd Tger Club Dub, Comit Remix |
+| **Banned pressing** | SOS Recordings | — | 1996 | Colonel Abrams vocal B-side (*You're the One for Me*); ~1,000 copies; withdrawn. The version Sasha, Digweed and network DJs had. |
+| Underground pressing | SOS Recordings | 12SOS003 | 1996 | Original Mix / Lunn & Latham Mix — post-ban circulation |
+| Promo | Stress Records | 12STR 88P | 1996 | Original Mix / Dos Deviants Principle Vocal Mix |
+| Commercial release | Stress Records | 12STR 88 | 1998 | Chris & James Solar Power Remix / Original Mix / Big C Remix |
+| Digital reissue | Airport Route Recordings | ART005 | 2008 | Remastered Mix; Royal Sapien Big Brother Remix; Royal Sapien DnB Remix; Android Cartel Remix |
+| Later remixes | Capital Heaven | — | 2019+ | Tuxedo "Dreamy" Remix; Framewerk's Resistance Remix; Terje Saether Remix; Denny Loco Remix; Blnd Tger Club Dub; Comit Remix |
 
-The track has maintained a continuous life of remixes and reissues from 1996 to the present.
+The track moved through at least five distinct release phases from 1996 to the present.
 
 ## BBC Radio 1
 
