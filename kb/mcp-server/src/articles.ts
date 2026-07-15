@@ -101,7 +101,7 @@ export function searchArticles(opts: {
         a.title.toLowerCase().includes(q) ||
         a.subtitle?.toLowerCase().includes(q) ||
         a.content.toLowerCase().includes(q) ||
-        a.tags.some((t) => t.toLowerCase().includes(q)) ||
+        a.tags.some((t) => String(t).toLowerCase().includes(q)) ||
         a.category.toLowerCase().includes(q)
     );
   }
