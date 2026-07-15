@@ -63,7 +63,7 @@ Pete Tong's "we can all have it now" referred to the Stress release reaching the
 
 Before signing to Stress, Soundsation had an offer from Jackpot Records — the label that Blue Amazon were on. Jackpot was a credible home for progressive house at the time; Blue Amazon were a serious act on the label.
 
-Simon chose Stress because he knew James Wiltshire, who was the engineer there. That connection went back to 1990 — Wiltshire had produced two tracks for Simon's earlier band Something Wild. By the time the Stress decision was made, the relationship was four years old and built on having actually made music together, not just knowing someone through the scene.
+Simon knew Stress were interested in the record. The label deal was done through James Wiltshire — the engineer Simon had known since 1990, when Wiltshire produced two tracks for Something Wild. Wiltshire was the route to closing what Stress already wanted. The Jackpot offer was the alternative; the Wiltshire connection made Stress the choice.
 
 This is a detail that shaped everything that followed: the Digweed endorsement, the Renaissance compilation placement, the record's reach through the DJ network. It came from a personal connection at the point of signing.
 
