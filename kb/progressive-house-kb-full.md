@@ -914,6 +914,8 @@ A solo album written and recorded in Iceland, moving progressive house compositi
 - **Soren Andrews – *Watch The World Burn*** — Original Mix and Dub Mix
 - **Soren Andrews – *Lost*** — Original Mix (2018); Dub Mix (2019)
 - **Chris Sterio & Matt Black – *Future Shock*** — Original Mix and Silinder Remix (2019)
+- **Johann Stone – *Fellow Man*** — Polytechnic Recordings (2010); progressive trance, 8 minutes
+- **Natlife – *Everything*** — True Progressive (TPR001, 2013)
 - **Aeron Aether & Retroid – *The Story Goes*** — (2018)
 - tONKPROJECT — *Forever (Ingi's BackRoom Mix)*
 - Spark7 — *You Wanted More*
@@ -1142,6 +1144,8 @@ Iceland's national newspaper Morgunblaðið profiled Simon during this period. T
 Simon dedicated a compilation to encouraging young Icelandic musicians to share their music. *Audio 101: Reykjavik* was the result — a platform for emerging local artists, not a commercial exercise but an act of curation and encouragement.
 
 Two of those artists went on to have international careers. **Kid Mistik** — later known as **Bjarki** — became a significant figure in contemporary underground techno and electronic music. **Johann Stone** also became known beyond Iceland. Both of their earliest documented material is on Airport Route Recordings because Simon gave them a place to put it.
+
+The relationship with Johann Stone extended beyond the compilation. Simon and Johann Stone co-released **Fellow Man** (Polytechnic Recordings, March 2010) — a progressive trance track, 8 minutes, the two of them as collaborators rather than as label owner and emerging artist.
 
 The compilation reflects the same instinct that ran through the entire career: being early, being in the room before the wider world arrives, and putting things on record.
 
