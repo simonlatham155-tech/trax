@@ -1,6 +1,6 @@
 # Progressive House & the Birth of Trance — Personal Knowledge Base
 
-This document contains 46 articles organised as a personal knowledge base about the origins of progressive house music and how it evolved into modern trance. The content reflects personal experiences and deep familiarity with the scene.
+This document contains 47 articles organised as a personal knowledge base about the origins of progressive house music and how it evolved into modern trance. The content reflects personal experiences and deep familiarity with the scene.
 
 ---
 
@@ -832,6 +832,42 @@ Hardware: Atari computers running Cubase, Roland synthesisers, Akai sampling, ra
 
 ---
 
+### Tartmaker / Lunn & Latham (1999)
+*Simon Latham & Pete Lunn post-Soundsation, 1999 onwards*
+Tags: Simon-Latham, Pete-Lunn, Tartmaker, Lunn-Latham, indie, Starkiller, The-Green-Room, Bandcamp, North-America, progressive-house
+
+## After Soundsation
+
+When Soundsation wound down in 1999, Simon Latham and Pete Lunn continued working together under two different identities — reflecting the two directions their music had always pulled toward.
+
+## Tartmaker — The Green Room (2000)
+
+Simon and Pete formed **Tartmaker** and released **The Green Room** in December 2000 — 12 tracks, available on Bandcamp.
+
+The Bandcamp description, in their own words:
+
+> "In escape from their usual dance genre former 'Soundsation' members Pete Lunn and Simon Latham began writing an album without the limitations of their genre, as the writing progressed Pete grabbed his guitar and shaped the direction of the album to a more indie sound as Simon focused on switching writing styles."
+
+The album was built in a MIDI suite rather than a full studio — all recorded parts sampled and re-played into the songs. The intention was to produce it to a high demo level before a label would take it to a bigger studio. It was never signed.
+
+It was released on the internet and became one of the more popular downloads on the old MP3.com, with over **6,000 downloads on CNET.download** — significant reach for 2000, when those platforms were primary music distribution channels.
+
+**Tracklist**: Travelling Vertically / Winter Sun / No Ordinary Me / Making me real / American Science / Honest / The moon shines on me / Facing the rain / The voice that calls us / Scared / Here's the ending / The Green Room
+
+The album is filed under **electronic, britpop, Iceland** on Bandcamp — a description that captures the hybrid it is: two dance music producers making indie rock, eventually released from Iceland.
+
+## Lunn & Latham — Starkiller
+
+Under the name **Lunn & Latham**, they released *Starkiller* as a progressive house track. It charted in the North American progressive house chart — a different geography from the UK circuit of the Soundsation years, but the same genre instinct.
+
+The Lunn & Latham name makes explicit what had always been the case: the Soundsation sound was a collaboration between two specific people whose individual contributions shaped the result. The progressive house and the house-leaning sides of SOS Recordings, the pop writing and the club-floor knowledge, all came from this partnership.
+
+## The Continuity
+
+Tartmaker and Lunn & Latham are not a break from what came before. They are Simon and Pete continuing to work, in different formats, with the same relationship that had produced Soundsation. The Green Room and Starkiller sit between the Soundsation period and Simon's Iceland chapter, documenting a collaboration that outlasted the project that had been its most visible expression.
+
+---
+
 ### Simon Latham — Later Career (2000)
 *Post-Soundsation: Iceland, A State of Trance, In Search of Sunrise, film & TV*
 Tags: Simon-Latham, Iceland, Airport-Route-Recordings, A-State-of-Trance, Armada, DJ-Eco, Pole-Folder, GusGus, Hernán-Cattáneo, Lethal-Weapon, Trance-Atlantic, vocal-trance
@@ -853,6 +889,14 @@ Contemporary reviews of Simon's vocal work describe consistent qualities across 
 
 The Marc Almond comparison is specific: a voice associated with British electro-pop and emotional directness, carrying into progressive trance contexts. The "indie rock" quality distinguishes Simon's vocal approach from conventional trance vocalists of the period.
 
+## The ibreathe Album — Beatport Description
+
+The official Beatport description of *ibreathe* (Airport Route Recordings, 2012):
+
+> "rooted in dark rich piano chords, although skimming the progressive house sound Simon is known for, this drifts over to a more classical conclusion. Like stripping the emotional aspect out of a progressive composition to make it play a more defining role in the overall sound."
+
+A solo album written and recorded in Iceland, moving progressive house composition toward something more classical in resolution. The emotional architecture of progressive house turned inward.
+
 ## Vocal Collaborations — Full List
 
 - **Ascend (Roberto Molina) – *No Way Back*** — Amsterdam Trance Records; Johnny Yono remixes on Adrian & Raz
@@ -864,8 +908,13 @@ The Marc Almond comparison is specific: a voice associated with British electro-
 - **Thorisson, Simon Latham & Robert Darry – *Here We Are*** — A State of Trance Episode 802
 - **Pole Folder & Simon Latham – Human EP** — GusGus remix; Hernán Cattáneo support
 - **Latham & Quano – *Fallen Angel*** — Alter Ego Records (*Tranquillity State* compilation)
-- **Espen Lorentzen – *Heart*** (Temple One Pres. Tu Casa Remix) — Alter Ego
+- **Espen Lorentzen – *Heart*** — Alter Ego Records (AE031, 2010); Temple One remix; Peter Lesko Dub
 - **Vitaly Beskrovny – *If I?*** — *Tranquillity State* compilation, Alter Ego
+- **Vitodito – *The Day Our Lives Turned*** — Neuroscience Recordings (NEURO110, 2013); regular plays from Above & Beyond, Jaytech
+- **Soren Andrews – *Watch The World Burn*** — Original Mix and Dub Mix
+- **Soren Andrews – *Lost*** — Original Mix (2018); Dub Mix (2019)
+- **Chris Sterio & Matt Black – *Future Shock*** — Original Mix and Silinder Remix (2019)
+- **Aeron Aether & Retroid – *The Story Goes*** — (2018)
 - tONKPROJECT — *Forever (Ingi's BackRoom Mix)*
 - Spark7 — *You Wanted More*
 - Zaa — *Trains*
@@ -878,19 +927,26 @@ The Marc Almond comparison is specific: a voice associated with British electro-
 - **Infrasonic Recordings** — Colonial One, Hanski; described by Mixmag as "arguably one of the world's most exciting new trance labels"
 - **Magic Island / Black Hole Recordings** — Ari Kyle collaborations; Roger Shah's label
 - **Alter Ego Records** — Latham & Quano, Espen Lorentzen, Vitaly Beskrovny
+- **Proton Music** — progressive house circuit
+- **Silk Music** — progressive and melodic releases
+- **Neuroscience Recordings** — Vitodito collaboration
+- **Olaris Records** — On Fire (2008)
 
 ## Broadcast Support
 
 Tracks supported on: A State of Trance, Future Sound of Egypt, Planet Perfecto (Paul Oakenfold), Euphonic Sessions, Russia Goes Clubbing, Mellomania Deluxe, Proton Radio.
 
+Additional DJ support documented on Beatport: **Sean Tyas**, **Andy Moor**, **Above & Beyond**, **Jaytech**.
+
 Planet Perfecto — Oakenfold's own show — is a direct return to the name that had defined the trance side of the 1990s progressive house split. Oakenfold had left the progressive house underground for trance in the mid-1990s. His show later carried Simon Latham's vocal work.
 
-## Solo Releases (Airport Route Recordings)
+## Solo Releases
 
-- *Left Right Of Centre* (2008)
-- *Watertight* (2009)
-- *ibreathe* (2012)
-- *Inside The Mind Of A Man* (2015)
+- *On Fire* — Olaris Records (OLARIS040, 2008)
+- *Left Right Of Centre* — Airport Route Recordings (2008)
+- *Watertight* — Airport Route Recordings (2009)
+- *ibreathe* — Airport Route Recordings (2012)
+- *Inside The Mind Of A Man* — Airport Route Recordings (2015)
 
 ## Film & Television
 
@@ -904,7 +960,9 @@ The progression from Something4yourweekend to Trance Atlantic mirrors the broade
 
 ## Birgitta Haukdal
 
-Remix and production work with Birgitta Haukdal, Iceland's Eurovision Song Contest 2003 representative. One of several connections made through the Icelandic musical community during the Airport Route Recordings years.
+Simon approached Birgitta Haukdal — Iceland's Eurovision 2003 representative — about remixing her album *Ein* for a club sound. She agreed. The remixes were done as Lunn & Latham and released as remix edits.
+
+Additional remix work: Simon remixed *Pragmatic World* (Beatport top track). *What Do You See* (DJ Eco feat. Simon Latham) was subsequently remixed by Ashley Wallbridge.
 
 ## Sylvi
 
@@ -1102,9 +1160,11 @@ SOS Recordings (UK, 1990s, with Pete Lunn) → Airport Route Recordings (Iceland
 
 The independent instinct — operating outside major labels, releasing through specialist networks, building a catalogue on vinyl and digital — carried forward across two decades and two countries.
 
-## Birgitta Haukdal
+## Birgitta Haukdal — Ein Remix Edits
 
-Simon's work during the Airport Route period included remix and production work with Birgitta Haukdal, Iceland's Eurovision 2003 representative. The connection reflects the breadth of the Icelandic musical community Simon was embedded in — not exclusively electronic music but the wider scene that a small country's cultural world produces.
+Birgitta Haukdal represented Iceland at Eurovision 2003. She was releasing her album *Ein* when Simon asked if he could remix it for a club sound. She agreed. The remixes were done as **Lunn & Latham** — Simon and Pete Lunn — and released as remix edits.
+
+Simon initiated the approach, not Birgitta. A resident of Iceland, embedded in its musical community, hearing an Icelandic artist's album and asking if he could take it somewhere else. The Lunn & Latham name connects it directly to the post-Soundsation work: the same partnership that made The Green Room and released Starkiller, now remixing Eurovision material for club floors.
 
 ---
 
@@ -1266,9 +1326,13 @@ This is a detail that shaped everything that followed: the Digweed endorsement, 
 
 Stress Records was co-founded by Dave Seaman and Steve Hillier. Being placed on Stress in 1996 — distributed through DMC — meant being taken seriously by the inner circle of the UK progressive house scene. The label's catalogue from this period is a map of the sound at its mid-period peak.
 
-## The Renaissance Compilation
+## The Renaissance Compilation — Seaman Called First
 
-Inclusion on *Renaissance — The Mix Collection Part 4* placed *Do You Feel It?* alongside the defining documents of the genre. The Renaissance compilation series was the most prestigious progressive house release format of the era.
+Dave Seaman selected *Do You Feel It?* for *Renaissance — The Mix Collection Part 4* himself, then called Soundsation about it. This happened **before** the Stress Records deal was signed.
+
+The sequence matters. Seaman didn't pick up the track because it was on his label — he found the rare pressing, decided it belonged on the definitive progressive house compilation of the era, and made contact. That call from Seaman was part of what established Stress Records' interest. The Renaissance placement preceded the label deal and helped create the conditions for it.
+
+The Renaissance Mix Collection series was the most prestigious progressive house release format of the era. Seaman selecting a track before signing the act that made it is the clearest possible evidence of how the progressive house network operated: the record reached the right person through the DJ circuit, and the person with the power to act on it did.
 
 ## Dave Seaman at the Opera House — Watching from the Balcony
 
