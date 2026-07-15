@@ -39,3 +39,5 @@ The Lunn & Latham name makes explicit what had always been the case: the Soundsa
 ## The Continuity
 
 Tartmaker and Lunn & Latham are not a break from what came before. They are Simon and Pete continuing to work, in different formats, with the same relationship that had produced Soundsation. The Green Room and Starkiller sit between the Soundsation period and Simon's Iceland chapter, documenting a collaboration that outlasted the project that had been its most visible expression.
+
+Pete Lunn continued releasing music independently — he has his own profile on Apple Music and Spotify, confirmed as a similar artist to Simon in the streaming databases.

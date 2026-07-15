@@ -54,7 +54,8 @@ A solo album written and recorded in Iceland, moving progressive house compositi
 - **Chris Sterio & Matt Black – *Future Shock*** — Original Mix and Silinder Remix (2019)
 - **Johann Stone – *Fellow Man*** — Polytechnic Recordings (2010); progressive trance, 8 minutes
 - **Natlife – *Everything*** — True Progressive (TPR001, 2013)
-- **Aeron Aether & Retroid – *The Story Goes*** — (2018)
+- **Aeron Aether & Retroid – *The Story Goes*** — on *Landscapes & Dimensions* album (2018)
+- **Andy Woldman & Denis Sender – *Dreams*** — Single (2014)
 - tONKPROJECT — *Forever (Ingi's BackRoom Mix)*
 - Spark7 — *You Wanted More*
 - Zaa — *Trains*
@@ -81,15 +82,21 @@ Additional DJ support documented on Beatport: **Sean Tyas**, **Andy Moor**, **Ab
 
 Planet Perfecto — Oakenfold's own show — is a direct return to the name that had defined the trance side of the 1990s progressive house split. Oakenfold had left the progressive house underground for trance in the mid-1990s. His show later carried Simon Latham's vocal work.
 
-## Solo Releases
+## Solo Discography
 
-- *On Fire* — Olaris Records (OLARIS040, 2008)
-- *Left Right Of Centre* — Airport Route Recordings (2008)
-- *Watertight* — Airport Route Recordings (2009)
-- *Watertight Remix Competition* EP — Airport Route Recordings (2010)
-- *ibreathe* — Airport Route Recordings (2012)
-- *Inside The Mind Of A Man* — Airport Route Recordings (2015)
-- *Landscapes & Dimensions* — (2018)
+| Year | Title | Label / Format |
+|---|---|---|
+| 2006 | *Fly* | Single — pre-Airport Route |
+| 2007 | *Beatsy EP* | Airport Route Recordings — first label release |
+| 2009 | *Watertight* | Airport Route Recordings |
+| 2009 | *Impartial Thought* | Airport Route Recordings |
+| 2010 | *Watertight Remix Competition* | Airport Route Recordings |
+| 2011 | *Electric* | Airport Route Recordings |
+| 2012 | *ibreathe* | Airport Route Recordings |
+| 2013 | *iBreathe Again* | Airport Route Recordings |
+| 2015 | *Inside The Mind Of A Man* | Airport Route Recordings |
+
+*Fly* (2006) predates the founding of Airport Route Recordings (2007) — the earliest documented digital solo release. *Beatsy EP* (2007) marks the launch of the label.
 
 ## Film & Television
 
