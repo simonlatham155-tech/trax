@@ -27,6 +27,8 @@ Simon dedicated a compilation to encouraging young Icelandic musicians to share 
 
 Two of those artists went on to have international careers. **Kid Mistik** — later known as **Bjarki** — became a significant figure in contemporary underground techno and electronic music. **Johann Stone** also became known beyond Iceland. Both of their earliest documented material is on Airport Route Recordings because Simon gave them a place to put it.
 
+The relationship with Johann Stone extended beyond the compilation. Simon and Johann Stone co-released **Fellow Man** (Polytechnic Recordings, March 2010) — a progressive trance track, 8 minutes, the two of them as collaborators rather than as label owner and emerging artist.
+
 The compilation reflects the same instinct that ran through the entire career: being early, being in the room before the wider world arrives, and putting things on record.
 
 ## Simon's Own Releases

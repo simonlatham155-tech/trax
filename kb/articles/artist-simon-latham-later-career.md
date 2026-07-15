@@ -52,6 +52,8 @@ A solo album written and recorded in Iceland, moving progressive house compositi
 - **Soren Andrews – *Watch The World Burn*** — Original Mix and Dub Mix
 - **Soren Andrews – *Lost*** — Original Mix (2018); Dub Mix (2019)
 - **Chris Sterio & Matt Black – *Future Shock*** — Original Mix and Silinder Remix (2019)
+- **Johann Stone – *Fellow Man*** — Polytechnic Recordings (2010); progressive trance, 8 minutes
+- **Natlife – *Everything*** — True Progressive (TPR001, 2013)
 - **Aeron Aether & Retroid – *The Story Goes*** — (2018)
 - tONKPROJECT — *Forever (Ingi's BackRoom Mix)*
 - Spark7 — *You Wanted More*
