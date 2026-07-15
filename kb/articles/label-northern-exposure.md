@@ -34,6 +34,10 @@ The Tong follow-up confirmed it: "mainly because he was the only one that had it
 
 Northern Exposure had just demonstrated that the progressive house aesthetic could travel to America, could fill rooms, could be heard as an album. Digweed's response was to point at a white-label-era Stress Records track. That is a statement of values: the thing that mattered to him was not the reach, but the source. The listening album linked back to the records that had been there — and those records were still where his attention was.
 
+## The Bedrock Continuation
+
+Belgian producer Pole Folder's first releases were on Bedrock — Digweed's label — and he cited Northern Exposure specifically as a touchstone in a 2014 Decoded Magazine interview. When Pole Folder later collaborated with Simon Latham on the Human EP (Electronical Reeds, 2014), GusGus — who appeared on Northern Exposure — remixed the track because Simon is a personal friend of the group. The document that Digweed was touring America with in 1996, the same year he named *Do You Feel It?* as his favourite record, is explicitly in the chain of connections that produced a 2014 collaboration between the person who made that record and a Belgian producer whose career began on Digweed's own label.
+
 ## GusGus
 
 Among the artists featured on Northern Exposure was GusGus — an Icelandic collective whose electronic work sat in the space between art-electronic, progressive house, and leftfield club music. Their inclusion reflected Sasha and Digweed's curatorial reach: the album was not a pure progressive house document but something wider, shaped by the listening-album format rather than the dancefloor.

@@ -34,11 +34,33 @@ updatedAt: "2026-07-15T00:00:00.000Z"
 | **Simon Latham** | Strips it back to "more melodic and melancholic pastures" |
 | **Superdrums** | "Typically percussive layer" |
 
-## The GusGus Connection — Confirmed
+## How the Collaboration Happened — Pole Folder's Account
 
-GusGus are described in the Data Transmission review as "Kompakt staples" — associated with the Cologne minimal/tech-house label, adding a dimension beyond the Icelandic art-electronic framing. Their involvement as remixers on a Belgian progressive label release, for a collaboration involving a British-born Icelandic vocalist, maps exactly the international network that had formed around this corner of the scene.
+From Decoded Magazine (2014):
 
-The connection between Simon Latham and GusGus runs through Northern Exposure (1996) — GusGus were featured on Sasha and Digweed's listening album the same year Digweed named *Do You Feel It?* as his favourite record. Simon living in Iceland, where GusGus operate from, made the working relationship possible. The Human EP is that network operating in 2014.
+> "I originally started some tracks with Simon a year ago after we spoke via email. He liked my work and it was very interesting for me to exchange ideas with him. One of the tracks we were working on became quickly an evident option for the 3 years album of Electronical Reeds."
+
+Simon wrote the lyrics on both tracks. Pole Folder was responsible for music writing and production. *The Bitter Memory* emerged from returning to an earlier track they had started; the shift from planned single to EP came as the project developed.
+
+## How GusGus Got Involved
+
+From Pole Folder in Decoded Magazine:
+
+> "Simon is a friend of the group. When he said that they were interested to do a remix, it was a dream coming true for me. I've been a big fan of GusGus for ages. It's an honour for me to be on their impressive list of artists they have remixed, such as Björk, Depeche Mode and Moloko."
+
+Simon's friendship with GusGus — formed through living in Iceland — brought them to a Belgian progressive EP. GusGus's remix list includes Björk, Depeche Mode, and Moloko.
+
+## The Bedrock and Northern Exposure Thread
+
+Pole Folder's first releases were on **Bedrock** — John Digweed's label. In the same Decoded interview, he cited Northern Exposure as a touchstone:
+
+> "I didn't know John that much at the beginning, although was blown away by his fantastic compilation with Sasha, Northern Exposure. My studio partner at that time, CP, was more aware of his selection and work. We often went to the Bedrock parties after I signed the first single with them."
+
+The thread: Digweed championed *Do You Feel It?* in 1996, the same year Northern Exposure was released. Pole Folder was inspired by Northern Exposure, released on Bedrock, and then collaborated with Simon Latham. Northern Exposure is the document that connects all of these people — Digweed, Pole Folder, and Simon — across nearly two decades.
+
+## The Hernán Cattáneo Connection
+
+Pole Folder, at the time of the Human EP, had just mixed a compilation for **Sudbeat** — Hernán Cattáneo's own label. This explains Cattáneo's support for the Human EP directly: an existing professional relationship between Pole Folder and Cattáneo's operation.
 
 ## Simon's Own Remix
 
