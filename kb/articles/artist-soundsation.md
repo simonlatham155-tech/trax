@@ -39,7 +39,9 @@ Soundsation did not begin as a planned project. It started with a one-off idea: 
 
 Simon moved from Salisbury to Bournemouth at this time. He had been Salisbury-based — the same city where Something Wild had played the BBC Children in Need event in 1990. The move to Bournemouth brought him into the club circuit that would shape what Soundsation made: going out most weekends, hearing the music he wanted to write, learning from the floor.
 
-Martyn — known as "The Hat" — was a local Bournemouth DJ, the DJ component of a project where Simon and Pete came from the listener's side of the floor. Warren Clarke was involved in the early period but departed in 1995.
+Martyn — known as "The Hat" — was a local Bournemouth DJ, the DJ component of a project where Simon and Pete came from the listener's side of the floor.
+
+Warren Clarke was a producer involved in the early period. His sound was rooted in garage — UK garage, which was developing its own distinct character in the mid-1990s, pulling away from house and toward what would become 2-step. With the Soundsation sound moving toward progressive house and eventually trance, the direction was always going to be incompatible with where Warren's instincts were. He went off solo in 1995 to pursue his own path. A natural creative split rather than a falling out — two directions that couldn't coexist in the same project.
 
 The Lenny Kravitz sample origin explains the Peace & Joy pattern too. The early Soundsation records were built on samples — uncleared, pressed for club use, pulled when the commercial reality caught up. That was the method before the method had a name.
 
