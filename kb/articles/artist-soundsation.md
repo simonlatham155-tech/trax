@@ -17,6 +17,14 @@ Soundsation was a UK electronic music project active between 1994 and 1999. Memb
 
 The project began in the white-label sampling era and moved through progressive house before documenting a clear shift toward melodic/uplifting trance by the late 1990s. Its catalogue charts the transition from the inside — not as observers of the genre shift but as participants in it.
 
+## How It Started — Bournemouth
+
+Simon Latham and Pete Lunn were not DJs. They were clubbers — going out most weekends to nightclubs in Bournemouth, on the south coast of England, absorbing the music they wanted to make by experiencing it on the floor.
+
+Martyn — known as "The Hat" — was a local Bournemouth DJ. He was the DJ component of the project; Simon and Pete were the clubbers who knew what they wanted to write because they had heard it and felt it every weekend. The combination was the project: floor-level knowledge of what worked, a DJ's understanding of how records functioned in a room, and the drive to make something of their own.
+
+This origin is significant. Soundsation's sound was not theorised from the outside. It came from being inside the experience — from knowing, as a regular clubber, what a record needed to do to a room. The Bournemouth club scene was not London, not Manchester, not Liverpool. It was a seaside town with its own circuit, its own nights, its own version of what was happening nationally in progressive house. Simon and Pete learned the music there, in that room, before they ever made any of it.
+
 ## The White-Label Years
 
 Early work circulated as white labels across UK clubs before commercial release. *Peace & Joy* (1994) was pressed as Smokin' Vinyl SMK 001 and circulated widely before being picked up by FFRR / London Records. The early pressings contained an uncleared vocal sample characteristic of the era — club audiences noticed the absence of the sample on the retail version, confirming their prior exposure to the white label.
