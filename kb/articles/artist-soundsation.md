@@ -19,11 +19,11 @@ The project began in the white-label sampling era and moved through progressive 
 
 ## Before Soundsation — Something Wild (1990)
 
-Simon Latham's musical history before Soundsation includes an earlier band, Something Wild, active around 1990. James Wiltshire produced two of their tracks.
+Simon Latham's musical history before Soundsation includes an earlier project, Something Wild (1990), with a friend, John Knight. The sound was synth-pop influenced — closer to Pet Shop Boys or East 17 than anything that would follow. They played live at a BBC Children in Need event in Salisbury that year.
 
-Wiltshire would go on to become one half of Freemasons — with Russell Small, one of the biggest house production and remix operations in the UK in the 2000s, with major chart records and remixes for artists including Beyoncé and Faithless. In 1990 he was producing tracks for Something Wild in Bournemouth.
+James Wiltshire produced two of their tracks. Wiltshire would go on to become one half of Freemasons — with Russell Small, one of the biggest house production and remix operations in the UK in the 2000s, with chart records and remixes for artists including Beyoncé and Faithless. In 1990 he was producing synth-pop in Bournemouth.
 
-This is the origin of the personal connection that would later determine where *Do You Feel It?* was signed — when the Jackpot vs. Stress decision came four years later, Simon's trust in Wiltshire was not based on reputation or scene proximity but on having worked with him directly.
+The distance between Something Wild in 1990 and *Do You Feel It?* on Stress Records in 1996 is the distance between Pet Shop Boys and John Digweed. The connection that bridged it was Wiltshire — the one constant across both moments. When the Jackpot vs. Stress decision came four years later, Simon's trust in him was based on having made music together, not on anything the scene had told him.
 
 ## How It Started — Bournemouth
 
