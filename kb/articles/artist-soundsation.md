@@ -101,4 +101,8 @@ SOS Recordings was co-founded and co-run by Simon Latham and Pete Lunn. It distr
 
 ## Production Setup
 
-Mid-1990s hardware studio: Atari computers running Cubase, Roland synthesisers, Akai sampling, rack effects processors, Behringer Eurodesk mixer, final recording to DAT. This was the standard UK electronic music production environment of the period — no software DAWs, no plugins, everything in the room.
+The studio was Pete Lunn's bedroom in a house on a clifftop near Christchurch — the town between Bournemouth and the Hampshire border on the south coast of England.
+
+Hardware: Atari computers running Cubase, Roland synthesisers, Akai sampling, rack effects processors, Behringer Eurodesk mixer, final recording to DAT. No software DAWs, no plugins — everything in the room, in a bedroom on a clifftop.
+
+*Do You Feel It?*, *Peace & Joy*, *Faded Dream*, *Get Up '95*, *New Direction* — all of it made there. The record that Digweed named his favourite of 1996 on Radio 1, the record that reached the Renaissance compilation, the record that Sasha played at Cream: made in a bedroom on a clifftop near Christchurch.
