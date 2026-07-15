@@ -3,8 +3,8 @@ id: seed-010
 title: Sasha
 subtitle: Alexander Coe
 category: Artist
-year: 1990
-tags: [DJ, producer, UK, Haçienda, Twilo, Renaissance]
+year: 1989
+tags: [DJ, UK, Wales, Haçienda, Renaissance, Twilo, Shelley's, progressive-house]
 sortKey: 110
 createdAt: "2026-07-15T00:00:00.000Z"
 updatedAt: "2026-07-15T00:00:00.000Z"
@@ -12,25 +12,28 @@ updatedAt: "2026-07-15T00:00:00.000Z"
 
 ## Who He Is
 
-Alexander Coe — known universally as Sasha — is for many people the artist who most completely embodied the transition from progressive house to its later forms. A Welsh DJ who came up through the Haçienda scene, he was already a superstar by the mid-1990s.
+Alexander Coe, born in Hawarden, Wales, in 1969. Known universally as Sasha, he became the closest thing progressive house had to a pop star — mobbed at venues, covered by mainstream press, a DJ whose name sold out clubs long before his first hour was played.
+
+## How He Got There
+
+He started at Shelley's Laserdome in Longton, Staffordshire, in 1990 — a northern rave venue that was moving away from hardcore toward something deeper. His early sets there built a local following that spread by word of mouth at a time when that was the only way anything spread.
+
+The Haçienda connection came through that period. He played the Hot Friday nights at a club already bursting with acid house history, and it was there that his harmonic, melodic style started to distinguish itself from the darker, more functional DJs of the era.
 
 ## The DJ Style
 
-Sasha's playing style was characterised by:
+What set Sasha apart was his approach to keys. He'd transition tracks over extremely long periods — sometimes four or five minutes — letting the harmonics of two records breathe together before the first fully disappeared. In the early 1990s this was genuinely unusual.
 
-- **Seamless, long transitions**: blending tracks over minutes rather than bars
-- **Key mixing**: a near-obsessive ear for harmonic compatibility between records
-- **Dynamic range**: genuine use of quiet and space within a set to make peaks hit harder
-- **Eclecticism within a mood**: playing progressive, trance, and occasionally techno elements in the same hour without it feeling jarring
+His selections ran the full width of progressive house: deep, atmospheric records on one hand, melodic proto-trance on the other, with enough instinct to know which way a room was leaning at any given moment.
 
-## Production
+## Renaissance
 
-As a producer Sasha was less prolific than some peers but his output was consistently interesting:
+His partnership with John Digweed at Renaissance (Derby, then Mansfield) became the defining residency of the era. The Renaissance Volume 1 mix album — recorded live and released in 1994 — is for many people the document of what progressive house actually sounded like at its peak.
 
-- **BT collaboration**: their work together (*Embracing the Sunshine*, *Unknown Territory*) sat exactly at the border of progressive house and the melodic trance that was emerging
-- **Xpander EP** (Deconstruction, 1999): probably his definitive statement as a producer — driving, intelligent, emotionally rich
-- **Invol2ver** (2008): a late-career record that showed how far the progressive sensibility could travel from its roots while keeping its core values
+## Twilo, New York
 
-## Legacy
+The Twilo residency in New York (from 1997) elevated the profile further. Saturday nights at Twilo ran until midday Sunday; Sasha and Digweed's sets were marathon affairs, built for a room that had come prepared to spend the night. The energy was different from UK clubs — more intense, longer-committed — and it pushed both DJs toward a more muscular, driving sound.
 
-Sasha's career trajectory is almost a map of how progressive house became trance and then evolved beyond a single genre label. His refusal to be pinned to one sound is both his defining quality and what makes him difficult to categorise neatly.
+## Relationship to Trance
+
+Unlike Oakenfold, Sasha never fully crossed into trance. His selections remained more ambiguous — he'd play records that sat exactly on the border, and his own productions (the Xpander EP, his work with BT) reflected that refusal to resolve. Some saw this as commercial caution; others saw it as genuine artistic integrity. The records he played often defied categorisation.
