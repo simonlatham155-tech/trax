@@ -23,7 +23,7 @@ Simon Latham's musical history before Soundsation runs through two earlier proje
 
 **Something Wild (1990)** — with John Knight. Synth-pop influenced, closer to Pet Shop Boys or East 17. They played live at a BBC Children in Need event in Salisbury that year. James Wiltshire produced two of their tracks.
 
-**Darshan** — with Mark Robinson, from the band Trance. Again more pop in orientation. Simon wrote with Darshan after Something Wild and was credited as *Sha* on their release *Give Me*. A writing credit on a commercial release, before Soundsation had started.
+**Darshan** — with Mark Robinson, from the band Trance. Again more pop in orientation. Simon wrote with Darshan after Something Wild and was credited as *Sha* on their release *Give Me*. He also wrote other tracks with Darshan that were not released. A writing credit and unreleased material — the normal shape of a writing relationship before the work that gets out into the world.
 
 The route from synth-pop with John Knight and a BBC Children in Need gig, through a writing credit as Sha on a Darshan release, to progressive house on Stress Records — is not a straight line. It is the accumulation of production experience, studio relationships, and four years of going out in Bournemouth clubs as a committed listener.
 
