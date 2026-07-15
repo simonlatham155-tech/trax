@@ -74,6 +74,14 @@ A solo album written and recorded in Iceland, moving progressive house compositi
 - **Olaris Records** — On Fire (2008)
 - **Black Hole Recordings** — Sied van Riel *Rielism* compilation (2011); Magic Island Vol. 5 (2014) and Vol. 6 (2015)
 
+## Genre and Role Breakdown (Discogs / Hypermuse — 31 releases, 2006–2019)
+
+**By genre**: Progressive House (27) · Trance (20) · Progressive Trance (11) · Tech House (11) · House (6) · Breakbeat (4)
+
+**By role**: Remix (12) · Composed By (7) · Vocals (7) · Written By (6) · Producer (5)
+
+The genre numbers reflect multiple credits per release. The role split confirms Simon as primarily a writer and vocalist in the later career, with a significant remix output — consistent with the career trajectory from Soundsation producer to international featured vocalist.
+
 ## Broadcast Support
 
 Tracks supported on: A State of Trance, Future Sound of Egypt, Planet Perfecto (Paul Oakenfold), Euphonic Sessions, Russia Goes Clubbing, Mellomania Deluxe, Proton Radio.

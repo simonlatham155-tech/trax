@@ -31,14 +31,20 @@ The relationship with Johann Stone extended beyond the compilation. Simon and Jo
 
 The compilation reflects the same instinct that ran through the entire career: being early, being in the room before the wider world arrives, and putting things on record.
 
-## Simon's Own Releases
+## Complete Airport Route Recordings Solo Catalogue
 
-Solo releases on Airport Route Recordings:
+Confirmed from Kudos Records:
 
-- *Left Right Of Centre* (2008)
-- *Watertight* (2009)
-- *ibreathe* (2012)
-- *Inside The Mind Of A Man* (2015)
+| Year | Title |
+|---|---|
+| 2007 | Beatsy EP |
+| 2008 | Left Right Of Centre |
+| 2009 | Impartial Thought |
+| 2009 | Watertight |
+| 2010 | Watertight Remix Competition |
+| 2012 | ibreathe |
+| 2013 | iBreathe Again |
+| 2015 | Inside the Mind of a Man |
 
 ## From SOS to Airport Route
 
