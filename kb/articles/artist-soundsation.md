@@ -19,7 +19,13 @@ The project began in the white-label sampling era and moved through progressive 
 
 ## Before Soundsation — Something Wild (1990)
 
-Simon Latham's musical history before Soundsation includes an earlier project, Something Wild (1990), with a friend, John Knight. The sound was synth-pop influenced — closer to Pet Shop Boys or East 17 than anything that would follow. They played live at a BBC Children in Need event in Salisbury that year.
+Simon Latham's musical history before Soundsation runs through two earlier projects, both pop-oriented and distinct from anything that followed.
+
+**Something Wild (1990)** — with John Knight. Synth-pop influenced, closer to Pet Shop Boys or East 17. They played live at a BBC Children in Need event in Salisbury that year. James Wiltshire produced two of their tracks.
+
+**Darshan** — with Mark Robinson, from the band Trance. Again more pop in orientation. Simon wrote with Darshan after Something Wild and was credited as *Sha* on their release *Give Me*. A writing credit on a commercial release, before Soundsation had started.
+
+The route from synth-pop with John Knight and a BBC Children in Need gig, through a writing credit as Sha on a Darshan release, to progressive house on Stress Records — is not a straight line. It is the accumulation of production experience, studio relationships, and four years of going out in Bournemouth clubs as a committed listener.
 
 James Wiltshire produced two of their tracks. Wiltshire would go on to become one half of Freemasons — with Russell Small, one of the biggest house production and remix operations in the UK in the 2000s, with chart records and remixes for artists including Beyoncé and Faithless. In 1990 he was producing synth-pop in Bournemouth.
 
