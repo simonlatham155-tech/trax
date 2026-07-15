@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "progressive-house-kb": {
+      "command": "npx",
+      "args": [
+        "tsx",
+        "./kb/mcp-server/src/index.ts"
+      ],
+      "description": "Personal knowledge base: Progressive House origins and evolution into modern Trance (1990–2004)"
+    }
+  }
+}

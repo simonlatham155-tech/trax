@@ -1,0 +1,25 @@
+{
+  "name": "progressive-house-kb-mcp",
+  "version": "1.0.0",
+  "description": "MCP server exposing the Progressive House & Trance knowledge base to AI tools",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "phkb-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "glob": "^11.0.0",
+    "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}
