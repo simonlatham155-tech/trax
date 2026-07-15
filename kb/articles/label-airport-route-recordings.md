@@ -1,9 +1,11 @@
 ---
 id: airport-route-recordings
 title: Airport Route Recordings
-subtitle: "Simon Latham's Icelandic label, founded in the 2000s"
+subtitle: "Simon Latham's Icelandic label, 2007–2017"
 category: Label
-tags: [Airport-Route-Recordings, Simon-Latham, Iceland, progressive-house, electronic, label]
+year: 2007
+yearEnd: 2017
+tags: [Airport-Route-Recordings, Simon-Latham, Iceland, Reykjavik, Bjarki, Kid-Mistik, Johann-Stone, progressive-house, trance, label]
 sortKey: 215
 createdAt: "2026-07-15T00:00:00.000Z"
 updatedAt: "2026-07-15T00:00:00.000Z"
@@ -11,22 +13,33 @@ updatedAt: "2026-07-15T00:00:00.000Z"
 
 ## Overview
 
-Airport Route Recordings is the label founded by Simon Latham (Soundsation) after relocating to Iceland from the UK in the 2000s. It is the successor to SOS Recordings — the independent imprint he ran with Pete Lunn during the Soundsation years.
+Airport Route Recordings was founded by Simon Latham in Iceland and operated from 2007 to 2017. It is the successor label to SOS Recordings — the independent imprint he ran with Pete Lunn during the Soundsation years — and represents the Icelandic chapter of a career that began in Bournemouth in the early 1990s.
 
 ## The Iceland Chapter
 
-Simon Latham left the UK in the early 2000s and settled in Iceland. The relocation placed him directly inside the Icelandic electronic music scene — the same milieu that produced GusGus, who had been featured on Northern Exposure and would later remix his track *USE* with Pole Folder. The geography was not coincidental; the network that had connected Soundsation to Digweed, Digweed to Northern Exposure, and Northern Exposure to GusGus had a physical address in Reykjavik.
+Simon Latham left the UK in the early 2000s and relocated to Iceland, where he founded Airport Route Recordings. The move placed him inside the Icelandic electronic music scene — the same milieu that produced GusGus, who had appeared on Northern Exposure in 1996 and remixed the Human EP with Pole Folder.
 
-## From SOS Recordings to Airport Route
+Iceland's national newspaper Morgunblaðið profiled Simon during this period — a measure of his presence within the local scene rather than just passing through it.
 
-SOS Recordings was co-run with Pete Lunn during the Soundsation period (distributed via Amato 1994–1997 and MOS Music 1997–1999). It operated as a vinyl-focused independent imprint within the UK club distribution network.
+## Audio 101: Reykjavik
 
-Airport Route Recordings represents the next chapter — built in Iceland, operating in a different environment, reflecting both the changed landscape of electronic music distribution in the 2000s and the specific context of working from outside the UK progressive house circuit that had been home.
+The label released *Audio 101: Reykjavik*, a compilation of early material from Icelandic artists including **Johann Stone** and **Kid Mistik** — who later became known internationally as **Bjarki**. Bjarki went on to become a significant figure in contemporary underground techno and electronic music. His early material appearing on Airport Route Recordings places Simon's label at the origin point of that career.
 
-*[Further detail to be added — catalogue, releases, specific context]*
+## Simon's Own Releases
 
-## The Lineage
+Solo releases on Airport Route Recordings:
 
-SOS Recordings (UK, 1990s) → Airport Route Recordings (Iceland, 2000s)
+- *Left Right Of Centre* (2008)
+- *Watertight* (2009)
+- *ibreathe* (2012)
+- *Inside The Mind Of A Man* (2015)
 
-The same independent instinct — releasing outside major-label and established imprint structures — carried forward from the white-label era through to the post-UK chapter. The label names changed; the approach did not.
+## From SOS to Airport Route
+
+SOS Recordings (UK, 1990s, with Pete Lunn) → Airport Route Recordings (Iceland, 2007–2017)
+
+The independent instinct — operating outside major labels, releasing through specialist networks, building a catalogue on vinyl and digital — carried forward across two decades and two countries.
+
+## Birgitta Haukdal
+
+Simon's work during the Airport Route period included remix and production work with Birgitta Haukdal, Iceland's Eurovision 2003 representative. The connection reflects the breadth of the Icelandic musical community Simon was embedded in — not exclusively electronic music but the wider scene that a small country's cultural world produces.

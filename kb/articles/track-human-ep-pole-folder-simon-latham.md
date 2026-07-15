@@ -1,9 +1,9 @@
 ---
-id: track-use
-title: "Simon Latham & Pole Folder — USE"
-subtitle: "GusGus remix"
+id: track-human-ep
+title: "Pole Folder & Simon Latham — Human EP"
+subtitle: "GusGus remix; international support including Hernán Cattáneo"
 category: Track
-tags: [Simon-Latham, Pole-Folder, GusGus, Northern-Exposure, progressive-house, remix, Belgium, Iceland]
+tags: [Simon-Latham, Pole-Folder, GusGus, Human-EP, Hernán-Cattáneo, progressive-house, Iceland, Belgium]
 sortKey: 404
 createdAt: "2026-07-15T00:00:00.000Z"
 updatedAt: "2026-07-15T00:00:00.000Z"
@@ -11,9 +11,9 @@ updatedAt: "2026-07-15T00:00:00.000Z"
 
 ## The Record
 
-A collaboration between Simon Latham (Soundsation) and Pole Folder, the Belgian progressive house producer. The track received a remix from GusGus.
+A collaboration between Pole Folder (Belgian progressive house producer) and Simon Latham. The Human EP includes a remix by GusGus and received international support including chart support from Hernán Cattáneo, the Argentine progressive house DJ and one of the most respected figures in the global progressive scene.
 
-*[Further detail to be added — year, label, stylistic notes on the original and the remix]*
+*[Further detail to be added — label, year, track listing]*
 
 ## Why the GusGus Connection Matters
 
