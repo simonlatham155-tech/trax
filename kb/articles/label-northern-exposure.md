@@ -34,6 +34,12 @@ The Tong follow-up confirmed it: "mainly because he was the only one that had it
 
 Northern Exposure had just demonstrated that the progressive house aesthetic could travel to America, could fill rooms, could be heard as an album. Digweed's response was to point at a white-label-era Stress Records track. That is a statement of values: the thing that mattered to him was not the reach, but the source. The listening album linked back to the records that had been there — and those records were still where his attention was.
 
+## GusGus
+
+Among the artists featured on Northern Exposure was GusGus — an Icelandic collective whose electronic work sat in the space between art-electronic, progressive house, and leftfield club music. Their inclusion reflected Sasha and Digweed's curatorial reach: the album was not a pure progressive house document but something wider, shaped by the listening-album format rather than the dancefloor.
+
+The GusGus connection persists beyond Northern Exposure. They later remixed a track — *USE* — by Simon Latham (Soundsation) and Pole Folder. The network that produced Northern Exposure folded back on itself: the same curatorial instinct that had placed GusGus on the album, and had placed Digweed in Soundsation's corner in 1996, continued operating in subsequent years.
+
 ## The Listening Album Format
 
 Northern Exposure established a template that would be used throughout the late 1990s: the DJ mix as home listening record, designed for headphones, sequenced for emotional arc rather than dancefloor function. Global Underground, Balance, Bedrock compilations — all of these owe something to what Northern Exposure demonstrated was possible.
