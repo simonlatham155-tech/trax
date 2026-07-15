@@ -93,7 +93,7 @@ Soundsation's own independent imprint. Distributed via Amato (1994–1997) and M
 
 ## The Iceland Chapter
 
-Simon Latham relocated to Iceland because of his Icelandic wife. They settled there — a personal decision, not a music industry move. He had visited Iceland before the permanent relocation, including being at the GusGus office in Reykjavik in 1997. Biggi from GusGus was already a long-term friend.
+Simon Latham relocated to Iceland because of his Icelandic wife, **Sylvi** — also a vocalist, also active in the international trance scene. Sylvi featured on A State of Trance as the vocalist on Bris's *Speed Limits*, and had songs with Spark7, both of which received ASOT support. Simon also worked with Spark7 — *You Wanted More* — meaning both of them had independent connections to the same producers and shows. They settled in Iceland. He had visited Iceland before the permanent relocation, including being at the GusGus office in Reykjavik in 1997. Biggi from GusGus was already a long-term friend.
 
 Once settled, he founded Airport Route Recordings — the successor label to SOS Recordings, which he had run with Pete Lunn during the Soundsation years. The Icelandic music connections that followed came from being a resident: GusGus, Birgitta Haukdal, and giving early platform to Kid Mistik (Bjarki) and Johann Stone.
 

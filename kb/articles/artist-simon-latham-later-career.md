@@ -78,6 +78,10 @@ Simon hosted Trance Atlantic, accumulating approximately 30,000 plays.
 
 Remix and production work with Birgitta Haukdal, Iceland's Eurovision Song Contest 2003 representative. One of several connections made through the Icelandic musical community during the Airport Route Recordings years.
 
+## Sylvi
+
+Simon's wife Sylvi is also a vocalist active in the international trance scene. She featured on A State of Trance as the vocalist on Bris's *Speed Limits*, and had songs with Spark7, both of which received ASOT support. Simon also worked with Spark7 (*You Wanted More*) — independent connections to the same artists and shows from two people in the same household. Both operating in the international trance circuit from Iceland.
+
 ## Morgunblaðið
 
 Profiled in Morgunblaðið, Iceland's national newspaper. The profile reflects a genuine integration into Icelandic cultural life rather than a passing presence.
