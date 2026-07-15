@@ -18,7 +18,13 @@ updatedAt: "2026-07-15T00:00:00.000Z"
 - **Compilation**: Renaissance — The Mix Collection Part 4
 - **Club chart**: #48, Update Club Chart (29 September 1997, compiled by Pete Roberts from 1000+ DJ returns)
 
-## John Digweed's Record of 1996
+## On the Essential Selection
+
+Simon knew the track had made it onto BBC Radio 1's Essential Selection and was happy about it. He did not personally hear the 27 December 1996 broadcast in which Digweed introduced the track — that specific moment, and what Digweed said, became known later rather than in real time.
+
+What he experienced was the fact of it: the record was on Radio 1's flagship show. The Digweed introduction is documented and verified; the personal experience of it at the time was the knowledge that the track had been played, not the specific words spoken over it.
+
+## John Digweed's Record of 1996 — The Documented Introduction
 
 On Pete Tong's BBC Radio 1 Essential Selection Best of 1996 (27 December 1996), John Digweed introduced the track:
 
