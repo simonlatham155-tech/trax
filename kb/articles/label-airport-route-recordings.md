@@ -44,6 +44,8 @@ SOS Recordings (UK, 1990s, with Pete Lunn) → Airport Route Recordings (Iceland
 
 The independent instinct — operating outside major labels, releasing through specialist networks, building a catalogue on vinyl and digital — carried forward across two decades and two countries.
 
-## Birgitta Haukdal
+## Birgitta Haukdal — Ein Remix Edits
 
-Simon's work during the Airport Route period included remix and production work with Birgitta Haukdal, Iceland's Eurovision 2003 representative. The connection reflects the breadth of the Icelandic musical community Simon was embedded in — not exclusively electronic music but the wider scene that a small country's cultural world produces.
+Birgitta Haukdal represented Iceland at Eurovision 2003. She was releasing her album *Ein* when Simon asked if he could remix it for a club sound. She agreed. The remixes were done as **Lunn & Latham** — Simon and Pete Lunn — and released as remix edits.
+
+Simon initiated the approach, not Birgitta. A resident of Iceland, embedded in its musical community, hearing an Icelandic artist's album and asking if he could take it somewhere else. The Lunn & Latham name connects it directly to the post-Soundsation work: the same partnership that made The Green Room and released Starkiller, now remixing Eurovision material for club floors.
