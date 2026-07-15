@@ -20,7 +20,7 @@ Stress occupied a specific position in the progressive house landscape. It was n
 
 ## Jackpot as the Alternative
 
-Soundsation had an offer from Jackpot Records — the label Blue Amazon were on — before signing to Stress. Jackpot was a credible home for progressive house at the time. Simon Latham chose Stress because he knew James Wiltshire, the engineer there. That connection was not casual — Wiltshire had produced two tracks for Simon's earlier band Something Wild in 1990. By the time the label decision was made, the relationship was four years old and based on having made music together.
+Soundsation had an offer from Jackpot Records — the label Blue Amazon were on — before signing to Stress. Jackpot was a credible home for progressive house at the time. Simon Latham chose Stress because he knew James Wiltshire, the engineer there. That connection was not casual — Wiltshire had produced two tracks for Simon's earlier band Something Wild in 1990. By the time the label decision was made, the relationship was four years old and based on having made music together. Wiltshire would later go on to become one half of Freemasons, one of the biggest house production outfits in the UK in the 2000s. In 1990 he was producing in Bournemouth.
 
 That choice placed *Do You Feel It?* on a label whose A&R instinct ran directly to John Digweed — who named it his favourite record of 1996 on Pete Tong's Radio 1 Essential Selection. The relationship that led to the signing was also the relationship that put the record in front of the right people.
 
