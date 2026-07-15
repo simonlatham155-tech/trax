@@ -23,7 +23,7 @@ Simon Latham's musical history before Soundsation runs through two earlier proje
 
 **Something Wild (1990)** — with John Knight. Synth-pop influenced, closer to Pet Shop Boys or East 17. They played live at a BBC Children in Need event in Salisbury that year. James Wiltshire produced two of their tracks.
 
-**Darshan** — with Mark Robinson, from the band Trance. Again more pop in orientation. Simon wrote with Darshan after Something Wild and was credited as *Sha* on their release *Give Me*. He also wrote other tracks with Darshan that were not released. A writing credit and unreleased material — the normal shape of a writing relationship before the work that gets out into the world.
+**Darshan** — with Mark Robinson, from the band Trance. Simon wrote with Darshan after Something Wild and was credited as *Sha* on their release *Give Me* (Ouch! Records, OU12S13, 1995). The track peaked at **#14 on the UK Official Dance Singles Chart**, charting for three weeks in June–July 1995 — a genuine chart position, on a progressive-filed 12-inch, the year before *Do You Feel It?* appeared on Stress Records. He also wrote other unreleased tracks with Darshan during this period.
 
 The route from synth-pop with John Knight and a BBC Children in Need gig, through a writing credit as Sha on a Darshan release, to progressive house on Stress Records — is not a straight line. It is the accumulation of production experience, studio relationships, and four years of going out in Bournemouth clubs as a committed listener.
 
