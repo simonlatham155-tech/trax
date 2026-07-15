@@ -24,6 +24,14 @@ These are not parallel events in a large industry. They are the same small netwo
 
 Biggi from GusGus is a long-term friend of Simon's — a relationship that predates the Human EP collaboration (2014) by nearly two decades. The GusGus remix of U.S.E came about, as Pole Folder confirmed in Decoded Magazine, because "Simon is a friend of the group." This moment in the Reykjavik office in 1997 is part of what that friendship is made of.
 
+## What It Sounded Like
+
+Simon's memory of hearing the track in the room: a gated vocal — cut rhythmically, processed rather than smooth — and a production that was progressive by the standards of the day but with a clear lean toward trance.
+
+The gated vocal is a precise production detail. A gate cuts the signal below a threshold, creating a chopped, rhythmic quality — the vocal becomes percussive as much as melodic. In 1997 this technique sat exactly on the border between the atmospheric, breathing quality of progressive house and the more driven, structured feel of what trance was becoming. Hearing it on a record from Sasha in 1997 is hearing the genre split in a single production choice.
+
+"Progressive by this day but leaning towards trance" is not retrospective analysis. It is the impression formed in real time, in the room, on first listen.
+
 ## The DAT
 
 Digital Audio Tape — the format on which finished mixes were delivered in the late 1990s before digital file transfer was standard. A remix arriving as a DAT was a physical object: a cassette in a case, played back in the room on a DAT machine. You heard it for the first time together.
