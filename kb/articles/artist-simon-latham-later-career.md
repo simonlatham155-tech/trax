@@ -70,9 +70,11 @@ Planet Perfecto — Oakenfold's own show — is a direct return to the name that
 
 *Deadly* (Slighter & Simon Latham) — featured in **Lethal Weapon** (FOX TV series, Season 1, Episode 6 release).
 
-## Trance Atlantic
+## Trance Atlantic and Something4yourweekend
 
-Simon hosted Trance Atlantic, accumulating approximately 30,000 plays.
+Simon has hosted two mix shows. **Something4yourweekend** was a progressive house podcast — the earlier show, rooted in the genre that defined the Soundsation years. **Trance Atlantic** carried on from it, moving into trance territory consistent with the direction the music had taken since *New Direction* in 1998. Trance Atlantic accumulated approximately 30,000 plays.
+
+The progression from Something4yourweekend to Trance Atlantic mirrors the broader arc of the career: progressive house first, then the trance direction that had always been latent in the writing.
 
 ## Birgitta Haukdal
 
