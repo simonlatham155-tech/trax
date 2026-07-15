@@ -42,6 +42,14 @@ These were the DJs who gave Simon and Pete access to the progressive sound on re
 
 *[Further detail to be added — specific nights, which venues carried which sounds, any specific memories of big DJ visits]*
 
+## Sasha at the Opera House, 1996
+
+In 1996 a friend of Simon Latham's attended a Sasha set at the Opera House and reported back that Sasha had played *Do You Feel It?* — Soundsation's Stress Records release — during the set. Simon's first response was to assume his friend had got it wrong.
+
+He hadn't. Sasha was playing the record at Cream in Liverpool that same year and it had been circulating as a rare pressing through the DJ network before the official release. Sasha playing it at the Opera House in Bournemouth — the venue in the town where Simon had spent his weekends as a clubber learning what he wanted to make — was entirely consistent with how the record was travelling.
+
+The moment captures something specific about how underground records moved through the DJ circuit. They could reach your own town, your own venue, without you knowing. And when someone told you, your first instinct might be to doubt them.
+
 ## Why This Matters to the Soundsation Story
 
 The Bournemouth context explains something specific about how Soundsation's sound formed. Simon and Pete were not in a city where the progressive house sound was the default — they were in a seaside town where it was the exception. They had to seek it out: in the sets of local outliers like Langford and White, and in the visits of the bigger names playing the circuit.

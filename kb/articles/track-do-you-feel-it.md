@@ -50,6 +50,16 @@ Stress Records was co-founded by Dave Seaman and Steve Hillier. Being placed on 
 
 Inclusion on *Renaissance — The Mix Collection Part 4* placed *Do You Feel It?* alongside the defining documents of the genre. The Renaissance compilation series was the most prestigious progressive house release format of the era.
 
+## The Opera House, Bournemouth
+
+Bournemouth was the town where Simon Latham and Pete Lunn had spent their weekends as clubbers, learning the sound they wanted to make. In 1996 a friend of Simon's went to see Sasha play at the Opera House there and came back reporting that Sasha had played *Do You Feel It?* in the set.
+
+Simon's first assumption was that his friend had got it wrong.
+
+Given that Sasha was playing the record at Cream in Liverpool and the track had been circulating through the DJ network as a rare pressing before any wide release, his friend almost certainly had it right. Sasha playing *Do You Feel It?* at the Opera House in Bournemouth — the same circuit of clubs where Simon had gone every weekend as a clubber — is both entirely consistent with the record's reach at that point and, as a fact, something Simon only half-believed when told.
+
+This is what underground circulation meant in practice. A record moving through the DJ network could reach your own home town, your own venue, and you might not know about it until someone told you — and your first instinct might be to doubt them.
+
 ## BBC Radio 1
 
 - Essential Selection Best of 1996 — 27 December 1996 (introduced by John Digweed)
