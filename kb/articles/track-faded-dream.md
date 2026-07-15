@@ -19,6 +19,12 @@ updatedAt: "2026-07-15T00:00:00.000Z"
 
 *Faded Dream* is a progressive house track by Soundsation featuring a vocal by **Darren Brooks**. It appeared on the cover CD of Future Music Magazine in June 1996. Future Music was the UK's primary production-focused electronic music magazine — its cover CDs were heard by producers, engineers, and studio musicians rather than exclusively by club audiences. Placement there was a technical endorsement rather than a scene endorsement.
 
+## PolyGram Publishing
+
+**PolyGram Publishing** directed Soundsation to make *Faded Dream* with Darren Brooks as the vocalist. PolyGram was one of the major music publishing operations of the era — its involvement meant Soundsation had a relationship with a major publisher running alongside and entirely separate from the underground SOS Recordings / Stress Records circuit.
+
+Being told by PolyGram Publishing to work with a specific vocalist on a specific track is a different kind of industry engagement from DJ network circulation. It reflects the dual reality of Soundsation's position in 1996: simultaneously operating underground through banned pressings and DJ boxes, and in commercial discussions with major label publishing. *Peace & Joy* had gone through FFRR / London Records; *Faded Dream* was being shaped by PolyGram. The major label world was paying attention even as the underground circuit was doing the work that mattered most.
+
 ## The Producer Response
 
 Many producers spoke to Soundsation about *Faded Dream* after its appearance on the magazine CD. This is a specific kind of attention — not DJs saying they were playing it, not chart positions, but people who made records reaching out about the production itself. In 1996, with *Do You Feel It?* simultaneously circulating through the DJ network, *Faded Dream* was opening a parallel conversation with the production community.
