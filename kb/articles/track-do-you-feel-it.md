@@ -40,13 +40,13 @@ This exchange is a precise document of how progressive house records spread thro
 
 Sasha played *Do You Feel It?* at his Cream, Liverpool residency on 15 June 1996. A Sasha play at Cream in 1996 was among the most significant endorsements the progressive house scene could offer.
 
-## The Rare Pressing
+## The Rare Pressing — Confirmed
 
-The version Sasha and Digweed played was a rare pressing — not the commercial Stress Records release. This is the version Pete Tong confirmed on his 7 February 1997 Essential Selection broadcast: "mainly because he was the only one that had it, but we can all have it now."
+The version Sasha and Digweed played was the **SOS Recordings pressing (12SOS003)** — the Soundsation own-label release carrying the *Original Mix* and the *Lunn & Latham Mix*. This is distinct from the commercial Stress Records release (12STR 88), which carries the Chris & James Solar Power Remix and Big C Remix.
 
-The rare pressing circulated through the DJ network before the official release — the same white-label-era model that had carried *Peace & Joy* before FFRR picked it up. The Stress Records catalogue number (12STR 88) belongs to the official release; the version that mattered most to the DJs who championed it existed before that release reached the wider market.
+Pete Tong confirmed the exclusivity on his 7 February 1997 Essential Selection: "mainly because he was the only one that had it, but we can all have it now."
 
-This is consistent with the broader pattern of how Soundsation records moved: underground first, official release second, with the underground version carrying the value.
+The SOS pressing circulated through the DJ network before Stress picked it up — the same white-label-first model that had carried *Peace & Joy* before FFRR. The Lunn & Latham Mix on 12SOS003 is the version that built the record's reputation. The Stress release with remixes is what the wider market eventually received.
 
 ## The Label Decision — Jackpot vs. Stress
 
@@ -89,6 +89,18 @@ Simon left the Opera House early one night and walked past a kebab shop. *Do You
 The man said: it's the radio.
 
 It was BBC Radio 1. The record that had moved through the DJ network as a rare pressing, that Digweed had been the only one with, that Simon had heard Seaman play inside the venue he'd just walked out of — was coming out of a kebab shop on the street because Pete Tong had put it on the radio.
+
+## Full Discography of the Track
+
+| Release | Label | Cat No | Year | Mixes |
+|---|---|---|---|---|
+| Rare pressing | SOS Recordings | 12SOS003 | 1996 | Original Mix, Lunn & Latham Mix |
+| Promo | Stress Records | 12STR 88P | 1996 | Original Mix, Dos Deviants Principle Vocal Mix |
+| Commercial release | Stress Records | 12STR 88 | 1998 | Chris & James Solar Power Remix, Original Mix, Big C Remix |
+| Digital reissue | Airport Route Recordings | ART005 | 2008 | Remastered Mix, Royal Sapien Big Brother Remix, Royal Sapien DnB Remix, Android Cartel Remix |
+| Later remixes | Capital Heaven | — | 2019+ | Tuxedo "Dreamy" Remix, Framewerk's Resistance Remix, Terje Saether Remix, Denny Loco Remix, Blnd Tger Club Dub, Comit Remix |
+
+The track has maintained a continuous life of remixes and reissues from 1996 to the present.
 
 ## BBC Radio 1
 
