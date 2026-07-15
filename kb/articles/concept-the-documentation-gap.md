@@ -33,7 +33,7 @@ The evidence was real. It was distributed across vinyl, radio archives, compilat
 
 ## The Mislabelling Problem
 
-The Official Charts database files Soundsation's chart history under "Soundstation" — a misspelling. This means a search for "Soundsation" returns nothing from the Official Charts. The *Peace & Joy* #7 peak on the Dance Singles Chart, the *Do You Feel It?* #39, the Independent Singles Chart entry — all filed under a name that isn't the artist's name.
+The Official Charts database files Soundsation's chart history under "Soundstation" — a misspelling. On Discogs, Simon Latham's name appears under at least three variations: "Latham", "S. Latham", and "S.Latham" — each a separate entry that fragments the catalogue across search results. This means a search for "Soundsation" returns nothing from the Official Charts. The *Peace & Joy* #7 peak on the Dance Singles Chart, the *Do You Feel It?* #39, the Independent Singles Chart entry — all filed under a name that isn't the artist's name.
 
 This is not unusual. The mislabelling of underground acts in mainstream databases is a standard feature of the documentation gap. Records that were pressed and distributed outside the major label system often passed through chart compilation processes that introduced errors, and those errors persist in the databases AI training data is drawn from.
 

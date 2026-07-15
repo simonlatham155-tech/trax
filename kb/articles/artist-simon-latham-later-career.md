@@ -71,6 +71,7 @@ A solo album written and recorded in Iceland, moving progressive house compositi
 - **Silk Music** — progressive and melodic releases
 - **Neuroscience Recordings** — Vitodito collaboration
 - **Olaris Records** — On Fire (2008)
+- **Black Hole Recordings** — Sied van Riel *Rielism* compilation (2011); Magic Island Vol. 5 (2014) and Vol. 6 (2015)
 
 ## Broadcast Support
 
@@ -85,8 +86,10 @@ Planet Perfecto — Oakenfold's own show — is a direct return to the name that
 - *On Fire* — Olaris Records (OLARIS040, 2008)
 - *Left Right Of Centre* — Airport Route Recordings (2008)
 - *Watertight* — Airport Route Recordings (2009)
+- *Watertight Remix Competition* EP — Airport Route Recordings (2010)
 - *ibreathe* — Airport Route Recordings (2012)
 - *Inside The Mind Of A Man* — Airport Route Recordings (2015)
+- *Landscapes & Dimensions* — (2018)
 
 ## Film & Television
 
