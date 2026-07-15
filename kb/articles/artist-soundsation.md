@@ -33,13 +33,15 @@ James Wiltshire produced two of their tracks. Wiltshire would go on to become on
 
 The distance between Something Wild in 1990 and *Do You Feel It?* on Stress Records in 1996 is the distance between Pet Shop Boys and John Digweed. The connection that bridged it was Wiltshire — the one constant across both moments. When the Jackpot vs. Stress decision came four years later, Simon's trust in him was based on having made music together, not on anything the scene had told him.
 
-## How It Started — Bournemouth
+## How It Started — A Lenny Kravitz Sample and a Move to Bournemouth
 
-Simon Latham and Pete Lunn were not DJs. They were clubbers — going out most weekends to nightclubs in Bournemouth, on the south coast of England, absorbing the music they wanted to make by experiencing it on the floor.
+Soundsation did not begin as a planned project. It started with a one-off idea: to make a record using a Lenny Kravitz sample. Pete and Warren took the lead on that record; they guessed it would be huge. Simon was writing with Pete on more pop-sounding tracks separately, and all of this mixed together organically — the way most bands actually start rather than how they later describe it.
 
-Martyn — known as "The Hat" — was a local Bournemouth DJ. He was the DJ component of the project; Simon and Pete were the clubbers who knew what they wanted to write because they had heard it and felt it every weekend. The combination was the project: floor-level knowledge of what worked, a DJ's understanding of how records functioned in a room, and the drive to make something of their own.
+Simon moved from Salisbury to Bournemouth at this time. He had been Salisbury-based — the same city where Something Wild had played the BBC Children in Need event in 1990. The move to Bournemouth brought him into the club circuit that would shape what Soundsation made: going out most weekends, hearing the music he wanted to write, learning from the floor.
 
-This origin is significant. Soundsation's sound was not theorised from the outside. It came from being inside the experience — from knowing, as a regular clubber, what a record needed to do to a room. The Bournemouth club scene was not London, not Manchester, not Liverpool. It was a seaside town with its own circuit, its own nights, its own version of what was happening nationally in progressive house. Simon and Pete learned the music there, in that room, before they ever made any of it.
+Martyn — known as "The Hat" — was a local Bournemouth DJ, the DJ component of a project where Simon and Pete came from the listener's side of the floor. Warren Clarke was involved in the early period but departed in 1995.
+
+The Lenny Kravitz sample origin explains the Peace & Joy pattern too. The early Soundsation records were built on samples — uncleared, pressed for club use, pulled when the commercial reality caught up. That was the method before the method had a name.
 
 ## The White-Label Years
 
