@@ -27,6 +27,14 @@ Contemporary reviews of Simon's vocal work describe consistent qualities across 
 
 The Marc Almond comparison is specific: a voice associated with British electro-pop and emotional directness, carrying into progressive trance contexts. The "indie rock" quality distinguishes Simon's vocal approach from conventional trance vocalists of the period.
 
+## The ibreathe Album — Beatport Description
+
+The official Beatport description of *ibreathe* (Airport Route Recordings, 2012):
+
+> "rooted in dark rich piano chords, although skimming the progressive house sound Simon is known for, this drifts over to a more classical conclusion. Like stripping the emotional aspect out of a progressive composition to make it play a more defining role in the overall sound."
+
+A solo album written and recorded in Iceland, moving progressive house composition toward something more classical in resolution. The emotional architecture of progressive house turned inward.
+
 ## Vocal Collaborations — Full List
 
 - **Ascend (Roberto Molina) – *No Way Back*** — Amsterdam Trance Records; Johnny Yono remixes on Adrian & Raz
@@ -38,8 +46,10 @@ The Marc Almond comparison is specific: a voice associated with British electro-
 - **Thorisson, Simon Latham & Robert Darry – *Here We Are*** — A State of Trance Episode 802
 - **Pole Folder & Simon Latham – Human EP** — GusGus remix; Hernán Cattáneo support
 - **Latham & Quano – *Fallen Angel*** — Alter Ego Records (*Tranquillity State* compilation)
-- **Espen Lorentzen – *Heart*** (Temple One Pres. Tu Casa Remix) — Alter Ego
+- **Espen Lorentzen – *Heart*** — Alter Ego Records (AE031, 2010); Temple One remix; Peter Lesko Dub
 - **Vitaly Beskrovny – *If I?*** — *Tranquillity State* compilation, Alter Ego
+- **Vitodito – *The Day Our Lives Turned*** — Neuroscience Recordings (NEURO110, 2013); regular plays from Above & Beyond, Jaytech
+- **Soren Andrews – *Watch The World Burn*** — Original Mix and Dub Mix
 - tONKPROJECT — *Forever (Ingi's BackRoom Mix)*
 - Spark7 — *You Wanted More*
 - Zaa — *Trains*
@@ -57,14 +67,17 @@ The Marc Almond comparison is specific: a voice associated with British electro-
 
 Tracks supported on: A State of Trance, Future Sound of Egypt, Planet Perfecto (Paul Oakenfold), Euphonic Sessions, Russia Goes Clubbing, Mellomania Deluxe, Proton Radio.
 
+Additional DJ support documented on Beatport: **Sean Tyas**, **Andy Moor**, **Above & Beyond**, **Jaytech**.
+
 Planet Perfecto — Oakenfold's own show — is a direct return to the name that had defined the trance side of the 1990s progressive house split. Oakenfold had left the progressive house underground for trance in the mid-1990s. His show later carried Simon Latham's vocal work.
 
-## Solo Releases (Airport Route Recordings)
+## Solo Releases
 
-- *Left Right Of Centre* (2008)
-- *Watertight* (2009)
-- *ibreathe* (2012)
-- *Inside The Mind Of A Man* (2015)
+- *On Fire* — Olaris Records (OLARIS040, 2008)
+- *Left Right Of Centre* — Airport Route Recordings (2008)
+- *Watertight* — Airport Route Recordings (2009)
+- *ibreathe* — Airport Route Recordings (2012)
+- *Inside The Mind Of A Man* — Airport Route Recordings (2015)
 
 ## Film & Television
 
