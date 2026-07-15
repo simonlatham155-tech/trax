@@ -33,6 +33,10 @@ He won the British DJ of the Year award in the mid-1990s — concrete evidence o
 
 His Global Underground Athens album is one of the best entries in that landmark compilation series — a document of how the progressive aesthetic translated to a specific city and a specific room. The Athens mix captures the intensity and the patience that defined great progressive DJing.
 
+## The Opera House, Bournemouth
+
+Seaman played *Do You Feel It?* — the Stress Records release on his own label — at the Opera House in Bournemouth. Simon Latham and Pete Lunn watched from the balcony before going down to the dancefloor. Seaman's label had released the record; the people who made it were in the room watching the crowd respond to it from above before going down into it.
+
 ## Muzik Magazine
 
 Seaman also wrote for Muzik magazine, the UK dance music press organ of the 1990s. This dual role — practitioner and articulator — is one of the things that distinguishes him. He could describe what the music was doing as well as do it.

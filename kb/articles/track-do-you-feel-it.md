@@ -50,7 +50,15 @@ Stress Records was co-founded by Dave Seaman and Steve Hillier. Being placed on 
 
 Inclusion on *Renaissance — The Mix Collection Part 4* placed *Do You Feel It?* alongside the defining documents of the genre. The Renaissance compilation series was the most prestigious progressive house release format of the era.
 
-## The Opera House, Bournemouth
+## Dave Seaman at the Opera House — Watching from the Balcony
+
+Simon Latham was present when Dave Seaman played *Do You Feel It?* at the Opera House in Bournemouth. He and Pete watched from the balcony before going down to the dancefloor.
+
+The balcony view came first — seeing the crowd from above, watching the room respond to the record, the distance before the immersion. Then going down.
+
+Dave Seaman playing a Stress Records release at the Opera House — his own label's record, in a venue in the south coast town where the people who made it had spent years going out as clubbers — is the full circle of the thing. Seaman brought the progressive house circuit to Bournemouth; Bournemouth had produced the record he was playing.
+
+## The Opera House, Bournemouth — Sasha
 
 Bournemouth was the town where Simon Latham and Pete Lunn had spent their weekends as clubbers, learning the sound they wanted to make. In 1996 a friend of Simon's went to see Sasha play at the Opera House there and came back reporting that Sasha had played *Do You Feel It?* in the set.
 

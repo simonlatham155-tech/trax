@@ -42,6 +42,12 @@ These were the DJs who gave Simon and Pete access to the progressive sound on re
 
 *[Further detail to be added — specific nights, which venues carried which sounds, any specific memories of big DJ visits]*
 
+## Dave Seaman at the Opera House — Watching from the Balcony
+
+Simon Latham was in the Opera House when Dave Seaman played *Do You Feel It?* — the Stress Records release Seaman's own label had put out. Simon and Pete watched from the balcony first, seeing the crowd respond to the record from above, before going down to the dancefloor.
+
+The image is precise: the balcony view, the crowd below, your own record playing, the decision to go down. Seaman had brought the progressive house circuit to the town where Soundsation had formed. The record that connected them was being played in the room where Simon had spent years going out as a clubber.
+
 ## Sasha at the Opera House, 1996
 
 In 1996 a friend of Simon Latham's attended a Sasha set at the Opera House and reported back that Sasha had played *Do You Feel It?* — Soundsation's Stress Records release — during the set. Simon's first response was to assume his friend had got it wrong.
