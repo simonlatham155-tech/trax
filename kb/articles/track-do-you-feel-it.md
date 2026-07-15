@@ -71,9 +71,13 @@ This is a detail that shaped everything that followed: the Digweed endorsement, 
 
 Stress Records was co-founded by Dave Seaman and Steve Hillier. Being placed on Stress in 1996 — distributed through DMC — meant being taken seriously by the inner circle of the UK progressive house scene. The label's catalogue from this period is a map of the sound at its mid-period peak.
 
-## The Renaissance Compilation
+## The Renaissance Compilation — Seaman Called First
 
-Inclusion on *Renaissance — The Mix Collection Part 4* placed *Do You Feel It?* alongside the defining documents of the genre. The Renaissance compilation series was the most prestigious progressive house release format of the era.
+Dave Seaman selected *Do You Feel It?* for *Renaissance — The Mix Collection Part 4* himself, then called Soundsation about it. This happened **before** the Stress Records deal was signed.
+
+The sequence matters. Seaman didn't pick up the track because it was on his label — he found the rare pressing, decided it belonged on the definitive progressive house compilation of the era, and made contact. That call from Seaman was part of what established Stress Records' interest. The Renaissance placement preceded the label deal and helped create the conditions for it.
+
+The Renaissance Mix Collection series was the most prestigious progressive house release format of the era. Seaman selecting a track before signing the act that made it is the clearest possible evidence of how the progressive house network operated: the record reached the right person through the DJ circuit, and the person with the power to act on it did.
 
 ## Dave Seaman at the Opera House — Watching from the Balcony
 
