@@ -17,6 +17,10 @@ Soundsation was a UK electronic music project active between 1994 and 1999. Memb
 
 The project began in the white-label sampling era and moved through progressive house before documenting a clear shift toward melodic/uplifting trance by the late 1990s. Its catalogue charts the transition from the inside — not as observers of the genre shift but as participants in it.
 
+## Before Soundsation — Something Wild (1990)
+
+Simon Latham's musical history before Soundsation includes an earlier band, Something Wild, active around 1990. James Wiltshire produced two of their tracks. This is the origin of the personal connection that would later determine where *Do You Feel It?* was signed — when the Jackpot vs. Stress decision came four years later, Simon's trust in Wiltshire was not based on reputation or scene proximity but on having worked with him directly.
+
 ## How It Started — Bournemouth
 
 Simon Latham and Pete Lunn were not DJs. They were clubbers — going out most weekends to nightclubs in Bournemouth, on the south coast of England, absorbing the music they wanted to make by experiencing it on the floor.

@@ -52,7 +52,7 @@ This is consistent with the broader pattern of how Soundsation records moved: un
 
 Before signing to Stress, Soundsation had an offer from Jackpot Records — the label that Blue Amazon were on. Jackpot was a credible home for progressive house at the time; Blue Amazon were a serious act on the label.
 
-Simon chose Stress because he knew James Wiltshire, who was the engineer there. The personal connection — knowing someone inside the operation — was the deciding factor over the Jackpot offer. The relationship mattered more than the label's commercial positioning.
+Simon chose Stress because he knew James Wiltshire, who was the engineer there. That connection went back to 1990 — Wiltshire had produced two tracks for Simon's earlier band Something Wild. By the time the Stress decision was made, the relationship was four years old and built on having actually made music together, not just knowing someone through the scene.
 
 This is a detail that shaped everything that followed: the Digweed endorsement, the Renaissance compilation placement, the record's reach through the DJ network. It came from a personal connection at the point of signing.
 
