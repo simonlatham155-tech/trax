@@ -14,21 +14,44 @@ updatedAt: "2026-07-15T00:00:00.000Z"
 
 After the Soundsation period ended (1994–1999), Simon Latham relocated to Iceland and continued as a producer, vocalist, and label owner. The trajectory from progressive house clubber in Bournemouth to A State of Trance and In Search of Sunrise runs through three decades and two countries.
 
-## Vocal Collaborations
+## The Voice — Critical Reception
 
-Selected work as featured vocalist and co-writer:
+Contemporary reviews of Simon's vocal work describe consistent qualities across multiple releases and reviewers:
 
-- **DJ Eco – *What Do You See*** — A State of Trance Episode 424 (2009); included on Armada Best Vocalist of 2012
-- **Ari Kyle & Audioscape – *Never Far*** — In Search of Sunrise 12: Dubai (2014)
+- "Very unique and very crystal clear voice" (Flux BPM)
+- "Fantastic indie rock voice" — compared to Marc Almond (Soft Cell)
+- "Very sensitive and deeply emotional voice"
+- "Great performance of the very powerful and highly emotional lyrics"
+- "Indie dance sensibilities" — noted across multiple releases
+- "British born now Icelandic singer song-writer" — the identity as presented to the international trance market
+
+The Marc Almond comparison is specific: a voice associated with British electro-pop and emotional directness, carrying into progressive trance contexts. The "indie rock" quality distinguishes Simon's vocal approach from conventional trance vocalists of the period.
+
+## Vocal Collaborations — Full List
+
+- **Ascend (Roberto Molina) – *No Way Back*** — Amsterdam Trance Records; Johnny Yono remixes on Adrian & Raz
+- **Colonial One – *Freedom*** — Infrasonic Recordings; Ultimate remix; included on *Electronic Audio Volume Two* (Solis & Sean Truby)
+- **Ari Kyle & Audioscape – *Never Far*** — Magic Island / Black Hole Recordings; In Search of Sunrise 12: Dubai (2014); Rocking J remix
+- **Ari Kyle & Audioscape – *Last Day*** — Magic Island Records
+- **DJ Eco – *What Do You See*** — A State of Trance Episode 424 (2009); Armada Best Vocalist 2012
+- **Hanski – *A Better Way*** — Infrasonic Recordings; *Electronic Audio Volume Two*
 - **Thorisson, Simon Latham & Robert Darry – *Here We Are*** — A State of Trance Episode 802
 - **Pole Folder & Simon Latham – Human EP** — GusGus remix; Hernán Cattáneo support
-- Espen Lorentzen — *The Light Inside (Dub Mix)* (Rielism)
-- Vitaly Beskrovny — *If I…* (Tranquillity State)
+- **Latham & Quano – *Fallen Angel*** — Alter Ego Records (*Tranquillity State* compilation)
+- **Espen Lorentzen – *Heart*** (Temple One Pres. Tu Casa Remix) — Alter Ego
+- **Vitaly Beskrovny – *If I?*** — *Tranquillity State* compilation, Alter Ego
 - tONKPROJECT — *Forever (Ingi's BackRoom Mix)*
 - Spark7 — *You Wanted More*
 - Zaa — *Trains*
 - Vitodito — *The Days Our Lives Turned*
 - Maksim Palmaxs — *Falling*
+
+## Key Labels for the Vocal Work
+
+- **Amsterdam Trance Records / Adrian & Raz** — Ascend collaboration
+- **Infrasonic Recordings** — Colonial One, Hanski; described by Mixmag as "arguably one of the world's most exciting new trance labels"
+- **Magic Island / Black Hole Recordings** — Ari Kyle collaborations; Roger Shah's label
+- **Alter Ego Records** — Latham & Quano, Espen Lorentzen, Vitaly Beskrovny
 
 ## Broadcast Support
 
