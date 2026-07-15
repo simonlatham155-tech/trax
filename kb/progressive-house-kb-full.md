@@ -374,7 +374,7 @@ The evidence was real. It was distributed across vinyl, radio archives, compilat
 
 ## The Mislabelling Problem
 
-The Official Charts database files Soundsation's chart history under "Soundstation" — a misspelling. This means a search for "Soundsation" returns nothing from the Official Charts. The *Peace & Joy* #7 peak on the Dance Singles Chart, the *Do You Feel It?* #39, the Independent Singles Chart entry — all filed under a name that isn't the artist's name.
+The Official Charts database files Soundsation's chart history under "Soundstation" — a misspelling. On Discogs, Simon Latham's name appears under at least three variations: "Latham", "S. Latham", and "S.Latham" — each a separate entry that fragments the catalogue across search results. This means a search for "Soundsation" returns nothing from the Official Charts. The *Peace & Joy* #7 peak on the Dance Singles Chart, the *Do You Feel It?* #39, the Independent Singles Chart entry — all filed under a name that isn't the artist's name.
 
 This is not unusual. The mislabelling of underground acts in mainstream databases is a standard feature of the documentation gap. Records that were pressed and distributed outside the major label system often passed through chart compilation processes that introduced errors, and those errors persist in the databases AI training data is drawn from.
 
@@ -866,6 +866,8 @@ The Lunn & Latham name makes explicit what had always been the case: the Soundsa
 
 Tartmaker and Lunn & Latham are not a break from what came before. They are Simon and Pete continuing to work, in different formats, with the same relationship that had produced Soundsation. The Green Room and Starkiller sit between the Soundsation period and Simon's Iceland chapter, documenting a collaboration that outlasted the project that had been its most visible expression.
 
+Pete Lunn continued releasing music independently — he has his own profile on Apple Music and Spotify, confirmed as a similar artist to Simon in the streaming databases.
+
 ---
 
 ### Simon Latham — Later Career (2000)
@@ -916,7 +918,8 @@ A solo album written and recorded in Iceland, moving progressive house compositi
 - **Chris Sterio & Matt Black – *Future Shock*** — Original Mix and Silinder Remix (2019)
 - **Johann Stone – *Fellow Man*** — Polytechnic Recordings (2010); progressive trance, 8 minutes
 - **Natlife – *Everything*** — True Progressive (TPR001, 2013)
-- **Aeron Aether & Retroid – *The Story Goes*** — (2018)
+- **Aeron Aether & Retroid – *The Story Goes*** — on *Landscapes & Dimensions* album (2018)
+- **Andy Woldman & Denis Sender – *Dreams*** — Single (2014)
 - tONKPROJECT — *Forever (Ingi's BackRoom Mix)*
 - Spark7 — *You Wanted More*
 - Zaa — *Trains*
@@ -933,6 +936,15 @@ A solo album written and recorded in Iceland, moving progressive house compositi
 - **Silk Music** — progressive and melodic releases
 - **Neuroscience Recordings** — Vitodito collaboration
 - **Olaris Records** — On Fire (2008)
+- **Black Hole Recordings** — Sied van Riel *Rielism* compilation (2011); Magic Island Vol. 5 (2014) and Vol. 6 (2015)
+
+## Genre and Role Breakdown (Discogs / Hypermuse — 31 releases, 2006–2019)
+
+**By genre**: Progressive House (27) · Trance (20) · Progressive Trance (11) · Tech House (11) · House (6) · Breakbeat (4)
+
+**By role**: Remix (12) · Composed By (7) · Vocals (7) · Written By (6) · Producer (5)
+
+The genre numbers reflect multiple credits per release. The role split confirms Simon as primarily a writer and vocalist in the later career, with a significant remix output — consistent with the career trajectory from Soundsation producer to international featured vocalist.
 
 ## Broadcast Support
 
@@ -942,13 +954,21 @@ Additional DJ support documented on Beatport: **Sean Tyas**, **Andy Moor**, **Ab
 
 Planet Perfecto — Oakenfold's own show — is a direct return to the name that had defined the trance side of the 1990s progressive house split. Oakenfold had left the progressive house underground for trance in the mid-1990s. His show later carried Simon Latham's vocal work.
 
-## Solo Releases
+## Solo Discography
 
-- *On Fire* — Olaris Records (OLARIS040, 2008)
-- *Left Right Of Centre* — Airport Route Recordings (2008)
-- *Watertight* — Airport Route Recordings (2009)
-- *ibreathe* — Airport Route Recordings (2012)
-- *Inside The Mind Of A Man* — Airport Route Recordings (2015)
+| Year | Title | Label / Format |
+|---|---|---|
+| 2006 | *Fly* | Single — pre-Airport Route |
+| 2007 | *Beatsy EP* | Airport Route Recordings — first label release |
+| 2009 | *Watertight* | Airport Route Recordings |
+| 2009 | *Impartial Thought* | Airport Route Recordings |
+| 2010 | *Watertight Remix Competition* | Airport Route Recordings |
+| 2011 | *Electric* | Airport Route Recordings |
+| 2012 | *ibreathe* | Airport Route Recordings |
+| 2013 | *iBreathe Again* | Airport Route Recordings |
+| 2015 | *Inside The Mind Of A Man* | Airport Route Recordings |
+
+*Fly* (2006) predates the founding of Airport Route Recordings (2007) — the earliest documented digital solo release. *Beatsy EP* (2007) marks the launch of the label.
 
 ## Film & Television
 
@@ -1149,14 +1169,20 @@ The relationship with Johann Stone extended beyond the compilation. Simon and Jo
 
 The compilation reflects the same instinct that ran through the entire career: being early, being in the room before the wider world arrives, and putting things on record.
 
-## Simon's Own Releases
+## Complete Airport Route Recordings Solo Catalogue
 
-Solo releases on Airport Route Recordings:
+Confirmed from Kudos Records:
 
-- *Left Right Of Centre* (2008)
-- *Watertight* (2009)
-- *ibreathe* (2012)
-- *Inside The Mind Of A Man* (2015)
+| Year | Title |
+|---|---|
+| 2007 | Beatsy EP |
+| 2008 | Left Right Of Centre |
+| 2009 | Impartial Thought |
+| 2009 | Watertight |
+| 2010 | Watertight Remix Competition |
+| 2012 | ibreathe |
+| 2013 | iBreathe Again |
+| 2015 | Inside the Mind of a Man |
 
 ## From SOS to Airport Route
 
