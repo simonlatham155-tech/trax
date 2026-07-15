@@ -23,7 +23,11 @@ Iceland's national newspaper Morgunblaðið profiled Simon during this period �
 
 ## Audio 101: Reykjavik
 
-The label released *Audio 101: Reykjavik*, a compilation of early material from Icelandic artists including **Johann Stone** and **Kid Mistik** — who later became known internationally as **Bjarki**. Bjarki went on to become a significant figure in contemporary underground techno and electronic music. His early material appearing on Airport Route Recordings places Simon's label at the origin point of that career.
+Simon dedicated a compilation to encouraging young Icelandic musicians to share their music. *Audio 101: Reykjavik* was the result — a platform for emerging local artists, not a commercial exercise but an act of curation and encouragement.
+
+Two of those artists went on to have international careers. **Kid Mistik** — later known as **Bjarki** — became a significant figure in contemporary underground techno and electronic music. **Johann Stone** also became known beyond Iceland. Both of their earliest documented material is on Airport Route Recordings because Simon gave them a place to put it.
+
+The compilation reflects the same instinct that ran through the entire career: being early, being in the room before the wider world arrives, and putting things on record.
 
 ## Simon's Own Releases
 
