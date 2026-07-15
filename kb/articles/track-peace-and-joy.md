@@ -13,11 +13,14 @@ updatedAt: "2026-07-15T00:00:00.000Z"
 ## Release
 
 - **White label**: Smokin' Vinyl SMK 001 — circulated across UK clubs before commercial release
-- **Commercial release**: FFRR / London Records
-- **UK Chart**: #48
-- **Remixes**: Tin Tin Out, Shaker
+- **Commercial release**: FFRR / London Records (TABX 224)
+- **UK Official Singles Chart**: #48 (2 weeks) — filed under "Soundstation" (misspelling)
+- **UK Official Dance Singles Chart**: #7 (3 weeks)
+- **Remixes**: Tin Tin Out, Shaker (also: Ugly Bug Dub, VER 12" Mix on the FFRR pressing)
 - **Compilation**: The House Collection: Club Classics
 - **Club support**: Jeremy Healy
+
+The #7 peak on the Dance Singles Chart is the more representative figure for the record's impact within the scene it was made for.
 
 ## BBC Radio 1
 

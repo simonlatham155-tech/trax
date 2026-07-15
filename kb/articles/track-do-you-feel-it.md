@@ -14,9 +14,12 @@ updatedAt: "2026-07-15T00:00:00.000Z"
 
 - **Label**: Stress Records (catalogue: 12STR 88)
 - **Remixes**: Chris & James, Big C (Dos Del Mundo)
-- **Official Dance Singles Chart**: #39 (7 June 1998)
+- **Official Dance Singles Chart**: #39 (7 June 1998), 1 week
+- **Official Independent Singles Chart**: #25, 1 week
+- **Update Club Chart**: #48 (29 September 1997, compiled by Pete Roberts from 1000+ DJ returns)
 - **Compilation**: Renaissance — The Mix Collection Part 4
-- **Club chart**: #48, Update Club Chart (29 September 1997, compiled by Pete Roberts from 1000+ DJ returns)
+
+All chart entries filed under "Soundstation" (misspelling) on the Official Charts database — part of the documentation gap that made the career harder to find.
 
 ## On the Essential Selection
 
