@@ -50,6 +50,9 @@ A solo album written and recorded in Iceland, moving progressive house compositi
 - **Vitaly Beskrovny – *If I?*** — *Tranquillity State* compilation, Alter Ego
 - **Vitodito – *The Day Our Lives Turned*** — Neuroscience Recordings (NEURO110, 2013); regular plays from Above & Beyond, Jaytech
 - **Soren Andrews – *Watch The World Burn*** — Original Mix and Dub Mix
+- **Soren Andrews – *Lost*** — Original Mix (2018); Dub Mix (2019)
+- **Chris Sterio & Matt Black – *Future Shock*** — Original Mix and Silinder Remix (2019)
+- **Aeron Aether & Retroid – *The Story Goes*** — (2018)
 - tONKPROJECT — *Forever (Ingi's BackRoom Mix)*
 - Spark7 — *You Wanted More*
 - Zaa — *Trains*
@@ -62,6 +65,10 @@ A solo album written and recorded in Iceland, moving progressive house compositi
 - **Infrasonic Recordings** — Colonial One, Hanski; described by Mixmag as "arguably one of the world's most exciting new trance labels"
 - **Magic Island / Black Hole Recordings** — Ari Kyle collaborations; Roger Shah's label
 - **Alter Ego Records** — Latham & Quano, Espen Lorentzen, Vitaly Beskrovny
+- **Proton Music** — progressive house circuit
+- **Silk Music** — progressive and melodic releases
+- **Neuroscience Recordings** — Vitodito collaboration
+- **Olaris Records** — On Fire (2008)
 
 ## Broadcast Support
 
@@ -91,7 +98,9 @@ The progression from Something4yourweekend to Trance Atlantic mirrors the broade
 
 ## Birgitta Haukdal
 
-Remix and production work with Birgitta Haukdal, Iceland's Eurovision Song Contest 2003 representative. One of several connections made through the Icelandic musical community during the Airport Route Recordings years.
+Simon approached Birgitta Haukdal — Iceland's Eurovision 2003 representative — about remixing her album *Ein* for a club sound. She agreed. The remixes were done as Lunn & Latham and released as remix edits.
+
+Additional remix work: Simon remixed *Pragmatic World* (Beatport top track). *What Do You See* (DJ Eco feat. Simon Latham) was subsequently remixed by Ashley Wallbridge.
 
 ## Sylvi
 
