@@ -68,6 +68,14 @@ Given that Sasha was playing the record at Cream in Liverpool and the track had 
 
 This is what underground circulation meant in practice. A record moving through the DJ network could reach your own home town, your own venue, and you might not know about it until someone told you — and your first instinct might be to doubt them.
 
+## The Kebab Shop
+
+Simon left the Opera House early one night and walked past a kebab shop. *Do You Feel It?* was playing. He asked the man inside how he had the track.
+
+The man said: it's the radio.
+
+It was BBC Radio 1. The record that had moved through the DJ network as a rare pressing, that Digweed had been the only one with, that Simon had heard Seaman play inside the venue he'd just walked out of — was coming out of a kebab shop on the street because Pete Tong had put it on the radio.
+
 ## BBC Radio 1
 
 - Essential Selection Best of 1996 — 27 December 1996 (introduced by John Digweed)
