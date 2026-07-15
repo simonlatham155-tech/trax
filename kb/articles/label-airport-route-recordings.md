@@ -17,9 +17,9 @@ Airport Route Recordings was founded by Simon Latham in Iceland and operated fro
 
 ## The Iceland Chapter
 
-Simon Latham left the UK in the early 2000s and relocated to Iceland, where he founded Airport Route Recordings. The move placed him inside the Icelandic electronic music scene — the same milieu that produced GusGus, who had appeared on Northern Exposure in 1996 and remixed the Human EP with Pole Folder.
+Simon Latham relocated to Iceland because of his Icelandic wife. They settled there. The move was personal, not a music industry decision — and the connections that followed (GusGus, Birgitta Haukdal, Bjarki, Morgunblaðið) came from being a resident, not from pursuing a scene.
 
-Iceland's national newspaper Morgunblaðið profiled Simon during this period — a measure of his presence within the local scene rather than just passing through it.
+Iceland's national newspaper Morgunblaðið profiled Simon during this period. The profile reflects genuine integration into Icelandic life rather than a visiting artist's presence.
 
 ## Audio 101: Reykjavik
 

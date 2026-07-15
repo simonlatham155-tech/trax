@@ -93,9 +93,9 @@ Soundsation's own independent imprint. Distributed via Amato (1994–1997) and M
 
 ## The Iceland Chapter
 
-Simon Latham left the UK in the early 2000s and relocated to Iceland, where he founded Airport Route Recordings — the successor label to SOS Recordings, which he had run with Pete Lunn during the Soundsation years.
+Simon Latham relocated to Iceland because of his Icelandic wife. They settled there — a personal decision, not a music industry move. He had visited Iceland before the permanent relocation, including being at the GusGus office in Reykjavik in 1997. Biggi from GusGus was already a long-term friend.
 
-The move placed him inside the Icelandic electronic music scene that had produced GusGus — who had appeared on Northern Exposure in 1996 and who later remixed Simon Latham and Pole Folder's track *USE*. The GusGus connection, which might otherwise appear coincidental, maps directly onto the Iceland relocation. The network that connected Soundsation to Digweed in 1996 had a geographical continuation in Reykjavik.
+Once settled, he founded Airport Route Recordings — the successor label to SOS Recordings, which he had run with Pete Lunn during the Soundsation years. The Icelandic music connections that followed came from being a resident: GusGus, Birgitta Haukdal, and giving early platform to Kid Mistik (Bjarki) and Johann Stone.
 
 ## SOS Recordings and Pete Lunn
 
