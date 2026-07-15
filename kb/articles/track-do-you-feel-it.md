@@ -105,6 +105,20 @@ The man said: it's the radio.
 
 It was BBC Radio 1. The record that had moved through the DJ network as a rare pressing, that Digweed had been the only one with, that Simon had heard Seaman play inside the venue he'd just walked out of — was coming out of a kebab shop on the street because Pete Tong had put it on the radio.
 
+## Contemporary Reactions
+
+From the Airport Route Recordings 2008 reissue notes:
+
+> "In 1996 in the early days of progressive house Soundsation unveiled 'Do You Feel It?' to the world, by the end of the year it was on the bill of nearly all the big name DJs, Sasha, Digweed, Seaman, Tong and many more."
+
+**Royal Sapien** (remixer on the 2008 reissue):
+> "Do You Feel It? was one of the tunes that shaped my evolution toward progressive house. I don't know where I'd be without the Renaissance Mix Collection 4. I'm thrilled to remix it."
+
+**DJ Fang** (progressivehouse.com):
+> "The beautiful wraith vocal and the deep rolled bass provide a touching sentiment. Just a devastating house track. Truly recommended."
+
+The 2008 Airport Route reissue also topped the charts on progressivehouse.com at time of release — the record's reach extending more than a decade after the original.
+
 ## Full Discography of the Track
 
 | Release | Label | Cat No | Year | Notes |
