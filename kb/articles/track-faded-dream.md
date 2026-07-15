@@ -19,11 +19,13 @@ updatedAt: "2026-07-15T00:00:00.000Z"
 
 *Faded Dream* is a progressive house track by Soundsation featuring a vocal by **Darren Brooks**. It appeared on the cover CD of Future Music Magazine in June 1996. Future Music was the UK's primary production-focused electronic music magazine — its cover CDs were heard by producers, engineers, and studio musicians rather than exclusively by club audiences. Placement there was a technical endorsement rather than a scene endorsement.
 
-## PolyGram Publishing
+## PolyGram Publishing and the Album Option
 
-**PolyGram Publishing** directed Soundsation to make *Faded Dream* with Darren Brooks as the vocalist. PolyGram was one of the major music publishing operations of the era — its involvement meant Soundsation had a relationship with a major publisher running alongside and entirely separate from the underground SOS Recordings / Stress Records circuit.
+The publishing deal came through *Peace & Joy*. With that deal in place, Simon and Pete were working toward securing an album option — the next step up from a singles deal. *Faded Dream*, made with Darren Brooks at PolyGram Publishing's direction, was part of that work: a demonstration of what Soundsation could produce at the level a major publisher would need to see before committing to an album.
 
-Being told by PolyGram Publishing to work with a specific vocalist on a specific track is a different kind of industry engagement from DJ network circulation. It reflects the dual reality of Soundsation's position in 1996: simultaneously operating underground through banned pressings and DJ boxes, and in commercial discussions with major label publishing. *Peace & Joy* had gone through FFRR / London Records; *Faded Dream* was being shaped by PolyGram. The major label world was paying attention even as the underground circuit was doing the work that mattered most.
+The Future Music Magazine placement served the same purpose from a different angle — the production community taking the track seriously was evidence of capability that mattered in album deal conversations.
+
+*Faded Dream* was not a standalone track. It was Soundsation making the case for the next stage, on a publisher's terms, in the same year as the underground circuit was responding to *Do You Feel It?* entirely on its own terms. Both were real; neither cancelled the other out.
 
 ## The Producer Response
 

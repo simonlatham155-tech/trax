@@ -35,6 +35,10 @@ The early pressings of *Peace & Joy* contained an uncleared vocal sample — sta
 
 Being picked up by FFRR (London Records) — Pete Tong's label — was significant. FFRR was one of the key commercial homes for progressive house in the UK, and Tong's involvement as both radio DJ and A&R director meant that records he championed on air were often records he had a professional interest in.
 
+## The Publishing Deal
+
+*Peace & Joy* was the record that secured Soundsation a publishing deal. With that deal in place, Simon and Pete Lunn worked toward a further album option — the next stage that would have taken the project from singles into a full album context. The publishing relationship led directly to PolyGram Publishing directing the making of *Faded Dream* with vocalist Darren Brooks in 1996, as part of demonstrating what Soundsation could do at album level.
+
 ## Legal Intervention
 
-The uncleared sample led to legal intervention that restricted commercial momentum. Following this release, the project moved away from major-label house pathways toward underground club music — a decision that would lead to the Stress Records period.
+The uncleared sample led to legal intervention that restricted commercial momentum. Following this release, the project moved away from major-label house pathways toward underground club music — a decision that would lead to the Stress Records period — while the publishing relationship continued in parallel.
