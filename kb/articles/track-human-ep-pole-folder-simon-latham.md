@@ -1,46 +1,53 @@
 ---
 id: track-human-ep
 title: "Pole Folder & Simon Latham — Human EP"
-subtitle: "GusGus remix; international support including Hernán Cattáneo"
+subtitle: "2014, Electronical Reeds — GusGus remix; Hernán Cattáneo support"
 category: Track
-tags: [Simon-Latham, Pole-Folder, GusGus, Human-EP, Hernán-Cattáneo, progressive-house, Iceland, Belgium]
+year: 2014
+tags: [Simon-Latham, Pole-Folder, GusGus, T-World, Lex-Newton, Superdrums, Human-EP, USE, Electronical-Reeds, Belgium, Kompakt, Hernán-Cattáneo, progressive-house, Data-Transmission]
 sortKey: 404
 createdAt: "2026-07-15T00:00:00.000Z"
 updatedAt: "2026-07-15T00:00:00.000Z"
 ---
 
-## The Record
+## Release
 
-A collaboration between Pole Folder (Belgian progressive house producer) and Simon Latham. The Human EP includes a remix by GusGus and received international support including chart support from Hernán Cattáneo, the Argentine progressive house DJ and one of the most respected figures in the global progressive scene.
+- **Label**: Electronical Reeds (Belgian label)
+- **Artists**: Pole Folder & Simon Latham
+- **Reviewed**: Data Transmission, 7/10 (Grahame Farmer, June 2014)
+- **International support**: Hernán Cattáneo
 
-*[Further detail to be added — label, year, track listing]*
+## Tracks
 
-## Why the GusGus Connection Matters
+### The Bitter Memory
+"Almost progressive in nature, its Balearic tinges full of euphoric delight." (*Data Transmission*)
 
-GusGus were featured on Northern Exposure — the 1996 Sasha & Digweed listening album that Digweed was touring America with at the same time he named Soundsation's *Do You Feel It?* as his favourite record of the year.
+### U.S.E
+"Toes the line between trance and electro in off-kilter fashion." The track that attracted the remix package.
 
-The fact that GusGus later remixed Simon Latham's work is not a coincidence of genre — it is a direct thread through the same network. Northern Exposure drew from the progressive house circuit and brought it to a wider audience. GusGus were part of that document. Digweed championing Soundsation placed Simon Latham's work inside the same frame. The GusGus remix of USE is that network folding back on itself years later.
+## The Remix Package
 
-## GusGus
+| Remixer | Notes |
+|---|---|
+| **GusGus & T-World** | "Esoteric remix" — GusGus described as "Kompakt staples" |
+| **Lex Newton** | "Steady remix that keeps hold of the vocal line" |
+| **Simon Latham** | Strips it back to "more melodic and melancholic pastures" |
+| **Superdrums** | "Typically percussive layer" |
 
-GusGus are an Icelandic collective — music, film, and fashion — whose electronic work in the mid-to-late 1990s sat in the space between art-electronic, progressive house, and the Scandinavian strain of leftfield club music. Their presence on Northern Exposure was not accidental; Sasha and Digweed's curatorial instinct for that album ran wider than straightforward progressive house, and GusGus represented a more oblique, textural approach to electronic music that fitted the listening-album format.
+## The GusGus Connection — Confirmed
 
-Their remixing Simon Latham's work with Pole Folder shows the GusGus connection persisting beyond Northern Exposure — a continued dialogue between the Icelandic art-electronic world and the UK/European progressive house circuit.
+GusGus are described in the Data Transmission review as "Kompakt staples" — associated with the Cologne minimal/tech-house label, adding a dimension beyond the Icelandic art-electronic framing. Their involvement as remixers on a Belgian progressive label release, for a collaboration involving a British-born Icelandic vocalist, maps exactly the international network that had formed around this corner of the scene.
 
-## The Iceland Connection
+The connection between Simon Latham and GusGus runs through Northern Exposure (1996) — GusGus were featured on Sasha and Digweed's listening album the same year Digweed named *Do You Feel It?* as his favourite record. Simon living in Iceland, where GusGus operate from, made the working relationship possible. The Human EP is that network operating in 2014.
 
-Simon Latham relocated to Iceland from the UK in the early 2000s and founded Airport Route Recordings there. Living in Iceland placed him directly inside the scene that produced GusGus. The GusGus remix of USE is not a chance connection across genres — it is the result of Simon being physically embedded in the same place GusGus operated from. The network that connected Soundsation to Digweed in 1996, and Digweed to Northern Exposure, and Northern Exposure to GusGus, had a direct geographical continuation in Reykjavik.
+## Simon's Own Remix
 
-## Pole Folder
+Simon Latham remixed U.S.E himself — stripping it back to "melodic and melancholic pastures." The artist as remixer of his own collaboration, pulling the track in a quieter, more introspective direction than the original.
 
-A Belgian progressive house producer operating in the European club circuit. The collaboration with Simon Latham represents the post-Soundsation trajectory — working across the European network that had formed around the progressive house and early trance scene.
+## Electronical Reeds
 
-## The Network
+Belgian label operating in the progressive house and balearic space. Data Transmission situated it within a tradition running from R&S and Fuse — "Belgium has long been renowned as a stronghold for electronic music." Pole Folder is the better-known name of the two on the label.
 
-The thread runs directly:
+## The Data Transmission Reviewer
 
-- 1996: Digweed touring America with Northern Exposure, which features GusGus
-- 1996: Digweed names Soundsation's *Do You Feel It?* as his favourite record of the year
-- Later: GusGus remixes Simon Latham & Pole Folder's USE
-
-These are not separate events in different corners of the scene. They are the same people, the same network, the same curatorial taste expressing itself at different moments.
+The review was written by Grahame Farmer, who described his own background as entering UK rave culture in the mid-1990s and cementing it through an Ibiza trip in 1997 — the same cultural moment the Soundsation story runs through. A reviewer with firsthand connection to the scene reviewing a 2014 release by artists whose roots were in that same period.
