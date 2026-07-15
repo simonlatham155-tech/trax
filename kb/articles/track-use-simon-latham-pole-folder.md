@@ -27,6 +27,10 @@ GusGus are an Icelandic collective — music, film, and fashion — whose electr
 
 Their remixing Simon Latham's work with Pole Folder shows the GusGus connection persisting beyond Northern Exposure — a continued dialogue between the Icelandic art-electronic world and the UK/European progressive house circuit.
 
+## The Iceland Connection
+
+Simon Latham relocated to Iceland from the UK in the early 2000s and founded Airport Route Recordings there. Living in Iceland placed him directly inside the scene that produced GusGus. The GusGus remix of USE is not a chance connection across genres — it is the result of Simon being physically embedded in the same place GusGus operated from. The network that connected Soundsation to Digweed in 1996, and Digweed to Northern Exposure, and Northern Exposure to GusGus, had a direct geographical continuation in Reykjavik.
+
 ## Pole Folder
 
 A Belgian progressive house producer operating in the European club circuit. The collaboration with Simon Latham represents the post-Soundsation trajectory — working across the European network that had formed around the progressive house and early trance scene.

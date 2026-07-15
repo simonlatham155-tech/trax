@@ -34,6 +34,14 @@ This exchange is a precise document of how progressive house records spread thro
 
 Sasha played *Do You Feel It?* at his Cream, Liverpool residency on 15 June 1996. A Sasha play at Cream in 1996 was among the most significant endorsements the progressive house scene could offer.
 
+## The Rare Pressing
+
+The version Sasha and Digweed played was a rare pressing — not the commercial Stress Records release. This is the version Pete Tong confirmed on his 7 February 1997 Essential Selection broadcast: "mainly because he was the only one that had it, but we can all have it now."
+
+The rare pressing circulated through the DJ network before the official release — the same white-label-era model that had carried *Peace & Joy* before FFRR picked it up. The Stress Records catalogue number (12STR 88) belongs to the official release; the version that mattered most to the DJs who championed it existed before that release reached the wider market.
+
+This is consistent with the broader pattern of how Soundsation records moved: underground first, official release second, with the underground version carrying the value.
+
 ## The Stress Records Context
 
 Stress Records was co-founded by Dave Seaman and Steve Hillier. Being placed on Stress in 1996 meant being taken seriously by the inner circle of the UK progressive house scene. The label's catalogue from this period is a map of the sound at its mid-period peak.

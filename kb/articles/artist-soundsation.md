@@ -59,6 +59,16 @@ Renaissance Part 4 in particular is significant — the Renaissance compilation 
 
 Soundsation's own independent imprint. Distributed via Amato (1994–1997) and MOS Music (1997–1999). Functioned as a release vehicle outside major-label and established independent label constraints.
 
+## The Iceland Chapter
+
+Simon Latham left the UK in the early 2000s and relocated to Iceland, where he founded Airport Route Recordings — the successor label to SOS Recordings, which he had run with Pete Lunn during the Soundsation years.
+
+The move placed him inside the Icelandic electronic music scene that had produced GusGus — who had appeared on Northern Exposure in 1996 and who later remixed Simon Latham and Pole Folder's track *USE*. The GusGus connection, which might otherwise appear coincidental, maps directly onto the Iceland relocation. The network that connected Soundsation to Digweed in 1996 had a geographical continuation in Reykjavik.
+
+## SOS Recordings and Pete Lunn
+
+SOS Recordings was co-founded and co-run by Simon Latham and Pete Lunn. It distributed via Amato (1994–1997) and MOS Music (1997–1999), operating as a vinyl-focused independent imprint within the UK club distribution network. Airport Route Recordings continued the same independent approach in a different country and a different decade.
+
 ## Production Setup
 
 Mid-1990s hardware studio: Atari computers running Cubase, Roland synthesisers, Akai sampling, rack effects processors, Behringer Eurodesk mixer, final recording to DAT. This was the standard UK electronic music production environment of the period — no software DAWs, no plugins, everything in the room.
