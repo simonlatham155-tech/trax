@@ -17,7 +17,7 @@ updatedAt: "2026-07-15T00:00:00.000Z"
 
 ## What It Was
 
-*Faded Dream* is a progressive house track by Soundsation that appeared on the cover CD of Future Music Magazine in June 1996. Future Music was the UK's primary production-focused electronic music magazine — its cover CDs were heard by producers, engineers, and studio musicians rather than exclusively by club audiences. Placement there was a technical endorsement rather than a scene endorsement.
+*Faded Dream* is a progressive house track by Soundsation featuring a vocal by **Darren Brooks**. It appeared on the cover CD of Future Music Magazine in June 1996. Future Music was the UK's primary production-focused electronic music magazine — its cover CDs were heard by producers, engineers, and studio musicians rather than exclusively by club audiences. Placement there was a technical endorsement rather than a scene endorsement.
 
 ## The Producer Response
 
