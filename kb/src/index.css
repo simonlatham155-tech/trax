@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  --color-midnight: #0c0c14;
+  --color-surface: #12121e;
+  --color-panel: #181828;
+  --color-border: #1e1e32;
+  --color-muted: #3a3a5c;
+  --color-dim: #6666a0;
+  --color-body: #c8c8e8;
+  --color-heading: #e8e8f8;
+
+  --color-accent: #8b5cf6;
+  --color-accent-bright: #a78bfa;
+  --color-accent-dim: #4c1d95;
+
+  --color-teal: #06b6d4;
+  --color-teal-dim: #164e63;
+  --color-amber: #f59e0b;
+  --color-amber-dim: #78350f;
+  --color-rose: #f43f5e;
+  --color-rose-dim: #881337;
+  --color-emerald: #10b981;
+  --color-emerald-dim: #064e3b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--color-midnight);
+  color: var(--color-body);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-muted); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-dim); }
+
+/* Article prose */
+.prose h1 { font-size: 1.6rem; font-weight: 700; color: var(--color-heading); margin: 0 0 0.75rem; line-height: 1.2; }
+.prose h2 { font-size: 1.2rem; font-weight: 600; color: var(--color-heading); margin: 1.75rem 0 0.5rem; padding-bottom: 0.35rem; border-bottom: 1px solid var(--color-border); }
+.prose h3 { font-size: 1rem; font-weight: 600; color: var(--color-accent-bright); margin: 1.25rem 0 0.35rem; }
+.prose p { margin: 0 0 0.9rem; line-height: 1.75; color: var(--color-body); }
+.prose ul { margin: 0 0 0.9rem 1.25rem; list-style: disc; }
+.prose ol { margin: 0 0 0.9rem 1.25rem; list-style: decimal; }
+.prose li { margin-bottom: 0.35rem; line-height: 1.65; }
+.prose strong { color: var(--color-heading); font-weight: 600; }
+.prose em { color: var(--color-accent-bright); font-style: italic; }
+.prose hr { border: none; border-top: 1px solid var(--color-border); margin: 1.5rem 0; }
+.prose blockquote { border-left: 3px solid var(--color-accent); padding-left: 1rem; margin: 1rem 0; color: var(--color-dim); font-style: italic; }
+.prose code { background: var(--color-panel); border: 1px solid var(--color-border); border-radius: 4px; padding: 0.1rem 0.4rem; font-family: 'Fira Code', monospace; font-size: 0.85em; color: var(--color-teal); }
+.prose a { color: var(--color-accent-bright); text-decoration: underline; }
+.prose a:hover { color: var(--color-heading); }
