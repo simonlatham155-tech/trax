@@ -31,9 +31,13 @@ Early work circulated as white labels across UK clubs before commercial release.
 
 This pattern — underground circulation first, commercial release second — was standard for the period and reflects how progressive house records actually moved through the DJ network.
 
-## Stress Records
+## Stress Records — The Label Decision
 
-The Stress Records release of *Do You Feel It?* (1996) is the moment that placed Soundsation most firmly in the progressive house scene. Stress was Dave Seaman's label — co-founded with Steve Hillier — and one of the defining imprints of the era. Being on Stress meant being taken seriously by the people who mattered.
+Before signing to Stress, Soundsation had an offer from Jackpot Records — the label Blue Amazon were on. Jackpot was a credible progressive house home; the offer was real.
+
+Simon chose Stress because he knew James Wiltshire, who was the engineer there. The personal connection was the deciding factor. Everything that followed from the Stress Records period — the Digweed endorsement, the Renaissance compilation placement, the reach through the DJ network — came from that decision, and that decision came from a relationship.
+
+The Stress Records release of *Do You Feel It?* is the moment that placed Soundsation most firmly in the progressive house scene. Stress was Dave Seaman's label — co-founded with Steve Hillier, distributed through DMC — and one of the defining imprints of the era. Being on Stress meant being taken seriously by the people who mattered.
 
 ## John Digweed's Record of 1996
 

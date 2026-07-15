@@ -48,9 +48,17 @@ The rare pressing circulated through the DJ network before the official release 
 
 This is consistent with the broader pattern of how Soundsation records moved: underground first, official release second, with the underground version carrying the value.
 
+## The Label Decision — Jackpot vs. Stress
+
+Before signing to Stress, Soundsation had an offer from Jackpot Records — the label that Blue Amazon were on. Jackpot was a credible home for progressive house at the time; Blue Amazon were a serious act on the label.
+
+Simon chose Stress because he knew James Wiltshire, who was the engineer there. The personal connection — knowing someone inside the operation — was the deciding factor over the Jackpot offer. The relationship mattered more than the label's commercial positioning.
+
+This is a detail that shaped everything that followed: the Digweed endorsement, the Renaissance compilation placement, the record's reach through the DJ network. It came from a personal connection at the point of signing.
+
 ## The Stress Records Context
 
-Stress Records was co-founded by Dave Seaman and Steve Hillier. Being placed on Stress in 1996 meant being taken seriously by the inner circle of the UK progressive house scene. The label's catalogue from this period is a map of the sound at its mid-period peak.
+Stress Records was co-founded by Dave Seaman and Steve Hillier. Being placed on Stress in 1996 — distributed through DMC — meant being taken seriously by the inner circle of the UK progressive house scene. The label's catalogue from this period is a map of the sound at its mid-period peak.
 
 ## The Renaissance Compilation
 
