@@ -38,6 +38,12 @@ Digital Audio Tape — the format on which finished mixes were delivered in the 
 
 Listening to a Sasha remix arrive on DAT in a Reykjavik office in 1997, with the people it was made for, is an experience specific to that moment in music technology and that moment in the progressive house network. It could not happen the same way at any other time.
 
+## What Followed
+
+The impression formed in the GusGus office — progressive by the day's standards, but leaning toward trance — is the same shift Soundsation documented a year later. *New Direction* (1998, SOS Recordings) was the most vocal-led trance track Soundsation had made: a full lead vocal, the Lunn & Latham mix, released before Tiësto had achieved global dominance and before A State of Trance (2001) existed to carry that kind of record to a worldwide audience.
+
+Hearing the club sound move in a Reykjavik office in 1997 and making the record that reflected that movement in 1998 is not coincidence. It is what being inside the network meant: you heard where things were going before the infrastructure arrived to confirm it.
+
 ## The Network in One Room
 
 - **Sasha** — playing *Do You Feel It?* at Cream in 1996; now remixing GusGus

@@ -21,6 +21,12 @@ updatedAt: "2026-07-15T00:00:00.000Z"
 
 Judge Jules Show — October 1998 (3rd, 9th and 16th). Occasionally credited on air as "Soundstation" (typo).
 
+## The Direct Line from the GusGus Office
+
+In 1997 Simon was at the GusGus office in Reykjavik when the DAT of Sasha's remix of *The Light* arrived. His impression on first listen: a gated vocal, progressive by the day's standards but leaning toward trance. The club sound was shifting.
+
+*New Direction* — the Lunn & Latham mix — was the most vocal-led trance track Soundsation had made. It came the year after that room. Hearing the direction in 1997 and making a record in that direction in 1998 is the pattern running through the whole career: being inside the movement before the wider market confirmed it.
+
 ## Ahead of the Genre
 
 *New Direction* was a full lead vocal trance record released in 1998. That matters because vocal trance as a recognised, commercially dominant form didn't arrive until 1999–2001. ATB's *9 PM (Till I Come)* — widely cited as a turning point — came in 1998 but broke through in 1999. Alice Deejay's *Better Off Alone*, Darude's *Sandstorm*, the wave of Radio 1-crossover vocal trance records — all of that was still ahead.
